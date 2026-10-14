@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#0b0d12">
+<meta name="description" content="GTA SA 原创模组站 · AML插件与CLEO插件分享。">
+<title>GTA SA 原创模组站</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#080a0f;--bg2:#0d1017;--card:#131720;--card2:#181c26;
+  --border:#222838;--border2:#2e3548;
+  --pink:#e0418f;--purple:#8b5cf6;--blue:#4f7cff;
+  --text:#eef1f8;--sub:#949cab;--dim:#5c6478;
+  --max:1200px;--radius:18px;
+}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--text);line-height:1.7;overflow-x:hidden;position:relative}
+
+/* 背景光晕 */
+body::before{content:"";position:fixed;inset:0;background:
+  radial-gradient(circle at 15% 0%,rgba(139,92,246,.14),transparent 45%),
+  radial-gradient(circle at 85% 15%,rgba(224,65,143,.10),transparent 45%),
+  radial-gradient(circle at 50% 100%,rgba(79,124,255,.08),transparent 50%);
+  pointer-events:none;z-index:0}
+body::after{content:"";position:fixed;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+  pointer-events:none;z-index:0;mix-blend-mode:overlay}
+
+button,a{font:inherit}
+button{cursor:pointer}
+img{max-width:100%}
+.navbar,#homeView,.detail,.modal{position:relative;z-index:1}
+
+/* ===== 导航 ===== */
+.navbar{position:sticky;top:0;z-index:1000;background:rgba(8,10,15,.78);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--border);animation:navDrop .6s cubic-bezier(.22,1,.36,1)}
+@keyframes navDrop{from{transform:translateY(-100%);opacity:0}to{transform:translateY(0);opacity:1}}
+.nav-inner{max-width:var(--max);height:68px;margin:auto;padding:0 24px;display:flex;align-items:center;gap:24px}
+.nav-brand{font-size:18px;font-weight:900;white-space:nowrap;color:#fff;letter-spacing:-.3px}
+.nav-brand span{background:linear-gradient(135deg,var(--pink),var(--purple));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.nav-menu{flex:1;display:flex;justify-content:center;gap:30px}
+.nav-menu a{position:relative;color:var(--sub);text-decoration:none;font-size:14px;font-weight:650;padding:6px 0;transition:color .25s}
+.nav-menu a::after{content:"";position:absolute;left:0;bottom:0;width:0;height:2px;border-radius:2px;background:linear-gradient(90deg,var(--pink),var(--purple));transition:width .3s cubic-bezier(.22,1,.36,1)}
+.nav-menu a:hover{color:#fff}
+.nav-menu a:hover::after{width:100%}
+.nav-btn{padding:9px 20px;border:0;border-radius:10px;font-size:13px;font-weight:750;color:#fff;background:linear-gradient(135deg,var(--pink),#9333ea);box-shadow:0 0 26px rgba(224,65,143,.3);transition:transform .2s,box-shadow .3s;white-space:nowrap}
+.nav-btn:hover{transform:translateY(-2px);box-shadow:0 0 42px rgba(224,65,143,.6)}
+.nav-btn:active{transform:translateY(0) scale(.97)}
+
+/* ===== Hero ===== */
+.hero{max-width:var(--max);margin:auto;padding:80px 24px 50px;text-align:center}
+.hero-kicker{display:inline-flex;align-items:center;gap:8px;color:#c7ccd7;font-size:12px;font-weight:750;letter-spacing:2.5px;text-transform:uppercase;margin-bottom:18px;animation:fadeUp .7s ease both}
+.hero-kicker i{width:7px;height:7px;border-radius:50%;background:var(--pink);box-shadow:0 0 14px var(--pink);animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.6;transform:scale(.85)}}
+.hero h1{font-size:56px;line-height:1.05;letter-spacing:-2.5px;color:#fff;font-weight:950;margin-bottom:18px;animation:fadeUp .8s ease .05s both}
+.hero h1 span{background:linear-gradient(135deg,#fff 0%,#e0418f 55%,#8b5cf6 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{max-width:580px;margin:0 auto 32px;color:var(--sub);font-size:16px;animation:fadeUp .8s ease .12s both}
+.hero-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;animation:fadeUp .8s ease .2s both}
+@keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+
+.btn-primary{padding:15px 32px;border:0;border-radius:11px;font-size:15px;font-weight:800;color:#fff;background:linear-gradient(135deg,var(--pink),#9333ea);box-shadow:0 0 30px rgba(224,65,143,.38);transition:transform .2s,box-shadow .3s}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 0 50px rgba(224,65,143,.7)}
+.btn-primary:active{transform:translateY(-1px) scale(.98)}
+.btn-ghost{padding:14px 28px;border-radius:11px;color:var(--text);background:transparent;border:1px solid var(--border);font-size:15px;font-weight:700;text-decoration:none;transition:border-color .25s,color .25s,transform .2s;display:inline-block}
+.btn-ghost:hover{border-color:var(--pink);color:#fff;transform:translateY(-3px)}
+
+/* ===== 工具栏 ===== */
+.toolbar{max-width:var(--max);margin:auto;padding:10px 24px 28px;display:flex;gap:14px;align-items:center;flex-wrap:wrap;animation:fadeUp .8s ease .28s both}
+.search-box{flex:1;min-width:220px;position:relative}
+.search-box input{width:100%;padding:13px 16px 13px 44px;border-radius:12px;background:var(--card);border:1px solid var(--border);color:var(--text);font-size:14px;outline:none;transition:border-color .25s,box-shadow .25s}
+.search-box input:focus{border-color:var(--pink);box-shadow:0 0 0 3px rgba(224,65,143,.13)}
+.search-box::before{content:"🔍";position:absolute;left:16px;top:50%;transform:translateY(-50%);font-size:14px;opacity:.6;pointer-events:none}
+.tags{display:flex;gap:8px;flex-wrap:wrap}
+.tag-btn{padding:9px 17px;border-radius:10px;background:var(--card);border:1px solid var(--border);color:var(--sub);font-size:13px;font-weight:650;transition:all .25s}
+.tag-btn:hover{color:#fff;border-color:var(--pink);transform:translateY(-1px)}
+.tag-btn.active{background:linear-gradient(135deg,var(--pink),#9333ea);color:#fff;border-color:transparent;box-shadow:0 0 22px rgba(224,65,143,.35)}
+
+/* ===== 卡片网格 ===== */
+.mods{max-width:var(--max);margin:auto;padding:0 24px 70px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;cursor:pointer;transition:transform .35s cubic-bezier(.22,1,.36,1),border-color .3s,box-shadow .35s;display:flex;flex-direction:column;position:relative;animation:cardIn .7s cubic-bezier(.22,1,.36,1) both}
+.card:nth-child(1){animation-delay:.05s}
+.card:nth-child(2){animation-delay:.12s}
+.card:nth-child(3){animation-delay:.19s}
+.card:nth-child(4){animation-delay:.26s}
+.card:nth-child(5){animation-delay:.33s}
+.card:nth-child(6){animation-delay:.4s}
+.card:nth-child(7){animation-delay:.47s}
+.card:nth-child(8){animation-delay:.54s}
+@keyframes cardIn{from{opacity:0;transform:translateY(26px) scale(.97)}to{opacity:1;transform:none}}
+.card::before{content:"";position:absolute;inset:0;border-radius:var(--radius);padding:1px;background:linear-gradient(135deg,rgba(224,65,143,.6),rgba(139,92,246,.6));-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;opacity:0;transition:opacity .35s;pointer-events:none}
+.card:hover{transform:translateY(-8px);border-color:transparent;box-shadow:0 22px 50px rgba(0,0,0,.5)}
+.card:hover::before{opacity:1}
+.card-img{width:100%;aspect-ratio:16/10;object-fit:cover;background:#0f131b;display:block;transition:transform .5s cubic-bezier(.22,1,.36,1)}
+.card:hover .card-img{transform:scale(1.05)}
+.card-body{padding:18px;flex:1;display:flex;flex-direction:column;gap:8px}
+.card-title{font-size:15.5px;font-weight:750;color:#fff;line-height:1.4}
+.card-desc{font-size:12.5px;color:var(--sub);line-height:1.65;flex:1}
+.card-meta{display:flex;justify-content:space-between;align-items:center;font-size:11.5px;color:var(--dim);margin-top:6px}
+.card-badge{padding:4px 10px;border-radius:7px;background:rgba(224,65,143,.13);color:#ec6aa8;font-weight:750;font-size:11px;border:1px solid rgba(224,65,143,.2)}
+
+.empty{grid-column:1/-1;text-align:center;color:var(--dim);padding:70px 0;font-size:14px}
+
+/* ===== 区块 ===== */
+.section{max-width:var(--max);margin:auto;padding:60px 24px;opacity:0;transform:translateY(28px);transition:opacity .8s ease,transform .8s ease}
+.section.visible{opacity:1;transform:none}
+.section-head{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:30px;padding-bottom:16px;border-bottom:1px solid var(--border)}
+.section-head h2{font-size:27px;font-weight:850;color:#fff;letter-spacing:-.5px}
+.tag{font-size:11px;color:var(--pink);font-weight:800;letter-spacing:2.5px;text-transform:uppercase}
+.about{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.about-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:24px;transition:transform .3s,border-color .3s,box-shadow .3s}
+.about-card:hover{transform:translateY(-4px);border-color:var(--border2);box-shadow:0 14px 36px rgba(0,0,0,.35)}
+.about-card h3{font-size:15.5px;color:#fff;margin-bottom:12px;display:flex;align-items:center;gap:9px}
+.about-card h3::before{content:"";width:4px;height:16px;border-radius:3px;background:linear-gradient(var(--pink),var(--purple))}
+.about-card p{font-size:13px;color:var(--sub);line-height:1.85}
+
+/* ===== 页脚 ===== */
+.footer{border-top:1px solid var(--border);background:var(--bg2);padding:54px 24px 30px;position:relative;z-index:1}
+.footer-inner{max-width:var(--max);margin:auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;padding-bottom:30px;border-bottom:1px solid var(--border)}
+.footer-col h5{font-size:14px;color:#fff;margin-bottom:14px}
+.footer-col p,.footer-col a{display:block;font-size:12.5px;color:var(--sub);text-decoration:none;margin-bottom:9px;transition:color .25s,transform .25s}
+.footer-col a:hover{color:#fff;transform:translateX(4px)}
+.footer-bottom{max-width:var(--max);margin:22px auto 0;text-align:center;color:var(--dim);font-size:11px;letter-spacing:1.5px}
+
+/* ===== 弹窗 ===== */
+.modal{display:none;position:fixed;inset:0;z-index:2000;padding:20px;background:rgba(0,0,0,.82);backdrop-filter:blur(10px);align-items:center;justify-content:center;animation:fadeIn .3s ease}
+.modal.show{display:flex}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+.modal-box{position:relative;width:min(500px,100%);max-height:85vh;overflow:auto;background:#161a24;border:1px solid var(--border);border-radius:18px;animation:popIn .35s cubic-bezier(.34,1.56,.64,1)}
+@keyframes popIn{from{opacity:0;transform:scale(.94) translateY(10px)}to{opacity:1;transform:none}}
+.modal-close{position:absolute;right:14px;top:12px;width:34px;height:34px;border:0;border-radius:50%;background:rgba(255,255,255,.07);color:#8f97a5;font-size:22px;z-index:5;transition:background .25s,color .25s,transform .25s}
+.modal-close:hover{background:rgba(224,65,143,.25);color:#fff;transform:rotate(90deg)}
+.modal-body{padding:26px}
+.modal-body h3{font-size:17px;color:#fff;margin-bottom:14px;padding-left:11px;border-left:3px solid var(--pink)}
+.modal-body p{font-size:13.5px;color:#b8c0cf;line-height:1.85;margin-bottom:11px}
+
+/* ===== 详情页 ===== */
+.detail{display:none;max-width:var(--max);margin:auto;padding:36px 24px 70px}
+.detail.show{display:block;animation:detailIn .5s cubic-bezier(.22,1,.36,1)}
+@keyframes detailIn{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+.detail-back{display:inline-flex;align-items:center;gap:7px;padding:10px 18px;border:1px solid var(--border);border-radius:11px;background:var(--card);color:var(--sub);font-size:13px;font-weight:650;text-decoration:none;margin-bottom:26px;transition:all .25s}
+.detail-back:hover{color:#fff;border-color:var(--pink);transform:translateX(-3px)}
+.detail-title{font-size:32px;font-weight:850;color:#fff;margin-bottom:16px;letter-spacing:-.8px;line-height:1.25;animation:fadeUp .6s ease both}
+.detail-imgs{display:flex;overflow-x:auto;gap:14px;padding-bottom:14px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;animation:fadeUp .6s ease .08s both}
+.detail-imgs::-webkit-scrollbar{height:6px}
+.detail-imgs::-webkit-scrollbar-thumb{background:#2c3245;border-radius:3px}
+.detail-imgs img{flex:0 0 82%;height:min(440px,54vw);object-fit:cover;border-radius:16px;border:1px solid var(--border);background:#0f131b;scroll-snap-align:center;transition:transform .4s}
+.detail-imgs img:hover{transform:scale(1.02)}
+.detail-meta{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:28px 0;animation:fadeUp .6s ease .16s both}
+.detail-meta div{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:14px 16px;transition:border-color .25s,transform .25s}
+.detail-meta div:hover{border-color:var(--border2);transform:translateY(-3px)}
+.detail-meta span{display:block;font-size:11px;color:var(--dim);margin-bottom:4px;letter-spacing:.5px}
+.detail-meta strong{font-size:14.5px;color:#fff;font-weight:700}
+.detail-desc{font-size:14px;color:#b8c0cf;line-height:1.95;background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:26px;white-space:pre-wrap;margin-bottom:26px;animation:fadeUp .6s ease .24s both}
+.detail-download{display:block;text-align:center;padding:18px;border-radius:12px;font-size:16px;font-weight:800;color:#fff;background:linear-gradient(135deg,var(--pink),#9333ea);box-shadow:0 0 30px rgba(224,65,143,.4);text-decoration:none;transition:transform .2s,box-shadow .3s;animation:fadeUp .6s ease .32s both}
+.detail-download:hover{transform:translateY(-3px);box-shadow:0 0 50px rgba(224,65,143,.7)}
+.detail-download:active{transform:translateY(-1px) scale(.98)}
+.detail-password{margin-top:14px;text-align:center;font-size:13px;color:var(--dim);animation:fadeUp .6s ease .4s both}
+.detail-password b{color:#ec6aa8}
+
+/* ===== 响应式 ===== */
+@media(max-width:900px){
+  .nav-menu{display:none}
+  .hero h1{font-size:40px}
+  .grid{grid-template-columns:repeat(2,1fr)}
+  .about{grid-template-columns:1fr}
+  .footer-inner{grid-template-columns:1fr 1fr;gap:30px}
+  .detail-meta{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:560px){
+  .nav-inner{height:60px;padding:0 16px}
+  .nav-brand{font-size:15px}
+  .nav-btn{padding:8px 14px;font-size:12px}
+  .hero{padding:52px 18px 32px}
+  .hero h1{font-size:31px;letter-spacing:-1.3px}
+  .hero p{font-size:14px}
+  .hero-btns>*{flex:1;text-align:center}
+  .toolbar{padding:0 16px 22px}
+  .mods{padding:0 16px 46px}
+  .grid{grid-template-columns:1fr;gap:18px}
+  .section{padding:40px 16px}
+  .section-head h2{font-size:21px}
+  .footer-inner{grid-template-columns:1fr}
+  .detail{padding:24px 16px 56px}
+  .detail-title{font-size:23px}
+  .detail-imgs img{flex:0 0 88%;height:62vw}
+  .detail-meta{grid-template-columns:1fr 1fr;gap:10px}
+  .detail-meta div{padding:12px}
+  .detail-desc{padding:20px;font-size:13px}
+}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="nav-inner">
+    <div class="nav-brand">GTA SA<span>原创模组站</span></div>
+    <div class="nav-menu">
+      <a href="#mods">模组</a>
+      <a href="#about">关于</a>
+      <a href="javascript:void(0)" onclick="openDisclaimer()">免责声明</a>
+    </div>
+    <button class="nav-btn" onclick="document.getElementById('mods').scrollIntoView({behavior:'smooth'})">浏览模组</button>
+  </div>
+</nav>
+
+<div id="homeView">
+
+  <section class="hero">
+    <div class="hero-kicker"><i></i> GTA SA MOBILE MODS</div>
+    <h1>GTA SA <span>原创模组站</span></h1>
+    <p>专注 GTA SA 安卓手机版模组与插件分享，AML 插件、CLEO 插件持续更新，全部免费。</p>
+    <div class="hero-btns">
+      <button class="btn-primary" onclick="document.getElementById('mods').scrollIntoView({behavior:'smooth'})">⬇ 浏览模组</button>
+      <a class="btn-ghost" href="#about">了解本站</a>
+    </div>
+  </section>
+
+  <div class="toolbar">
+    <div class="search-box">
+      <input type="text" id="searchInput" placeholder="搜索模组名称..." oninput="filterMods()">
+    </div>
+    <div class="tags" id="tags">
+      <button class="tag-btn active" data-tag="全部" onclick="setTag(this)">全部</button>
+      <button class="tag-btn" data-tag="AML插件" onclick="setTag(this)">AML插件</button>
+      <button class="tag-btn" data-tag="CLEO插件" onclick="setTag(this)">CLEO插件</button>
+    </div>
+  </div>
+
+  <section class="mods" id="mods">
+    <div class="grid" id="grid">
+
+      <!-- ===== 模组卡片 ===== -->
+      <div class="card" data-tag="AML插件" data-name="AXON BODY 3 执法记录仪模组"
+           onclick="openMod(this)"
+           data-title="AXON BODY 3 执法记录仪模组"
+           data-img="Axon-Logo.jpg"
+           data-desc="GTASA安卓SO插件，复刻AXON Body3执法记录仪，警向角色扮演使用。"
+           data-version="v3.0b"
+           data-size="1.97 MB"
+           data-date="2026-10-14"
+           data-download="https://wwbgu.lanzoum.com/i5vcs4bytsmj"
+           data-password="9v40"
+           data-preview="1.jpg,2.jpg,3.jpg,4.jpg,5.jpg,6.jpg,7.jpg,8.jpg"
+           data-detail="AXON BODY3 v3.0b 详细介绍
+
+这是GTASA安卓端的SO插件，复刻现实里AXON BODY3胸挂执法记录仪，专门用来做警察角色扮演，已经不再用老的CLEO脚本。
+
+主要功能：
+1.胸挂相机，模拟真实记录仪跑动晃动，支持持枪、车内视角，全部靠开关手动控制。
+2.记录仪机身水印直接读取手机本地时间，警员编号、电量这些显示项位置都可以单独调，水印的坐标、缩放大小随便改。
+3.游戏打开只会显示悬浮球，插件不会自己启动。每次重开游戏所有设置状态全部清空，必须手动点悬浮球开启功能。悬浮球有出厂默认位置，自己拖动之后会记住你调整的位置。
+4.内置完整设置菜单，可以一键恢复默认参数，菜单内可以直接跳转到我的B站主页。插件加载完成会弹出提示小窗口。
+5.水印开启关闭有对应的提示音效；插件文件损坏或者运行出错，会输出详细报错方便排查问题。
+
+版本说明：
+这是Beta测试版本，bug不算多，但是不少细节还没打磨到位，部分功能还没做完，不是正式发行版本。后续会根据大家反馈继续修bug、加内容。拿来测试体验没问题，遇到问题可以把情况反馈给我。
+
+⚠️Beta测试版，细节待完善，每次进游戏需手动激活，欢迎反馈bug。">
+        <img class="card-img" src="Axon-Logo.jpg" alt="AXON BODY 3" onerror="this.style.display='none'">
+        <div class="card-body">
+          <div class="card-title">AXON BODY 3 执法记录仪模组</div>
+          <div class="card-desc">GTASA安卓SO插件，复刻AXON Body3执法记录仪，警向角色扮演使用。</div>
+          <div class="card-meta">
+            <span class="card-badge">AML插件</span>
+            <span>v3.0b</span>
+          </div>
+        </div>
+      </div>
+      <!-- ===== 卡片结束 ===== -->
+
+    </div>
+    <div class="empty" id="empty">暂无模组，敬请期待</div>
+  </section>
+
+  <section class="section" id="about">
+    <div class="section-head"><h2>关于本站</h2><span class="tag">About</span></div>
+    <div class="about">
+      <div class="about-card">
+        <h3>免费分享</h3>
+        <p>本站所有模组与插件均免费分享，禁止任何形式的倒卖、收费打包或冒充原创发布。</p>
+      </div>
+      <div class="about-card">
+        <h3>反馈与举报</h3>
+        <p>发现链接失效或有人倒卖，可通过作者主页反馈，感谢大家监督。</p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-col">
+        <h5>GTA SA 原创模组站</h5>
+        <p>专注 GTA SA 安卓手机版模组与插件分享，持续更新。</p>
+      </div>
+      <div class="footer-col">
+        <h5>导航</h5>
+        <a href="#mods">模组</a>
+        <a href="#about">关于</a>
+        <a href="javascript:void(0)" onclick="openDisclaimer()">免责声明</a>
+      </div>
+      <div class="footer-col">
+        <h5>制作</h5>
+        <a href="https://b23.tv/tECAcfc" target="_blank" rel="noopener">流王星者_Streamer</a>
+      </div>
+      <div class="footer-col">
+        <h5>相关</h5>
+        <a href="javascript:void(0)" onclick="openReport()">举报倒卖</a>
+      </div>
+    </div>
+    <div class="footer-bottom">GTA SA ORIGINAL MODS · FREE SHARING</div>
+  </footer>
+
+</div>
+
+<!-- ========== 详情页 ========== -->
+<div class="detail" id="detailView">
+  <a class="detail-back" href="javascript:void(0)" onclick="closeDetail()">← 返回首页</a>
+  <h1 class="detail-title" id="detailTitle">模组名字</h1>
+  <div class="detail-imgs" id="detailImgs"></div>
+  <div class="detail-meta">
+    <div><span>版本</span><strong id="detailVersion">v1.0</strong></div>
+    <div><span>大小</span><strong id="detailSize">xx MB</strong></div>
+    <div><span>更新日期</span><strong id="detailDate">2025-01-01</strong></div>
+    <div><span>类型</span><strong id="detailTag">AML插件</strong></div>
+  </div>
+  <div class="detail-desc" id="detailDesc">详细介绍</div>
+  <a class="detail-download" id="detailDownload" href="#" target="_blank" rel="noopener">⬇ 下载模组</a>
+  <div class="detail-password" id="detailPassword"></div>
+</div>
+
+<!-- 免责声明 -->
+<div class="modal" id="disclaimer">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal('disclaimer')">×</button>
+    <div class="modal-body">
+      <h3>免责声明</h3>
+      <p>本站所有模组与插件仅供个人学习、交流与娱乐使用。除原创内容外，其余资源均来自互联网收集、整合、兼容与调试，相关权利归原作者或权利人所有。</p>
+      <p>本站免费分享，不代表对第三方资源拥有版权或商业授权。使用者应自行承担使用相关资源产生的风险。</p>
+    </div>
+  </div>
+</div>
+
+<!-- 举报倒卖 -->
+<div class="modal" id="report">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal('report')">×</button>
+    <div class="modal-body">
+      <h3>举报倒卖</h3>
+      <p>如果发现有人收费售卖、冒充原创或二次打包出售本站模组，可以整理相关账号、截图及链接后联系作者反馈。</p>
+      <p><b>反馈主页：</b><a href="https://b23.tv/AtXUMm9" target="_blank" rel="noopener" style="color:#ec6aa8">https://b23.tv/AtXUMm9</a></p>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  let currentTag = "全部";
+
+  window.setTag = function(btn) {
+    document.querySelectorAll(".tag-btn").forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+    currentTag = btn.dataset.tag;
+    filterMods();
+  };
+
+  window.filterMods = function() {
+    const keyword = document.getElementById("searchInput").value.trim().toLowerCase();
+    const cards = document.querySelectorAll("#grid .card");
+    let visible = 0;
+    cards.forEach(card => {
+      const name = (card.dataset.name || "").toLowerCase();
+      const tag = card.dataset.tag || "";
+      const matchTag = currentTag === "全部" || tag === currentTag;
+      const matchKey = keyword === "" || name.includes(keyword);
+      if (matchTag && matchKey) {
+        card.style.display = "";
+        visible++;
+      } else {
+        card.style.display = "none";
+      }
+    });
+    const empty = document.getElementById("empty");
+    if (cards.length === 0) {
+      empty.textContent = "暂无模组，敬请期待";
+      empty.style.display = "block";
+    } else if (visible === 0) {
+      empty.textContent = "没有找到匹配的模组";
+      empty.style.display = "block";
+    } else {
+      empty.style.display = "none";
+    }
+  };
+
+  window.openMod = function(card) {
+    document.getElementById("detailTitle").textContent = card.dataset.title || "";
+    document.getElementById("detailVersion").textContent = card.dataset.version || "-";
+    document.getElementById("detailSize").textContent = card.dataset.size || "-";
+    document.getElementById("detailDate").textContent = card.dataset.date || "-";
+    document.getElementById("detailTag").textContent = card.dataset.tag || "-";
+    document.getElementById("detailDesc").textContent = card.dataset.detail || card.dataset.desc || "";
+
+    const dl = document.getElementById("detailDownload");
+    dl.href = card.dataset.download || "#";
+
+    const pw = document.getElementById("detailPassword");
+    const password = card.dataset.password || "";
+    if (password) {
+      pw.innerHTML = '提取码：<b>' + password + '</b>';
+      pw.style.display = "block";
+    } else {
+      pw.style.display = "none";
+    }
+
+    const imgBox = document.getElementById("detailImgs");
+    imgBox.innerHTML = "";
+    const previewStr = card.dataset.preview || "";
+    const imgs = previewStr.split(",").map(s => s.trim()).filter(s => s);
+    const list = imgs.length ? imgs : (card.dataset.img ? [card.dataset.img] : []);
+    list.forEach(src => {
+      const img = document.createElement("img");
+      img.src = src;
+      img.alt = card.dataset.title || "";
+      img.onerror = function() { this.style.display = "none"; };
+      imgBox.appendChild(img);
+    });
+
+    document.getElementById("homeView").style.display = "none";
+    document.getElementById("detailView").classList.add("show");
+    window.scrollTo({ top: 0, behavior: "instant" });
+  };
+
+  window.closeDetail = function() {
+    document.getElementById("detailView").classList.remove("show");
+    document.getElementById("homeView").style.display = "";
+    window.scrollTo({ top: 0, behavior: "instant" });
+  };
+
+  window.openDisclaimer = function() { document.getElementById("disclaimer").classList.add("show"); };
+  window.openReport = function() { document.getElementById("report").classList.add("show"); };
+  window.closeModal = function(id) { document.getElementById(id).classList.remove("show"); };
+
+  document.querySelectorAll(".modal").forEach(function(m) {
+    m.addEventListener("click", function(e) {
+      if (e.target === m) m.classList.remove("show");
+    });
+  });
+
+  document.addEventListener("keydown", function(e) {
+    if (e.key === "Escape") {
+      document.querySelectorAll(".modal.show").forEach(el => el.classList.remove("show"));
+      if (document.getElementById("detailView").classList.contains("show")) closeDetail();
+    }
+  });
+
+  /* 滚动到区块时淡入 */
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.classList.add("visible");
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll(".section").forEach(el => observer.observe(el));
+
+  filterMods();
+})();
+</script>
+</body>
+</html>
