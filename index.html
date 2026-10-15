@@ -12,7 +12,7 @@
   --bg:#0a0a0c;--card:#141418;--card2:#1a1a20;
   --line:#26262e;--line2:#33333d;
   --ink:#f4f4f6;--ink2:#a0a0ac;--dim:#5f5f6b;
-  --accent:#ff3d68;--accent2:#ffb03d;
+  --accent:#ff3d68;
   --max:1240px;
 }
 html{scroll-behavior:smooth;scroll-padding-top:90px}
@@ -72,7 +72,7 @@ a{color:inherit}
 .feature-no{font-size:12px;font-weight:800;color:var(--accent);letter-spacing:2px}
 .feature-title{font-size:30px;line-height:1.2;letter-spacing:-1px;font-weight:900;color:#fff}
 .feature-desc{font-size:14px;color:var(--ink2);line-height:1.8}
-.feature-meta{display:flex;gap:26px;font-size:12px;color:var(--dim);letter-spacing:.5px;padding-top:16px;border-top:1px solid var(--line);margin-top:8px}
+.feature-meta{display:flex;gap:22px;font-size:12px;color:var(--dim);letter-spacing:.5px;padding-top:16px;border-top:1px solid var(--line);margin-top:8px;flex-wrap:wrap}
 .feature-meta b{color:#fff;font-weight:750;display:block;font-size:13.5px;margin-bottom:2px}
 .feature-meta span{font-size:11px;text-transform:uppercase;letter-spacing:1.5px}
 .feature-cta{margin-top:6px;display:inline-flex;align-items:center;gap:10px;font-size:13px;font-weight:800;color:var(--accent);letter-spacing:1px;text-transform:uppercase}
@@ -276,7 +276,8 @@ a{color:inherit}
          data-title="AXON BODY 3 执法记录仪模组"
          data-img="Axon-Logo.jpg"
          data-desc="GTASA安卓SO插件，复刻AXON Body3执法记录仪，警向角色扮演使用。"
-         data-version="v3.0b" data-size="1.97 MB" data-date="2026-10-14"
+         data-version="v3.0b" data-size="1.97 MB"
+         data-publish="2026.10.14" data-date="暂无"
          data-download="https://wwbgu.lanzoum.com/i5vcs4bytsmj"
          data-password="9v40"
          data-preview="1.jpg,2.jpg,3.jpg,4.jpg,5.jpg,6.jpg,7.jpg,8.jpg"
@@ -303,7 +304,8 @@ a{color:inherit}
         <div class="feature-meta">
           <div><b>v3.0b</b><span>版本</span></div>
           <div><b>1.97 MB</b><span>大小</span></div>
-          <div><b>2026-10-14</b><span>更新</span></div>
+          <div><b>2026.10.14</b><span>发布时间</span></div>
+          <div><b>暂无</b><span>更新日期</span></div>
         </div>
         <span class="feature-cta">查看详情 <span class="arrow">→</span></span>
       </div>
@@ -315,9 +317,7 @@ a{color:inherit}
       <h2>精选模组</h2>
       <span class="hint">← 左右滑动 →</span>
     </div>
-    <div class="rail-scroll" id="railScroll">
-      <!-- 精选模组卡片：以后往这里加 rail-card -->
-    </div>
+    <div class="rail-scroll" id="railScroll"></div>
     <div class="rail-empty" id="railEmpty">暂无精选模组，敬请期待。</div>
   </div>
 
@@ -328,7 +328,6 @@ a{color:inherit}
   </div>
 
   <div class="numlist" id="numList">
-    <!-- 编号列表：以后往这里加 num-item -->
     <div class="num-empty" id="numEmpty">暂无模组，敬请期待。</div>
   </div>
 
@@ -399,7 +398,8 @@ a{color:inherit}
         <h3>模组信息</h3>
         <div class="side-row"><span class="k">版本</span><span class="v" id="detailVersion">v1.0</span></div>
         <div class="side-row"><span class="k">大小</span><span class="v" id="detailSize">xx MB</span></div>
-        <div class="side-row"><span class="k">更新日期</span><span class="v" id="detailDate">2026-10-15</span></div>
+        <div class="side-row"><span class="k">发布时间</span><span class="v" id="detailPublish">2026.10.14</span></div>
+        <div class="side-row"><span class="k">更新日期</span><span class="v" id="detailDate">暂无</span></div>
         <div class="side-row"><span class="k">类型</span><span class="v accent" id="detailTag">AML插件</span></div>
       </div>
       <a class="detail-download" id="detailDownload" href="#" target="_blank" rel="noopener">⬇ 下载模组</a>
@@ -434,7 +434,6 @@ a{color:inherit}
 (function(){
   "use strict";
 
-  /* 精选模组 + 编号列表都为空时，显示占位提示 */
   function updateEmptyStates() {
     const railHas = document.querySelectorAll("#railScroll .rail-card").length > 0;
     document.getElementById("railEmpty").style.display = railHas ? "none" : "block";
@@ -447,7 +446,8 @@ a{color:inherit}
     document.getElementById("detailTitle").textContent = card.dataset.title || "";
     document.getElementById("detailVersion").textContent = card.dataset.version || "-";
     document.getElementById("detailSize").textContent = card.dataset.size || "-";
-    document.getElementById("detailDate").textContent = card.dataset.date || "-";
+    document.getElementById("detailPublish").textContent = card.dataset.publish || "-";
+    document.getElementById("detailDate").textContent = card.dataset.date || "暂无";
     document.getElementById("detailTag").textContent = card.dataset.tag || "-";
     document.getElementById("detailDesc").textContent = card.dataset.detail || card.dataset.desc || "";
     document.getElementById("detailDownload").href = card.dataset.download || "#";
