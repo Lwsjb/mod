@@ -30,7 +30,7 @@ a{color:inherit}
 
 .navbar{position:sticky;top:0;z-index:1000;background:rgba(10,10,12,.92);backdrop-filter:blur(18px);border-bottom:1px solid var(--line);animation:navDrop .5s ease}
 @keyframes navDrop{from{transform:translateY(-100%);opacity:0}to{transform:translateY(0);opacity:1}}
-.nav-in{max-width:var(--max);height:72px;margin:auto;padding:0 28px;display:flex;align-items:center;gap:30px}
+.nav-in{max-width:var(--max);height:72px;margin:auto;padding:0 28px;display:flex;align-items:center;gap:22px}
 .nav-logo{display:flex;align-items:center;gap:11px;font-size:19px;font-weight:900;color:#fff;text-decoration:none;letter-spacing:-.5px;white-space:nowrap}
 .nav-logo .mark{width:8px;height:22px;background:var(--accent);flex-shrink:0}
 .nav-logo b{color:var(--accent)}
@@ -39,6 +39,9 @@ a{color:inherit}
 .nav-menu a::after{content:"";position:absolute;left:0;bottom:0;width:0;height:1px;background:var(--accent);transition:width .3s}
 .nav-menu a:hover{color:#fff}
 .nav-menu a:hover::after{width:100%}
+.nav-search{width:200px;padding:10px 16px;background:var(--card);border:1px solid var(--line2);color:var(--ink);font-size:13px;outline:none;transition:border-color .25s}
+.nav-search:focus{border-color:var(--accent)}
+.nav-search::placeholder{color:var(--dim)}
 .nav-cta{padding:11px 22px;border:0;border-radius:0;font-size:12.5px;font-weight:750;color:#0a0a0c;background:var(--accent);letter-spacing:.5px;transition:transform .2s,box-shadow .3s;white-space:nowrap;text-transform:uppercase}
 .nav-cta:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(255,61,104,.4)}
 .nav-cta:active{transform:translateY(0) scale(.97)}
@@ -78,6 +81,12 @@ a{color:inherit}
 .feature-cta{margin-top:6px;display:inline-flex;align-items:center;gap:10px;font-size:13px;font-weight:800;color:var(--accent);letter-spacing:1px;text-transform:uppercase}
 .feature-cta .arrow{transition:transform .3s}
 .feature-card:hover .feature-cta .arrow{transform:translateX(6px)}
+
+.filterbar{max-width:var(--max);margin:auto;padding:26px 28px 0;display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.filterbar .flabel{font-size:12px;color:var(--dim);letter-spacing:1.5px;text-transform:uppercase;font-weight:750;margin-right:6px}
+.fbtn{padding:10px 20px;border:1px solid var(--line2);background:transparent;color:var(--ink2);font-size:12.5px;font-weight:750;letter-spacing:.5px;text-transform:uppercase;transition:all .25s}
+.fbtn:hover{color:#fff;border-color:var(--accent);transform:translateY(-2px)}
+.fbtn.active{background:var(--accent);color:#0a0a0c;border-color:var(--accent);box-shadow:0 8px 22px rgba(255,61,104,.35)}
 
 .rail{max-width:var(--max);margin:auto;padding:36px 0 0}
 .rail-head{padding:0 28px;margin-bottom:18px;display:flex;justify-content:space-between;align-items:flex-end;gap:14px;flex-wrap:wrap}
@@ -179,6 +188,7 @@ a{color:inherit}
 
 @media(max-width:960px){
   .nav-menu{display:none}
+  .nav-search{display:none}
   .hero{padding:56px 20px 30px}
   .hero h1{font-size:52px;letter-spacing:-2.5px}
   .feature-card{grid-template-columns:1fr}
@@ -202,6 +212,7 @@ a{color:inherit}
   .feature{padding:26px 18px 0}
   .feature-body{padding:26px 22px}
   .feature-title{font-size:22px}
+  .filterbar{padding:22px 18px 0}
   .rail{padding:30px 0 0}
   .rail-head{padding:0 18px}
   .rail-scroll{padding:0 18px 14px}
@@ -249,6 +260,7 @@ a{color:inherit}
       <a href="#about">关于</a>
       <a href="javascript:void(0)" onclick="openDisclaimer()">免责声明</a>
     </div>
+    <input class="nav-search" type="text" id="searchInput" placeholder="搜索模组..." oninput="filterMods()">
     <button class="nav-cta" onclick="document.getElementById('mods').scrollIntoView({behavior:'smooth'})">浏览模组</button>
   </div>
 </nav>
@@ -272,8 +284,7 @@ a{color:inherit}
   </div>
 
   <div class="feature">
-    <div class="feature-card" data-tag="AML插件" onclick="openMod(this)"
-         data-title="AXON BODY 3 执法记录仪模组"
+    <div class="feature-card" data-tag="AML插件" data-title="AXON BODY 3 执法记录仪模组" onclick="openMod(this)"
          data-img="Axon-Logo.jpg"
          data-desc="GTASA安卓SO插件，复刻AXON Body3执法记录仪，警向角色扮演使用。"
          data-version="v3.0b" data-size="1.97 MB"
@@ -310,6 +321,13 @@ a{color:inherit}
         <span class="feature-cta">查看详情 <span class="arrow">→</span></span>
       </div>
     </div>
+  </div>
+
+  <div class="filterbar">
+    <span class="flabel">分类：</span>
+    <button class="fbtn active" data-tag="全部" onclick="setTag(this)">全部</button>
+    <button class="fbtn" data-tag="AML插件" onclick="setTag(this)">AML插件</button>
+    <button class="fbtn" data-tag="CLEO插件" onclick="setTag(this)">CLEO插件</button>
   </div>
 
   <div class="rail">
@@ -450,13 +468,38 @@ a{color:inherit}
   "use strict";
 
   let allowExit = false;
+  let currentTag = "全部";
 
   function updateEmptyStates() {
-    const railHas = document.querySelectorAll("#railScroll .rail-card").length > 0;
-    document.getElementById("railEmpty").style.display = railHas ? "none" : "block";
-    const numHas = document.querySelectorAll("#numList .num-item").length > 0;
-    document.getElementById("numEmpty").style.display = numHas ? "none" : "block";
+    const railAll = document.querySelectorAll("#railScroll .rail-card");
+    const numAll = document.querySelectorAll("#numList .num-item");
+    const railVisible = Array.from(railAll).filter(el => el.style.display !== "none").length;
+    const numVisible = Array.from(numAll).filter(el => el.style.display !== "none").length;
+    document.getElementById("railEmpty").style.display = railVisible === 0 ? "block" : "none";
+    document.getElementById("numEmpty").style.display = numVisible === 0 ? "block" : "none";
   }
+
+  window.setTag = function(btn) {
+    document.querySelectorAll(".fbtn").forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+    currentTag = btn.dataset.tag;
+    filterMods();
+    document.getElementById("mods").scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+
+  window.filterMods = function() {
+    const keywordEl = document.getElementById("searchInput");
+    const keyword = keywordEl ? keywordEl.value.trim().toLowerCase() : "";
+    const items = document.querySelectorAll("#railScroll .rail-card, #numList .num-item, .feature-card");
+    items.forEach(el => {
+      const tag = el.dataset.tag || "";
+      const name = (el.dataset.title || "").toLowerCase();
+      const matchTag = currentTag === "全部" || tag === currentTag;
+      const matchKey = keyword === "" || name.includes(keyword);
+      el.style.display = (matchTag && matchKey) ? "" : "none";
+    });
+    updateEmptyStates();
+  };
 
   window.openMod = function(card) {
     document.getElementById("detailTitle").textContent = card.dataset.title || "";
@@ -504,7 +547,6 @@ a{color:inherit}
   window.confirmExit = function() {
     allowExit = true;
     document.getElementById("exitModal").classList.remove("show");
-    /* 一路回退，直到真正离开网站 */
     let back = 0;
     while (back < 20) { back++; history.back(); }
     setTimeout(function() { window.location.href = "about:blank"; }, 200);
@@ -514,15 +556,11 @@ a{color:inherit}
     m.addEventListener("click", function(e) { if (e.target === m) m.classList.remove("show"); });
   });
 
-  /* 压两条冗余记录，防一进来就退光 */
   history.replaceState({ v: 0 }, "", "");
   history.pushState({ v: 1 }, "", "");
 
   window.addEventListener("popstate", function() {
-    /* 已确认退出 */
     if (allowExit) return;
-
-    /* 详情页 → 回首页 */
     if (document.getElementById("detailView").classList.contains("show")) {
       document.getElementById("detailView").classList.remove("show");
       document.getElementById("homeView").style.display = "";
@@ -530,8 +568,6 @@ a{color:inherit}
       history.pushState({ v: 1 }, "", "");
       return;
     }
-
-    /* 首页 → 弹窗，并立刻把记录压回来，保证永远退不出 */
     history.pushState({ v: 1 }, "", "");
     document.getElementById("exitModal").classList.add("show");
   });
