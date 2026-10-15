@@ -430,7 +430,6 @@ a{color:inherit}
   </div>
 </div>
 
-<!-- 退出提示弹窗 -->
 <div class="modal" id="exitModal">
   <div class="modal-box">
     <button class="modal-close" onclick="closeModal('exitModal')">×</button>
@@ -439,7 +438,7 @@ a{color:inherit}
       <p>再按一次返回键将退出本网站。</p>
       <p style="color:var(--dim);font-size:12.5px;margin-bottom:0;">按「留下」或点右上角 × 关闭本提示，继续浏览。</p>
       <div style="display:flex;gap:12px;margin-top:20px">
-        <button onclick="closeModal('exitModal')" style="flex:1;padding:13px;border:1px solid var(--line2);background:transparent;color:var(--ink);font-size:13px;font-weight:750;letter-spacing:.5px;text-transform:uppercase;transition:.25s" onmouseover="this.style.borderColor='var(--accent)';this.style.color='var(--accent)'" onmouseout="this.style.borderColor='var(--line2)';this.style.color='var(--ink)'">留下</button>
+        <button onclick="closeModal('exitModal')" style="flex:1;padding:13px;border:1px solid var(--line2);background:transparent;color:var(--ink);font-size:13px;font-weight:750;letter-spacing:.5px;text-transform:uppercase;transition:.25s">留下</button>
         <button onclick="confirmExit()" style="flex:1;padding:13px;border:0;background:var(--accent);color:#0a0a0c;font-size:13px;font-weight:750;letter-spacing:.5px;text-transform:uppercase;transition:.25s">退出网站</button>
       </div>
     </div>
@@ -455,7 +454,6 @@ a{color:inherit}
   function updateEmptyStates() {
     const railHas = document.querySelectorAll("#railScroll .rail-card").length > 0;
     document.getElementById("railEmpty").style.display = railHas ? "none" : "block";
-
     const numHas = document.querySelectorAll("#numList .num-item").length > 0;
     document.getElementById("numEmpty").style.display = numHas ? "none" : "block";
   }
@@ -505,35 +503,34 @@ a{color:inherit}
 
   window.confirmExit = function() {
     allowExit = true;
-    history.back();
+    document.getElementById("exitModal").classList.remove("show");
+    history.go(-2);
   };
 
   document.querySelectorAll(".modal").forEach(function(m) {
     m.addEventListener("click", function(e) { if (e.target === m) m.classList.remove("show"); });
   });
 
-  /* 手机返回键 / 浏览器后退键统一处理 */
-  history.replaceState({ view: "home" }, "", "");
+  /* 进网站时压两条首页历史，保证第一次返回一定是弹窗而不是直接退出 */
+  history.replaceState({ view: "home1" }, "", "");
+  history.pushState({ view: "home2" }, "", "");
 
   window.addEventListener("popstate", function() {
-    /* 如果当前在详情页，先回到首页 */
+    /* 详情页 → 回首页 */
     if (document.getElementById("detailView").classList.contains("show")) {
       document.getElementById("detailView").classList.remove("show");
       document.getElementById("homeView").style.display = "";
       window.scrollTo({ top: 0, behavior: "instant" });
-      history.pushState({ view: "home" }, "", "");
+      history.pushState({ view: "home2" }, "", "");
       return;
     }
 
-    /* 如果已经在首页，弹窗提示再按一次才退出 */
-    if (!allowExit) {
-      history.pushState({ view: "home" }, "", "");
-      document.getElementById("exitModal").classList.add("show");
-      return;
-    }
+    /* 已确认退出，不再拦截 */
+    if (allowExit) return;
 
-    /* 用户已经确认退出，真正返回上一页/关闭标签 */
-    window.history.back();
+    /* 首页按返回 → 先弹窗，阻止离开 */
+    history.pushState({ view: "home2" }, "", "");
+    document.getElementById("exitModal").classList.add("show");
   });
 
   document.addEventListener("keydown", function(e) {
