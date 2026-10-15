@@ -261,7 +261,7 @@ a{color:inherit}
     <p class="hero-sub">专注 GTA SA 安卓手机版模组与插件分享。AML 插件、CLEO 插件持续更新，全部免费。</p>
     <div class="hero-btns">
       <button class="btn-main" onclick="document.getElementById('mods').scrollIntoView({behavior:'smooth'})">⬇ 浏览模组</button>
-      <a class="btn-line" href="#about">了解本站</a>
+      <button class="btn-line" onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'})">了解本站</button>
     </div>
   </section>
 
@@ -486,7 +486,7 @@ a{color:inherit}
 
     document.getElementById("homeView").style.display = "none";
     document.getElementById("detailView").classList.add("show");
-    history.pushState({ view: "detail" }, "", "");
+    history.pushState({ v: 1 }, "", "");
     window.scrollTo({ top: 0, behavior: "instant" });
   };
 
@@ -504,32 +504,35 @@ a{color:inherit}
   window.confirmExit = function() {
     allowExit = true;
     document.getElementById("exitModal").classList.remove("show");
-    history.go(-2);
+    /* 一路回退，直到真正离开网站 */
+    let back = 0;
+    while (back < 20) { back++; history.back(); }
+    setTimeout(function() { window.location.href = "about:blank"; }, 200);
   };
 
   document.querySelectorAll(".modal").forEach(function(m) {
     m.addEventListener("click", function(e) { if (e.target === m) m.classList.remove("show"); });
   });
 
-  /* 进网站时压两条首页历史，保证第一次返回一定是弹窗而不是直接退出 */
-  history.replaceState({ view: "home1" }, "", "");
-  history.pushState({ view: "home2" }, "", "");
+  /* 压两条冗余记录，防一进来就退光 */
+  history.replaceState({ v: 0 }, "", "");
+  history.pushState({ v: 1 }, "", "");
 
   window.addEventListener("popstate", function() {
+    /* 已确认退出 */
+    if (allowExit) return;
+
     /* 详情页 → 回首页 */
     if (document.getElementById("detailView").classList.contains("show")) {
       document.getElementById("detailView").classList.remove("show");
       document.getElementById("homeView").style.display = "";
       window.scrollTo({ top: 0, behavior: "instant" });
-      history.pushState({ view: "home2" }, "", "");
+      history.pushState({ v: 1 }, "", "");
       return;
     }
 
-    /* 已确认退出，不再拦截 */
-    if (allowExit) return;
-
-    /* 首页按返回 → 先弹窗，阻止离开 */
-    history.pushState({ view: "home2" }, "", "");
+    /* 首页 → 弹窗，并立刻把记录压回来，保证永远退不出 */
+    history.pushState({ v: 1 }, "", "");
     document.getElementById("exitModal").classList.add("show");
   });
 
