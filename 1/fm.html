@@ -1,1 +1,150 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#0a0a0c">
+<title>HeadCam SA · GTA SA 原创模组站</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#0a0a0c;--card:#141418;
+  --line:#26262e;--line2:#33333d;
+  --ink:#f4f4f6;--ink2:#a0a0ac;--dim:#5f5f6b;
+  --accent:#ff3d68;
+  --max:1240px;
+}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;
+  background:var(--bg);color:var(--ink);line-height:1.7;
+  -webkit-font-smoothing:antialiased;position:relative;
+}
+a{color:inherit;text-decoration:none}
+img{max-width:100%}
 
+.navbar{position:sticky;top:0;z-index:1000;background:rgba(10,10,12,.88);backdrop-filter:blur(20px);border-bottom:1px solid var(--line)}
+.nav-in{max-width:var(--max);height:72px;margin:auto;padding:0 28px;display:flex;align-items:center;gap:22px}
+.nav-logo{display:flex;align-items:center;gap:11px;font-size:19px;font-weight:900;color:#fff;white-space:nowrap}
+.nav-logo .mark{width:8px;height:22px;background:var(--accent);flex-shrink:0}
+.nav-logo b{color:var(--accent)}
+.nav-menu{flex:1;display:flex;justify-content:center;gap:32px}
+.nav-menu a{color:var(--ink2);font-size:13.5px;font-weight:650;letter-spacing:.5px;text-transform:uppercase;cursor:pointer;transition:color .25s}
+.nav-menu a:hover{color:#fff}
+
+.detail{max-width:var(--max);margin:auto;padding:40px 28px 70px}
+.detail-back{display:inline-flex;align-items:center;gap:8px;padding:11px 20px;border:1px solid var(--line2);background:transparent;color:var(--ink2);font-size:12.5px;font-weight:700;letter-spacing:1px;text-transform:uppercase;text-decoration:none;margin-bottom:32px;transition:all .3s;cursor:pointer}
+.detail-back:hover{color:var(--accent);border-color:var(--accent);transform:translateX(-4px)}
+
+.detail-grid{display:grid;grid-template-columns:1.35fr .65fr;gap:40px;align-items:start}
+
+.detail-main h1{font-size:38px;font-weight:900;color:#fff;margin-bottom:22px;letter-spacing:-1.2px;line-height:1.15}
+
+.detail-imgs{display:flex;overflow-x:auto;gap:16px;padding-bottom:16px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch}
+.detail-imgs::-webkit-scrollbar{height:5px}
+.detail-imgs::-webkit-scrollbar-thumb{background:var(--line2)}
+.detail-imgs img{flex:0 0 84%;height:min(460px,52vw);object-fit:cover;border:1px solid var(--line);background:#0a0a0c;scroll-snap-align:center}
+
+.detail-desc{font-size:14px;color:var(--ink2);line-height:2;background:var(--card);border:1px solid var(--line);padding:30px;white-space:pre-wrap;margin-top:26px;word-break:break-all}
+
+.detail-side{display:flex;flex-direction:column;gap:18px;}
+.side-card{background:var(--card);border:1px solid var(--line);padding:26px}
+.side-card h3{font-size:11.5px;color:var(--dim);letter-spacing:2.5px;text-transform:uppercase;margin-bottom:16px;font-weight:750}
+.side-row{display:flex;justify-content:space-between;padding:13px 0;border-bottom:1px solid var(--line);font-size:13.5px;word-break:break-all}
+.side-row:last-child{border-bottom:0;padding-bottom:0}
+.side-row .k{color:var(--ink2)}
+.side-row .v{color:#fff;font-weight:750}
+.side-row .v.accent{color:var(--accent)}
+
+.download-group{margin-top:24px;}
+.btn-download{
+  display:block;text-align:center;padding:18px;font-size:15px;font-weight:800;
+  color:#0a0a0c !important;background:var(--accent);border-radius:8px;
+  transition:transform .25s,box-shadow .3s;
+}
+.btn-download:hover{transform:translateY(-3px);box-shadow:0 12px 30px rgba(255,61,104,.4)}
+.pwd-text{text-align:center;font-size:13px;color:var(--dim);margin-top:12px;}
+.pwd-text b{color:var(--accent);font-size:15px;}
+
+@media(max-width:960px){
+  .nav-menu{display:none}
+  .detail-grid{grid-template-columns:1fr;gap:28px}
+}
+@media(max-width:560px){
+  .nav-in{padding:0 16px;height:60px}
+  .detail{padding:24px 16px 54px}
+  .detail-main h1{font-size:24px;}
+  .detail-imgs img{flex:0 0 88%;height:62vw}
+  .detail-desc{padding:22px;font-size:13px}
+}
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="nav-in">
+    <a class="nav-logo" href="../index.html">
+      <span class="mark"></span>
+      GTA SA <b>模组站</b>
+    </a>
+    <div class="nav-menu">
+      <a href="../index.html">模组</a>
+      <a href="../index.html">关于</a>
+    </div>
+  </div>
+</nav>
+
+<div class="detail">
+  
+  <a href="../index.html" class="detail-back">← 返回首页</a>
+  
+  <div class="detail-grid">
+    <div class="detail-main">
+      <h1>HeadCam SA</h1>
+
+      <div class="detail-imgs">
+        <img src="../fm.png" alt="" onerror="this.style.display='none'">
+      </div>
+
+      <div class="detail-desc">
+HeadCam SA 1.0.0
+
+GTA: San Andreas 安卓版的头戴式第一人称模组。镜头挂在 CJ 头部，跟着头走，头跟着身体走。
+
+仅支持2.00 32位
+
+安装教程把：libFirstPersonSA.so丢进
+/storage/emulated/0/Android_unprotected/data/com.rockstargames.gtasa/mods/
+
+看到什么？
+步行：呼吸微抖、一步一沉、冲刺视角变宽、横移侧倾、转身慢半拍、落地一记下沉、举枪自动收稳。
+战斗：每把枪自己的后坐，连发是连续抖；被打中和旁边爆炸各震一下。
+车载：这是主要的部分。方向一打画面就先转向弯道（比车身转起来更早），倒车会转过去看后窗，给油后仰刹车前倾，过坎顶头、烂路碎震、怠速有点引擎抖，车速越快视野越宽。怕晕可以开固定镜头——视角钉在车头方向，划屏幕不转，但动态全留；地平线锁定调高后，真翻车时自动松手。
+复古镜头：鱼眼、暗角、边缘色差，默认关，上车自动不启用。
+
+怎么用？左上角蓝按钮点一下开关，长按出设置卡片。步行和车载是两页，上车自动翻。卡片能拖能缩放，改动实时生效，关掉就保存。每项单独可关。
+
+作者：流王星者_Streamer
+      </div>
+    </div>
+
+    <div class="detail-side">
+      <div class="side-card">
+        <h3>模组信息</h3>
+        <div class="side-row"><span class="k">版本</span><span class="v">v1.0.0</span></div>
+        <div class="side-row"><span class="k">压缩包大小</span><span class="v">656.85k</span></div>
+        <div class="side-row"><span class="k">发布时间</span><span class="v">2026.10.23</span></div>
+        <div class="side-row"><span class="k">更新日期</span><span class="v">无</span></div>
+        <div class="side-row"><span class="k">类型</span><span class="v accent">AML</span></div>
+      </div>
+
+      <div class="download-group">
+        <a href="https://wwbgu.lanzoum.com/iext44d10z8h" target="_blank" class="btn-download">⬇ 点击下载模组</a>
+        <div class="pwd-text">提取码：<b>4nyk</b></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>
