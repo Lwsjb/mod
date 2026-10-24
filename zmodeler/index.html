@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#0a0a0c">
+<meta name="description" content="Zmodeler流王版（标准版）- 专为GTASA美警打造，全网独家汉化。">
+<title>Zmodeler流王版 - GTA SA 原创模组站</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#0a0a0c;--card:#141418;--card2:#1a1a20;
+  --line:#26262e;--line2:#33333d;
+  --ink:#f4f4f6;--ink2:#a0a0ac;--dim:#5f5f6b;
+  --accent:#ff3d68;--accent2:#ff8a3d;
+  --max:1240px;
+}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;
+  background:var(--bg);color:var(--ink);line-height:1.7;overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;position:relative;
+}
+button,a{font:inherit}
+button{cursor:pointer}
+img{max-width:100%}
+a{color:inherit}
+
+body::before{
+  content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:
+    radial-gradient(900px 500px at 15% -5%,rgba(255,61,104,.12),transparent 60%),
+    radial-gradient(800px 500px at 90% 5%,rgba(255,138,61,.08),transparent 60%),
+    radial-gradient(700px 500px at 50% 100%,rgba(255,61,104,.06),transparent 60%);
+}
+.wrap{position:relative;z-index:1;max-width:var(--max);margin:auto;padding:40px 28px 70px}
+.back{display:inline-flex;align-items:center;gap:8px;padding:11px 20px;border:1px solid var(--line2);background:transparent;color:var(--ink2);font-size:12.5px;font-weight:700;letter-spacing:1px;text-transform:uppercase;text-decoration:none;margin-bottom:32px;transition:all .3s;cursor:pointer}
+.back:hover{color:var(--accent);border-color:var(--accent);transform:translateX(-4px)}
+.grid{display:grid;grid-template-columns:1.35fr .65fr;gap:40px;align-items:start}
+h1{font-size:38px;font-weight:900;color:#fff;margin-bottom:22px;letter-spacing:-1.2px;line-height:1.15;word-break:break-all}
+.imgs{display:flex;overflow-x:auto;gap:16px;padding-bottom:16px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch}
+.imgs::-webkit-scrollbar{height:5px}
+.imgs::-webkit-scrollbar-thumb{background:var(--line2)}
+.imgs img{flex:0 0 84%;height:min(460px,52vw);object-fit:cover;border:1px solid var(--line);background:#0a0a0c;scroll-snap-align:center;transition:transform .5s}
+.imgs img:hover{transform:scale(1.02)}
+.desc{font-size:14px;color:var(--ink2);line-height:2;background:var(--card);border:1px solid var(--line);padding:30px;white-space:pre-wrap;margin-top:26px;word-break:break-all}
+.side{position:sticky;top:96px;display:flex;flex-direction:column;gap:18px}
+.side-card{background:var(--card);border:1px solid var(--line);padding:26px}
+.side-card h3{font-size:11.5px;color:var(--dim);letter-spacing:2.5px;text-transform:uppercase;margin-bottom:16px;font-weight:750}
+.row{display:flex;justify-content:space-between;padding:13px 0;border-bottom:1px solid var(--line);font-size:13.5px;word-break:break-all}
+.row:last-child{border-bottom:0;padding-bottom:0}
+.row .k{color:var(--ink2)}
+.row .v{color:#fff;font-weight:750}
+.row .v.accent{color:var(--accent)}
+.download{display:block;width:100%;text-align:center;padding:18px;font-size:14px;font-weight:800;color:#0a0a0c!important;background:var(--accent);letter-spacing:1px;text-transform:uppercase;border:0;cursor:pointer;transition:transform .25s,box-shadow .3s;position:relative;overflow:hidden;text-decoration:none}
+.download::after{content:"";position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.35),transparent);transition:left .7s}
+.download:hover{transform:translateY(-4px);box-shadow:0 18px 46px rgba(255,61,104,.5)}
+.download:hover::after{left:100%}
+.pw{text-align:center;font-size:13px;color:var(--dim);margin-top:14px;letter-spacing:.5px}
+.pw b{color:var(--accent);font-weight:850}
+.update-banner{margin-bottom:24px;padding:22px 24px;background:linear-gradient(135deg,rgba(255,61,104,.12),rgba(255,138,61,.06));border:1px solid rgba(255,61,104,.45);border-left:4px solid var(--accent);position:relative;overflow:hidden}
+.update-banner .ub-head{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.update-banner .ub-tag{padding:4px 10px;background:var(--accent);color:#0a0a0c;font-size:11px;font-weight:900;letter-spacing:1.5px;text-transform:uppercase}
+.update-banner .ub-title{font-size:14px;font-weight:800;color:#fff;letter-spacing:.5px}
+.update-banner ul{list-style:none;padding:0;margin:0}
+.update-banner li{font-size:13.5px;color:var(--ink2);line-height:1.9;padding-left:18px;position:relative;word-break:break-all}
+.update-banner li::before{content:"";position:absolute;left:0;top:12px;width:6px;height:6px;background:var(--accent)}
+@media(max-width:960px){.grid{grid-template-columns:1fr;gap:28px}.side{position:static}}
+@media(max-width:560px){.wrap{padding:24px 16px 54px}h1{font-size:24px;letter-spacing:-.8px}.imgs img{flex:0 0 88%;height:62vw}.desc{padding:22px;font-size:13px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="index.html">← 返回模组站</a>
+  <div class="grid">
+    <div>
+      <h1>Zmodeler流王版</h1>
+
+      <div class="update-banner">
+        <div class="ub-head">
+          <span class="ub-tag">已发布 v1.0 标准版</span>
+          <span class="ub-title">本次更新重点：</span>
+        </div>
+        <ul>
+          <li>首发 v1.0 标准版。</li>
+          <li>独家汉化，重构界面动效与主题。</li>
+          <li>新增克隆批量对齐、单选逐个重命名等功能。</li>
+          <li>保留原版核心建模、贴图管理与导入导出功能。</li>
+          <li>二改版本，非官方原版。</li>
+        </ul>
+      </div>
+
+      <div class="imgs">
+        <img src="Qoder_1.jpg" alt="预览1" onerror="this.style.display='none'">
+        <img src="Qoder_2.jpg" alt="预览2" onerror="this.style.display='none'">
+        <img src="Qoder_3.jpg" alt="预览3" onerror="this.style.display='none'">
+        <img src="Qoder_4.jpg" alt="预览4" onerror="this.style.display='none'">
+        <img src="Qoder_5.jpg" alt="预览5" onerror="this.style.display='none'">
+        <img src="Qoder_6.jpg" alt="预览6" onerror="this.style.display='none'">
+        <img src="Qoder_7.jpg" alt="预览7" onerror="this.style.display='none'">
+        <img src="Qoder_8.jpg" alt="预览8" onerror="this.style.display='none'">
+      </div>
+
+      <div class="desc">Zmodeler流王版（标准版），是在原版Zmodeler基础上改出来的改版，专门给做GTASA美警车辆的人用。
+做了独家汉化，不用再对着外文界面折腾。
+整套UI换了新主题，所有按钮、面板都加了动效和光影反馈，原版死板的交互手感全部改掉。
+解决了原版对齐、复制部件麻烦的老问题，新增克隆批量对齐，父子层级也能保留。
+加了单选逐个重命名，可以挑哪个就改哪个名字，同时也支持多选、批量删除。
+原版建模、贴图管理、导入导出这些核心功能全都保留，兼容圣安地列斯的模组格式。
+还有别的小功能，自己慢慢试。
+本程序属于二改版本，不是官方原版。</div>
+    </div>
+
+    <div class="side">
+      <div class="side-card">
+        <h3>模组信息</h3>
+        <div class="row"><span class="k">版本</span><span class="v">v1.0 标准版</span></div>
+        <div class="row"><span class="k">压缩包大小</span><span class="v">5.8M</span></div>
+        <div class="row"><span class="k">发布时间</span><span class="v">2026.10.25</span></div>
+        <div class="row"><span class="k">更新日期</span><span class="v accent">暂无</span></div>
+        <div class="row"><span class="k">类型</span><span class="v accent">其它</span></div>
+      </div>
+      <a class="download" href="https://wwbgu.lanzoum.com/idHFy4d7w6ve" target="_blank" rel="noopener">⬇ 下载模组</a>
+      <div class="pw">提取码：<b>bxkr</b></div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
