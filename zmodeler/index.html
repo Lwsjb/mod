@@ -65,10 +65,29 @@ h1{font-size:38px;font-weight:900;color:#fff;margin-bottom:22px;letter-spacing:-
 .update-banner ul{list-style:none;padding:0;margin:0}
 .update-banner li{font-size:13.5px;color:var(--ink2);line-height:1.9;padding-left:18px;position:relative;word-break:break-all}
 .update-banner li::before{content:"";position:absolute;left:0;top:12px;width:6px;height:6px;background:var(--accent)}
-@media(max-width:960px){.grid{grid-template-columns:1fr;gap:28px}.side{position:static}}
-@media(max-width:560px){.wrap{padding:24px 16px 54px}h1{font-size:24px;letter-spacing:-.8px}.imgs img{flex:0 0 88%;height:62vw}.desc{padding:22px;font-size:13px}}
 
-/* 弹窗样式（完美移植自首页） */
+/* 高亮提示框样式 */
+.notice-box{
+  margin-top: 20px;
+  margin-bottom: 24px;
+  padding: 18px 22px;
+  background: rgba(255, 61, 104, 0.1);
+  border: 1px solid rgba(255, 61, 104, 0.3);
+  border-radius: 4px;
+  color: var(--ink);
+  font-size: 14px;
+  line-height: 1.8;
+  font-weight: 500;
+}
+.notice-box strong {
+  color: var(--accent);
+  font-weight: 800;
+}
+
+@media(max-width:960px){.grid{grid-template-columns:1fr;gap:28px}.side{position:static}}
+@media(max-width:560px){.wrap{padding:24px 16px 54px}h1{font-size:24px;letter-spacing:-.8px}.imgs img{flex:0 0 88%;height:62vw}.desc{padding:22px;font-size:13px}.notice-box{padding:14px 16px;font-size:13px}}
+
+/* 弹窗样式 */
 .modal{display:none;position:fixed;inset:0;z-index:2000;padding:24px;background:rgba(0,0,0,.85);backdrop-filter:blur(12px);align-items:center;justify-content:center;animation:fadeIn .28s ease}
 .modal.show{display:flex}
 @keyframes fadeIn{from{opacity:0}to{opacity:1}}
@@ -79,7 +98,7 @@ h1{font-size:38px;font-weight:900;color:#fff;margin-bottom:22px;letter-spacing:-
 .modal-body{padding:32px}
 .modal-body h3{font-size:18px;color:#fff;margin-bottom:18px;padding-left:14px;border-left:3px solid var(--accent);font-weight:850}
 
-/* 版本列表样式（完美移植自首页） */
+/* 版本列表样式 */
 .ver-item{border:1px solid var(--line);margin-bottom:14px;background:var(--card2);transition:border-color .3s,background .3s}
 .ver-item:hover{border-color:var(--line2)}
 .ver-item.latest{border-color:rgba(255,61,104,.5);background:linear-gradient(135deg,rgba(255,61,104,.06),transparent)}
@@ -111,12 +130,19 @@ h1{font-size:38px;font-weight:900;color:#fff;margin-bottom:22px;letter-spacing:-
 
       <div class="update-banner">
         <div class="ub-head">
-          <span class="ub-tag">已更新 v1.0.1</span>
+          <span class="ub-tag">已更新 v1.0.2</span>
           <span class="ub-title">本次更新重点：</span>
         </div>
         <ul>
-          <li>修复批量操作中点击批量删除或其他操作，批量操作的弹窗还在，导致批量删除的弹窗被覆盖，无法使用的问题。</li>
+          <li>修复导入修改后的DFF模型时触发数组越界、直接报错“无法读取DFF”的致命崩溃问题；</li>
+          <li>增加文件读取边界校验，解析到文件末尾自动停止；</li>
+          <li>损坏、结构异常的DFF不会再抛出原生Java异常，改为稳定弹出提示。</li>
         </ul>
+      </div>
+
+      <!-- 高亮致歉与反馈提示 -->
+      <div class="notice-box">
+        如果这个问题影响到了您，很抱歉干扰到您正常使用。如后续碰到其他问题，为了更好的应用体验，请在软件左侧<strong>“问题反馈”</strong>里详细描述情况提交，我会尽快修复！
       </div>
 
       <div class="imgs">
@@ -143,10 +169,10 @@ h1{font-size:38px;font-weight:900;color:#fff;margin-bottom:22px;letter-spacing:-
     <div class="side">
       <div class="side-card">
         <h3>模组信息</h3>
-        <div class="row"><span class="k">版本</span><span class="v">v1.0.1</span></div>
+        <div class="row"><span class="k">版本</span><span class="v">v1.0.2</span></div>
         <div class="row"><span class="k">压缩包大小</span><span class="v">9.0M</span></div>
         <div class="row"><span class="k">发布时间</span><span class="v">2026.10.25</span></div>
-        <div class="row"><span class="k">更新日期</span><span class="v accent">2026.10.25</span></div>
+        <div class="row"><span class="k">更新日期</span><span class="v accent">2026.10.26</span></div>
         <div class="row"><span class="k">类型</span><span class="v accent">其它</span></div>
       </div>
       <button class="download" onclick="openVersions()">⬇ 下载模组</button>
@@ -166,10 +192,18 @@ h1{font-size:38px;font-weight:900;color:#fff;margin-bottom:22px;letter-spacing:-
 </div>
 
 <script>
-  // 版本数据
+  // 版本数据，把 1.0.2 放最前面
   const versionData = [
     {
-      v: "v1.0.1", date: "2026.10.25", latest: true, link: "https://wwbgu.lanzoum.com/irpYn4db2mtc", pw: "1fsf",
+      v: "v1.0.2", date: "2026.10.26", latest: true, link: "https://wwbgu.lanzoum.com/iaK8V4dg4l6f", pw: "h2n2",
+      log: [
+        "修复导入修改后的DFF模型时触发数组越界、直接报错“无法读取DFF”的致命崩溃问题；",
+        "增加文件读取边界校验，解析到文件末尾自动停止；",
+        "损坏、结构异常的DFF不会再抛出原生Java异常，改为稳定弹出提示。"
+      ]
+    },
+    {
+      v: "v1.0.1", date: "2026.10.25", latest: false, link: "https://wwbgu.lanzoum.com/irpYn4db2mtc", pw: "1fsf",
       log: ["修复批量操作中点击批量删除或其他操作，批量操作的弹窗还在，导致批量删除的弹窗被覆盖，无法使用的问题。"]
     },
     {
