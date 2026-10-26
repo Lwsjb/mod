@@ -63,7 +63,7 @@ h1{font-size:38px;font-weight:900;color:#fff;margin-bottom:22px;letter-spacing:-
 .update-banner .ub-tag{padding:4px 10px;background:var(--accent);color:#0a0a0c;font-size:11px;font-weight:900;letter-spacing:1.5px;text-transform:uppercase}
 .update-banner .ub-title{font-size:14px;font-weight:800;color:#fff;letter-spacing:.5px}
 .update-banner ul{list-style:none;padding:0;margin:0}
-.update-banner li{font-size:13.5px;color:var(--ink2);line-height:1.9;padding-left:18px;position:relative;word-break:break-all}
+.update-banner li{font-size:13.5px;color:var(--ink2);line-height:1.9;padding-left:18px;position:relative;word-break:break-all;margin-bottom:6px;}
 .update-banner li::before{content:"";position:absolute;left:0;top:12px;width:6px;height:6px;background:var(--accent)}
 
 /* 高亮提示框样式 */
@@ -130,19 +130,21 @@ h1{font-size:38px;font-weight:900;color:#fff;margin-bottom:22px;letter-spacing:-
 
       <div class="update-banner">
         <div class="ub-head">
-          <span class="ub-tag">已更新 v1.0.2</span>
+          <span class="ub-tag">已更新 v1.0.3</span>
           <span class="ub-title">本次更新重点：</span>
         </div>
         <ul>
-          <li>修复导入修改后的DFF模型时触发数组越界、直接报错“无法读取DFF”的致命崩溃问题；</li>
-          <li>增加文件读取边界校验，解析到文件末尾自动停止；</li>
-          <li>损坏、结构异常的DFF不会再抛出原生Java异常，改为稳定弹出提示。</li>
+          <li>新增功能：支持多选多个部件合并导出为单个部件；重新导入后，部件尺寸、位置、层级排序和导出前保持一致，效果等同于完整复制粘贴。</li>
+          <li>修复UV编辑器拆分贴图bug：选中贴图确认后贴图文件被程序误删除（文件消失）的问题。</li>
+          <li>修复长按部件弹窗菜单bug：长按部件松开调出选项菜单，偶尔会卡住，持续停留在长按选中状态。</li>
+          <li>修复批量克隆界面UI问题：命名格式错误弹出报错提示时，输入框背景变为粉白色，文字无法看清。</li>
+          <li>修复变换复制bug：部件旋转/缩放后复制副本，对副本再次进行XYZ旋转、缩放操作时，模型姿态会突然跳转、姿态错乱。</li>
         </ul>
       </div>
 
       <!-- 高亮致歉与反馈提示 -->
       <div class="notice-box">
-        如果这个问题影响到了您，很抱歉干扰到您正常使用。如后续碰到其他问题，为了更好的应用体验，请在软件左侧<strong>“问题反馈”</strong>里详细描述情况提交，我会尽快修复！
+        如果之前的问题影响到了您，很抱歉干扰到您正常使用。如后续碰到其他问题，为了更好的应用体验，请在软件左侧<strong>“问题反馈”</strong>里详细描述情况提交，我会尽快修复！
       </div>
 
       <div class="imgs">
@@ -169,8 +171,8 @@ h1{font-size:38px;font-weight:900;color:#fff;margin-bottom:22px;letter-spacing:-
     <div class="side">
       <div class="side-card">
         <h3>模组信息</h3>
-        <div class="row"><span class="k">版本</span><span class="v">v1.0.2</span></div>
-        <div class="row"><span class="k">压缩包大小</span><span class="v">9.0M</span></div>
+        <div class="row"><span class="k">版本</span><span class="v">v1.0.3</span></div>
+        <div class="row"><span class="k">压缩包大小</span><span class="v">9.02M</span></div>
         <div class="row"><span class="k">发布时间</span><span class="v">2026.10.25</span></div>
         <div class="row"><span class="k">更新日期</span><span class="v accent">2026.10.26</span></div>
         <div class="row"><span class="k">类型</span><span class="v accent">其它</span></div>
@@ -192,10 +194,20 @@ h1{font-size:38px;font-weight:900;color:#fff;margin-bottom:22px;letter-spacing:-
 </div>
 
 <script>
-  // 版本数据，把 1.0.2 放最前面
+  // 版本数据，把 1.0.3 放最前面
   const versionData = [
     {
-      v: "v1.0.2", date: "2026.10.26", latest: true, link: "https://wwbgu.lanzoum.com/iaK8V4dg4l6f", pw: "h2n2",
+      v: "v1.0.3", date: "2026.10.26", latest: true, link: "https://wwbgu.lanzoum.com/ibVaP4dh2y6h", pw: "174t",
+      log: [
+        "新增功能：支持多选多个部件合并导出为单个部件；重新导入后，部件尺寸、位置、层级排序和导出前保持一致，效果等同于完整复制粘贴。",
+        "修复UV编辑器拆分贴图bug：选中贴图确认后贴图文件被程序误删除（文件消失）的问题。",
+        "修复长按部件弹窗菜单bug：长按部件松开调出选项菜单，偶尔会卡住，持续停留在长按选中状态。",
+        "修复批量克隆界面UI问题：命名格式错误弹出报错提示时，输入框背景变为粉白色，文字无法看清。",
+        "修复变换复制bug：部件旋转/缩放后复制副本，对副本再次进行XYZ旋转、缩放操作时，模型姿态会突然跳转、姿态错乱。"
+      ]
+    },
+    {
+      v: "v1.0.2", date: "2026.10.26", latest: false, link: "https://wwbgu.lanzoum.com/iaK8V4dg4l6f", pw: "h2n2",
       log: [
         "修复导入修改后的DFF模型时触发数组越界、直接报错“无法读取DFF”的致命崩溃问题；",
         "增加文件读取边界校验，解析到文件末尾自动停止；",
