@@ -66,8 +66,26 @@ h1{font-size:38px;font-weight:900;color:#fff;margin-bottom:22px;letter-spacing:-
 .update-banner li{font-size:13.5px;color:var(--ink2);line-height:1.9;padding-left:18px;position:relative;word-break:break-all;margin-bottom:6px;}
 .update-banner li::before{content:"";position:absolute;left:0;top:12px;width:6px;height:6px;background:var(--accent)}
 
+/* 高亮提示框样式 */
+.notice-box{
+  margin-top: 20px;
+  margin-bottom: 24px;
+  padding: 18px 22px;
+  background: rgba(255, 61, 104, 0.1);
+  border: 1px solid rgba(255, 61, 104, 0.3);
+  border-radius: 4px;
+  color: var(--ink);
+  font-size: 14px;
+  line-height: 1.8;
+  font-weight: 500;
+}
+.notice-box strong {
+  color: var(--accent);
+  font-weight: 800;
+}
+
 @media(max-width:960px){.grid{grid-template-columns:1fr;gap:28px}.side{position:static}}
-@media(max-width:560px){.wrap{padding:24px 16px 54px}h1{font-size:24px;letter-spacing:-.8px}.imgs img{flex:0 0 88%;height:62vw}.desc{padding:22px;font-size:13px}}
+@media(max-width:560px){.wrap{padding:24px 16px 54px}h1{font-size:24px;letter-spacing:-.8px}.imgs img{flex:0 0 88%;height:62vw}.desc{padding:22px;font-size:13px}.notice-box{padding:14px 16px;font-size:13px}}
 
 /* 弹窗样式 */
 .modal{display:none;position:fixed;inset:0;z-index:2000;padding:24px;background:rgba(0,0,0,.85);backdrop-filter:blur(12px);align-items:center;justify-content:center;animation:fadeIn .28s ease}
@@ -112,12 +130,17 @@ h1{font-size:38px;font-weight:900;color:#fff;margin-bottom:22px;letter-spacing:-
 
       <div class="update-banner">
         <div class="ub-head">
-          <span class="ub-tag">已发布 v1.0</span>
-          <span class="ub-title">模组介绍：</span>
+          <span class="ub-tag">已更新 v1.0.1</span>
+          <span class="ub-title">本次更新重点：</span>
         </div>
         <ul>
-          <li>2016道奇Charger圣诞树魔改警车，车身多处加装爆闪灯组，多色灯光错落排布，频闪效果丰富，视觉冲击力强。</li>
+          <li>补上警灯配置文件，修复无配置文件可用的问题，对此带来的不便深表抱歉。</li>
         </ul>
+      </div>
+
+      <!-- 高亮致歉提示 -->
+      <div class="notice-box">
+        对此带来的不便深表抱歉！如果遇到其他问题，请通过作者主页反馈，我会尽快修复。
       </div>
 
       <div class="imgs">
@@ -137,10 +160,10 @@ h1{font-size:38px;font-weight:900;color:#fff;margin-bottom:22px;letter-spacing:-
     <div class="side">
       <div class="side-card">
         <h3>模组信息</h3>
-        <div class="row"><span class="k">版本</span><span class="v">v1.0</span></div>
-        <div class="row"><span class="k">压缩包大小</span><span class="v">28.31M</span></div>
+        <div class="row"><span class="k">版本</span><span class="v">v1.0.1</span></div>
+        <div class="row"><span class="k">压缩包大小</span><span class="v">28.43M</span></div>
         <div class="row"><span class="k">发布时间</span><span class="v">2026.10.28</span></div>
-        <div class="row"><span class="k">更新日期</span><span class="v accent">暂无</span></div>
+        <div class="row"><span class="k">更新日期</span><span class="v accent">2026.10.28</span></div>
         <div class="row"><span class="k">类型</span><span class="v accent">模型</span></div>
       </div>
       <button class="download" onclick="openVersions()">⬇ 下载模组</button>
@@ -162,7 +185,11 @@ h1{font-size:38px;font-weight:900;color:#fff;margin-bottom:22px;letter-spacing:-
 <script>
   const versionData = [
     {
-      v: "v1.0", date: "2026.10.28", latest: true, link: "https://wwbgu.lanzoum.com/iMPhd4dp3aof", pw: "ho2x",
+      v: "v1.0.1", date: "2026.10.28", latest: true, link: "https://wwbgu.lanzoum.com/iaFWr4ds0s1a", pw: "eo94",
+      log: ["补上警灯配置文件，修复无配置文件可用的问题，对此带来的不便深表抱歉。"]
+    },
+    {
+      v: "v1.0", date: "2026.10.28", latest: false, link: "https://wwbgu.lanzoum.com/iMPhd4dp3aof", pw: "ho2x",
       log: ["首发 v1.0 版本。", "2016道奇Charger警车，全车多位置爆闪灯，经典圣诞树魔改风格，灯光效果丰富。"]
     }
   ];
