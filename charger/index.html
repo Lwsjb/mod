@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#0a0a0c">
+<meta name="description" content="道奇Charger2016 - GTA SA 原创模组站">
+<title>道奇Charger2016 - GTA SA 原创模组站</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#0a0a0c;--card:#141418;--card2:#1a1a20;
+  --line:#26262e;--line2:#33333d;
+  --ink:#f4f4f6;--ink2:#a0a0ac;--dim:#5f5f6b;
+  --accent:#ff3d68;--accent2:#ff8a3d;
+  --max:1240px;
+}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;
+  background:var(--bg);color:var(--ink);line-height:1.7;overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;position:relative;
+}
+button,a{font:inherit}
+button{cursor:pointer}
+img{max-width:100%}
+a{color:inherit}
+
+body::before{
+  content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:
+    radial-gradient(900px 500px at 15% -5%,rgba(255,61,104,.12),transparent 60%),
+    radial-gradient(800px 500px at 90% 5%,rgba(255,138,61,.08),transparent 60%),
+    radial-gradient(700px 500px at 50% 100%,rgba(255,61,104,.06),transparent 60%);
+}
+.wrap{position:relative;z-index:1;max-width:var(--max);margin:auto;padding:40px 28px 70px}
+.back{display:inline-flex;align-items:center;gap:8px;padding:11px 20px;border:1px solid var(--line2);background:transparent;color:var(--ink2);font-size:12.5px;font-weight:700;letter-spacing:1px;text-transform:uppercase;text-decoration:none;margin-bottom:32px;transition:all .3s;cursor:pointer}
+.back:hover{color:var(--accent);border-color:var(--accent);transform:translateX(-4px)}
+.grid{display:grid;grid-template-columns:1.35fr .65fr;gap:40px;align-items:start}
+h1{font-size:38px;font-weight:900;color:#fff;margin-bottom:22px;letter-spacing:-1.2px;line-height:1.15;word-break:break-all}
+.imgs{display:flex;overflow-x:auto;gap:16px;padding-bottom:16px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch}
+.imgs::-webkit-scrollbar{height:5px}
+.imgs::-webkit-scrollbar-thumb{background:var(--line2)}
+.imgs img{flex:0 0 84%;height:min(460px,52vw);object-fit:cover;border:1px solid var(--line);background:#0a0a0c;scroll-snap-align:center;transition:transform .5s}
+.imgs img:hover{transform:scale(1.02)}
+.desc{font-size:14px;color:var(--ink2);line-height:2;background:var(--card);border:1px solid var(--line);padding:30px;white-space:pre-wrap;margin-top:26px;word-break:break-all}
+.side{position:sticky;top:96px;display:flex;flex-direction:column;gap:18px}
+.side-card{background:var(--card);border:1px solid var(--line);padding:26px}
+.side-card h3{font-size:11.5px;color:var(--dim);letter-spacing:2.5px;text-transform:uppercase;margin-bottom:16px;font-weight:750}
+.row{display:flex;justify-content:space-between;padding:13px 0;border-bottom:1px solid var(--line);font-size:13.5px;word-break:break-all}
+.row:last-child{border-bottom:0;padding-bottom:0}
+.row .k{color:var(--ink2)}
+.row .v{color:#fff;font-weight:750}
+.row .v.accent{color:var(--accent)}
+.download{display:block;width:100%;text-align:center;padding:18px;font-size:14px;font-weight:800;color:#0a0a0c!important;background:var(--accent);letter-spacing:1px;text-transform:uppercase;border:0;cursor:pointer;transition:transform .25s,box-shadow .3s;position:relative;overflow:hidden;text-decoration:none}
+.download::after{content:"";position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.35),transparent);transition:left .7s}
+.download:hover{transform:translateY(-4px);box-shadow:0 18px 46px rgba(255,61,104,.5)}
+.download:hover::after{left:100%}
+.pw{text-align:center;font-size:13px;color:var(--dim);margin-top:14px;letter-spacing:.5px}
+.pw b{color:var(--accent);font-weight:850}
+.update-banner{margin-bottom:24px;padding:22px 24px;background:linear-gradient(135deg,rgba(255,61,104,.12),rgba(255,138,61,.06));border:1px solid rgba(255,61,104,.45);border-left:4px solid var(--accent);position:relative;overflow:hidden}
+.update-banner .ub-head{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.update-banner .ub-tag{padding:4px 10px;background:var(--accent);color:#0a0a0c;font-size:11px;font-weight:900;letter-spacing:1.5px;text-transform:uppercase}
+.update-banner .ub-title{font-size:14px;font-weight:800;color:#fff;letter-spacing:.5px}
+.update-banner ul{list-style:none;padding:0;margin:0}
+.update-banner li{font-size:13.5px;color:var(--ink2);line-height:1.9;padding-left:18px;position:relative;word-break:break-all;margin-bottom:6px;}
+.update-banner li::before{content:"";position:absolute;left:0;top:12px;width:6px;height:6px;background:var(--accent)}
+
+@media(max-width:960px){.grid{grid-template-columns:1fr;gap:28px}.side{position:static}}
+@media(max-width:560px){.wrap{padding:24px 16px 54px}h1{font-size:24px;letter-spacing:-.8px}.imgs img{flex:0 0 88%;height:62vw}.desc{padding:22px;font-size:13px}}
+
+/* 弹窗样式 */
+.modal{display:none;position:fixed;inset:0;z-index:2000;padding:24px;background:rgba(0,0,0,.85);backdrop-filter:blur(12px);align-items:center;justify-content:center;animation:fadeIn .28s ease}
+.modal.show{display:flex}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+.modal-box{position:relative;width:min(560px,100%);max-height:85vh;overflow:auto;background:var(--card);border:1px solid var(--line2);animation:popIn .4s cubic-bezier(.34,1.56,.64,1);box-shadow:0 30px 80px rgba(0,0,0,.8)}
+@keyframes popIn{from{opacity:0;transform:scale(.94) translateY(12px)}to{opacity:1;transform:none}}
+.modal-close{position:absolute;right:16px;top:14px;width:36px;height:36px;border:1px solid var(--line2);background:transparent;color:var(--ink2);font-size:20px;z-index:5;transition:all .3s;display:flex;align-items:center;justify-content:center;cursor:pointer}
+.modal-close:hover{background:var(--accent);color:#0a0a0c;border-color:var(--accent);transform:rotate(90deg)}
+.modal-body{padding:32px}
+.modal-body h3{font-size:18px;color:#fff;margin-bottom:18px;padding-left:14px;border-left:3px solid var(--accent);font-weight:850}
+
+/* 版本列表样式 */
+.ver-item{border:1px solid var(--line);margin-bottom:14px;background:var(--card2);transition:border-color .3s,background .3s}
+.ver-item:hover{border-color:var(--line2)}
+.ver-item.latest{border-color:rgba(255,61,104,.5);background:linear-gradient(135deg,rgba(255,61,104,.06),transparent)}
+.ver-head{display:flex;align-items:center;gap:14px;padding:16px 18px;flex-wrap:wrap}
+.ver-name{font-size:15.5px;font-weight:850;color:#fff;letter-spacing:-.3px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.ver-badge{padding:3px 9px;font-size:10px;font-weight:900;letter-spacing:1.5px;text-transform:uppercase;color:#0a0a0c;background:var(--accent);animation:updPulse 1.8s ease-in-out infinite}
+@keyframes updPulse{0%,100%{box-shadow:0 0 0 0 rgba(255,61,104,.5)}50%{box-shadow:0 0 0 10px rgba(255,61,104,0)}}
+.ver-date{font-size:12px;color:var(--dim);letter-spacing:.5px}
+.ver-actions{margin-left:auto;display:flex;align-items:center;gap:10px}
+.ver-download{display:flex;align-items:center;justify-content:center;min-width:88px;height:38px;padding:0 20px;font-size:12.5px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;color:#0a0a0c!important;background:var(--accent);text-decoration:none;transition:transform .25s,box-shadow .3s;white-space:nowrap;border:0;line-height:1;}
+.ver-download:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(255,61,104,.5)}
+.ver-toggle{width:38px;height:38px;border:1px solid var(--line2);background:transparent;color:var(--ink2);font-size:14px;display:flex;align-items:center;justify-content:center;transition:all .3s;flex-shrink:0;cursor:pointer}
+.ver-toggle:hover{color:var(--accent);border-color:var(--accent)}
+.ver-toggle.open{transform:rotate(180deg);color:var(--accent);border-color:var(--accent)}
+.ver-body{max-height:0;overflow:hidden;transition:max-height .4s cubic-bezier(.22,1,.36,1), padding .4s cubic-bezier(.22,1,.36,1);padding:0 18px;}
+.ver-body.open{max-height:800px;padding:0 18px 18px;}
+.ver-body p{font-size:13px;color:var(--ink2);line-height:1.85;margin:0 0 8px;word-break:break-all}
+.ver-body p:last-child{margin-bottom:0}
+.ver-pw{display:inline-block;margin-top:8px;padding:6px 12px;background:#0f1218;border:1px solid var(--line);font-size:12.5px;color:var(--ink2);letter-spacing:.5px;}
+.ver-pw b{color:var(--accent);font-weight:850}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="../index.html">← 返回模组站</a>
+  <div class="grid">
+    <div>
+      <h1>道奇Charger2016</h1>
+
+      <div class="update-banner">
+        <div class="ub-head">
+          <span class="ub-tag">已发布 v1.0</span>
+          <span class="ub-title">模组介绍：</span>
+        </div>
+        <ul>
+          <li>2016道奇Charger圣诞树魔改警车，车身多处加装爆闪灯组，多色灯光错落排布，频闪效果丰富，视觉冲击力强。</li>
+        </ul>
+      </div>
+
+      <div class="imgs">
+        <img src="../dq1.jpg" alt="预览1" onerror="this.style.display='none'">
+        <img src="../dq2.jpg" alt="预览2" onerror="this.style.display='none'">
+        <img src="../dq3.jpg" alt="预览3" onerror="this.style.display='none'">
+        <img src="../dq4.jpg" alt="预览4" onerror="this.style.display='none'">
+        <img src="../dq5.jpg" alt="预览5" onerror="this.style.display='none'">
+        <img src="../dq6.jpg" alt="预览6" onerror="this.style.display='none'">
+        <img src="../dq7.jpg" alt="预览7" onerror="this.style.display='none'">
+        <img src="../dq8.jpg" alt="预览8" onerror="this.style.display='none'">
+      </div>
+
+      <div class="desc">2016道奇Charger圣诞树魔改警车，车身多处加装爆闪灯组，多色灯光错落排布，频闪效果丰富，视觉冲击力强。</div>
+    </div>
+
+    <div class="side">
+      <div class="side-card">
+        <h3>模组信息</h3>
+        <div class="row"><span class="k">版本</span><span class="v">v1.0</span></div>
+        <div class="row"><span class="k">压缩包大小</span><span class="v">28.31M</span></div>
+        <div class="row"><span class="k">发布时间</span><span class="v">2026.10.28</span></div>
+        <div class="row"><span class="k">更新日期</span><span class="v accent">暂无</span></div>
+        <div class="row"><span class="k">类型</span><span class="v accent">模型</span></div>
+      </div>
+      <button class="download" onclick="openVersions()">⬇ 下载模组</button>
+    </div>
+  </div>
+</div>
+
+<!-- 弹窗 DOM -->
+<div class="modal" id="versionsModal">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal('versionsModal')">×</button>
+    <div class="modal-body">
+      <h3>选择下载版本</h3>
+      <div id="versionsList"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const versionData = [
+    {
+      v: "v1.0", date: "2026.10.28", latest: true, link: "https://wwbgu.lanzoum.com/iMPhd4dp3aof", pw: "ho2x",
+      log: ["首发 v1.0 版本。", "2016道奇Charger警车，全车多位置爆闪灯，经典圣诞树魔改风格，灯光效果丰富。"]
+    }
+  ];
+
+  function renderVersions() {
+    const vList = document.getElementById("versionsList");
+    vList.innerHTML = "";
+    versionData.forEach(ver => {
+      const item = document.createElement("div");
+      item.className = "ver-item" + (ver.latest ? " latest" : "");
+      item.innerHTML = `
+        <div class="ver-head">
+          <div>
+            <div class="ver-name">${ver.v} ${ver.latest ? '<span class="ver-badge">最新</span>' : ''}</div>
+            <div class="ver-date">更新于 ${ver.date}</div>
+          </div>
+          <div class="ver-actions">
+            <a class="ver-download" href="${ver.link}" target="_blank" rel="noopener">下载</a>
+            <button class="ver-toggle" onclick="toggleVer(this)">▾</button>
+          </div>
+        </div>
+        <div class="ver-body">
+          ${ver.log.map(l => `<p>· ${l}</p>`).join('')}
+          <span class="ver-pw">提取码：<b>${ver.pw}</b></span>
+        </div>
+      `;
+      vList.appendChild(item);
+    });
+  }
+
+  function openVersions() {
+    renderVersions();
+    const items = document.querySelectorAll("#versionsModal .ver-item");
+    items.forEach((item, index) => {
+      const body = item.querySelector(".ver-body");
+      const toggle = item.querySelector(".ver-toggle");
+      if (versionData[index].latest) {
+        body.classList.add("open");
+        toggle.classList.add("open");
+      } else {
+        body.classList.remove("open");
+        toggle.classList.remove("open");
+      }
+    });
+    document.getElementById("versionsModal").classList.add("show");
+  }
+
+  function toggleVer(btn) {
+    const body = btn.closest(".ver-item").querySelector(".ver-body");
+    const isOpen = body.classList.contains("open");
+    if (isOpen) {
+      body.classList.remove("open");
+      btn.classList.remove("open");
+    } else {
+      body.classList.add("open");
+      btn.classList.add("open");
+    }
+  }
+
+  function closeModal(id) {
+    document.getElementById(id).classList.remove("show");
+  }
+
+  document.getElementById('versionsModal').addEventListener('click', function(e) {
+    if (e.target === this) this.classList.remove('show');
+  });
+</script>
+</body>
+</html>
