@@ -37,19 +37,17 @@ body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;bac
 .feature-card{position:relative;background:var(--card);border:1px solid var(--line);cursor:pointer;overflow:hidden;transition:border-color .3s,transform .5s,box-shadow .5s;}
 .feature-card:hover{border-color:var(--line2);transform:translateY(-6px);box-shadow:0 26px 60px rgba(0,0,0,.55);}
 
-/* =====【标准伪元素16:9，grid/缩放窗口全部稳定】 ===== */
 .feature-img{position:relative;overflow:hidden;background:#0a0a0c;width:100%;}
-.feature-img::before{content:"";display:block;padding-top:56.25%;/*16:9*/}
+.feature-img::before{content:"";display:block;padding-top:56.25%;}
 .feature-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;transition:transform 1s;display:block;}
 .feature-card:hover .feature-img img{transform:scale(1.06);}
 
 .feature-tag{position:absolute;top:12px;left:12px;padding:5px 12px;background:var(--accent);color:#0a0a0c;font-size:11px;font-weight:800;letter-spacing:1px;text-transform:uppercase;z-index:3;}
-.feature-update{position:absolute;top:12px;right:12px;z-index:4;padding:5px 12px;background:var(--accent);color:#0a0a0c;font-size:11px;font-weight:900;letter-spacing:1px;text-transform:uppercase;animation:updPulse 1.8s ease-in-out infinite;}
-@keyframes updPulse{0%,100%{box-shadow:0 0 0 0 rgba(255,61,104,.5)}50%{box-shadow:0 0 0 10px rgba(255,61,104,0)}}
 .feature-body{padding:24px;display:flex;flex-direction:column;gap:10px;}
 .feature-no{font-size:12px;font-weight:800;color:var(--accent);letter-spacing:1px;}
 .feature-title{font-size:22px;font-weight:900;color:#fff;display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
 .feature-new{display:inline-block;padding:3px 9px;font-size:10px;font-weight:900;color:#0a0a0c;background:var(--accent);animation:updPulse 1.8s ease-in-out infinite;}
+@keyframes updPulse{0%,100%{box-shadow:0 0 0 0 rgba(255,61,104,.5)}50%{box-shadow:0 0 0 10px rgba(255,61,104,0)}}
 .feature-desc{font-size:13px;color:var(--ink2);}
 .feature-meta{display:flex;gap:16px;font-size:12px;color:var(--dim);padding-top:12px;border-top:1px solid var(--line);margin-top:4px;flex-wrap:wrap;}
 .feature-meta b{color:#fff;display:block;font-size:13px;margin-bottom:2px;}
@@ -105,12 +103,11 @@ body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;bac
 </div>
 
 <div class="feature" style="padding-top:0;">
-  <!-- CinematicIdleCamera_SA 无NEW标签 -->
+  <!-- CinematicIdleCamera_SA -->
   <div class="feature-card" onclick="window.location.href='../cinematic/'">
     <div class="feature-img">
       <img src="../1793277212963.png" alt="CinematicIdleCamera_SA" onerror="this.parentElement.style.background='#0a0a0c'">
       <span class="feature-tag">AML插件</span>
-      <span class="feature-update">已发布 v1.0</span>
     </div>
     <div class="feature-body">
       <span class="feature-no">No.01 · 电影运镜</span>
@@ -131,7 +128,6 @@ body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;bac
     <div class="feature-img">
       <img src="../OIF-C.png" alt="AXON_BODY4_64" onerror="this.parentElement.style.background='#0a0a0c'">
       <span class="feature-tag">AML插件</span>
-      <span class="feature-update">已发布 v1.0</span>
     </div>
     <div class="feature-body">
       <span class="feature-no">No.02 · 执法记录仪</span>
