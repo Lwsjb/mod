@@ -226,22 +226,21 @@ body::before{
     </a>
     <div class="nav-menu">
       <a href="../index.html">首页</a>
-      <a href="../page2/index.html">第二页</a>
+      <a href="../page2/">第二页</a>
     </div>
     <a href="../index.html" class="nav-cta">返回首页</a>
   </div>
 </nav>
 
 <div class="detail">
-  <!-- 返回第二页按钮 -->
-  <a href="../page2/index.html" class="detail-back">← 返回第二页</a>
+  <!-- 返回第二页，链接 ../page2/ 不带index.html -->
+  <a href="../page2/" class="detail-back">← 返回第二页</a>
   
   <div class="detail-grid">
     <div class="detail-main">
       <h1>AXON_BODY4_64 <span class="hero-new">NEW</span></h1>
 
       <div class="detail-imgs">
-        <!-- 读取仓库根目录图片，子文件夹内使用 ../向上跳转 -->
         <img src="../body4-1.jpg" alt="AXON_BODY4_64 预览 1" onerror="this.style.display='none'">
         <img src="../body4-2.jpg" alt="AXON_BODY4_64 预览 2" onerror="this.style.display='none'">
         <img src="../body4-3.jpg" alt="AXON_BODY4_64 预览 3" onerror="this.style.display='none'">
@@ -316,7 +315,7 @@ AXON_BODY4主要功能
     <div class="footer-col">
       <h5>导航</h5>
       <a href="../index.html">首页</a>
-      <a href="../page2/index.html">第二页</a>
+      <a href="../page2/">第二页</a>
     </div>
     <div class="footer-col">
       <h5>制作</h5>
@@ -334,17 +333,12 @@ AXON_BODY4主要功能
 </footer>
 
 <script>
-  // 弹出下载版本窗口
   window.openVersions = function() {
     document.getElementById("versionsModal").classList.add("show");
   };
-
-  // 关闭弹窗
   window.closeModal = function(id) { 
     document.getElementById(id).classList.remove("show"); 
   };
-
-  // 展开/收起小三角（提取码与更新日志）
   window.toggleVer = function(btn) {
     const body = btn.closest(".ver-item").querySelector(".ver-body");
     const isOpen = body.classList.contains("open");
@@ -356,15 +350,11 @@ AXON_BODY4主要功能
       btn.classList.add("open");
     }
   };
-
-  // 点击背景关闭弹窗
   document.querySelectorAll(".modal").forEach(function(m) {
     m.addEventListener("click", function(e) { 
       if (e.target === m) m.classList.remove("show"); 
     });
   });
-
-  // 按 ESC 关闭
   document.addEventListener("keydown", function(e) {
     if (e.key === "Escape") {
       document.querySelectorAll(".modal.show").forEach(el => el.classList.remove("show"));
