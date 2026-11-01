@@ -59,12 +59,20 @@ body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;bac
 .gallery a{display:block;border:1px solid var(--line);background:#0a0a0c;overflow:hidden;aspect-ratio:16/9;position:relative;}
 .gallery img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s;}
 .gallery a:hover img{transform:scale(1.05);}
+
+/* 下载展开区域样式 */
 .download-box{background:var(--card);border:1px solid var(--line);padding:26px;margin-bottom:40px;}
+.download-trigger{display:flex;justify-content:space-between;align-items:center;cursor:pointer;padding:10px 0;user-select:none;}
+.download-trigger .arrow{transition:transform .3s;display:inline-block;color:var(--accent);}
+.download-trigger.active .arrow{transform:rotate(180deg);}
+.download-content{max-height:0;overflow:hidden;transition:max-height .3s ease-out;}
+.download-content.open{max-height:500px; /* 足够大以容纳内容 */}
 .download-row{display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap;padding:16px 0;border-bottom:1px solid var(--line);}
 .download-row:last-child{border-bottom:0;}
 .download-row .k{font-size:13.5px;color:var(--ink2);}
 .download-row .v{font-size:15px;font-weight:800;color:#fff;font-family:ui-monospace,Menlo,monospace;word-break:break-all;}
 .download-row .v.accent{color:var(--accent);}
+
 .footer-nav{max-width:var(--max);margin:0 auto 60px;padding:0 28px;display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;}
 @media(max-width:960px){
   .nav-menu{display:none}
@@ -102,7 +110,6 @@ body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;bac
 <div class="hero">
   <div class="hero-in">
     <div class="hero-cover">
-      <!-- 注意图片路径加了 ../ 代表返回上一级找图片 -->
       <img src="../OIF-C.png" alt="AXON_BODY4_64 封面" onerror="this.style.display='none'">
     </div>
     <div class="hero-info">
@@ -118,7 +125,7 @@ body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;bac
       </div>
 
       <div class="hero-actions">
-        <a href="#download" class="btn-primary">立即下载</a>
+        <a href="#download" class="btn-primary">前往下载区域</a>
         <a href="../index.html" class="btn-ghost">返回首页</a>
       </div>
     </div>
@@ -151,7 +158,6 @@ body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;bac
   </div>
   <div class="panel">
     <div class="gallery">
-      <!-- 注意图片路径加了 ../ -->
       <a href="../OIF-C.png" target="_blank" rel="noopener"><img src="../OIF-C.png" alt="AXON_BODY4_64 预览 1" onerror="this.parentNode.style.display='none'"></a>
       <a href="../body4-1.jpg" target="_blank" rel="noopener"><img src="../body4-1.jpg" alt="AXON_BODY4_64 预览 2" onerror="this.parentNode.style.display='none'"></a>
       <a href="../body4-2.jpg" target="_blank" rel="noopener"><img src="../body4-2.jpg" alt="AXON_BODY4_64 预览 3" onerror="this.parentNode.style.display='none'"></a>
@@ -180,20 +186,28 @@ body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;bac
     <span class="label">Download · 下载</span>
   </div>
   <div class="download-box">
-    <div class="download-row">
-      <span class="k">下载链接</span>
-      <span class="v accent" style="font-size:13px;">https://wwbgu.lanzoum.com/iPU4M4e9rxra</span>
+    <!-- 下载按钮和展开区域 -->
+    <div class="download-trigger" onclick="toggleDownload(this)">
+      <span class="k" style="font-size:16px; font-weight:800; color:#fff;">查看下载链接与提取码</span>
+      <span class="arrow">▼</span>
     </div>
-    <div class="download-row">
-      <span class="k">提取码</span>
-      <span class="v">6jtt</span>
-    </div>
-    <div class="download-row">
-      <span class="k">压缩包大小</span>
-      <span class="v">1.30M</span>
-    </div>
-    <div class="download-row" style="padding-top:22px;">
-      <a href="https://wwbgu.lanzoum.com/iPU4M4e9rxra" target="_blank" rel="noopener" class="btn-primary" style="width:100%;text-align:center;">前往下载页面</a>
+    <div class="download-content">
+      <div class="download-row" style="margin-top:10px;">
+        <span class="k">下载链接</span>
+        <span class="v accent" style="font-size:13px; word-break:break-all;">https://wwbgu.lanzoum.com/iPU4M4e9rxra</span>
+      </div>
+      <div class="download-row">
+        <span class="k">提取码</span>
+        <span class="v">6jtt</span>
+      </div>
+      <div class="download-row">
+        <span class="k">压缩包大小</span>
+        <span class="v">1.30M</span>
+      </div>
+      <div class="download-row" style="padding-top:22px;">
+        <!-- 下载按钮点击不触发折叠 -->
+        <a href="https://wwbgu.lanzoum.com/iPU4M4e9rxra" target="_blank" rel="noopener" class="btn-primary" style="width:100%;text-align:center;" onclick="event.stopPropagation();">前往蓝奏云下载</a>
+      </div>
     </div>
   </div>
 </div>
@@ -202,6 +216,19 @@ body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;bac
   <a href="../page2/" class="btn-ghost">← 返回第二页</a>
   <a href="../index.html" class="btn-primary">返回首页</a>
 </div>
+
+<script>
+  // 控制下载区域的展开与收起
+  function toggleDownload(element) {
+    element.classList.toggle('active');
+    var content = element.nextElementSibling;
+    if (content.classList.contains('open')) {
+      content.classList.remove('open');
+    } else {
+      content.classList.add('open');
+    }
+  }
+</script>
 
 </body>
 </html>
