@@ -67,12 +67,15 @@ body::before{
 .hero-new{display:inline-block;padding:4px 10px;font-size:11px;font-weight:900;color:#0a0a0c;background:var(--accent);animation:updPulse 1.8s ease-in-out infinite;}
 @keyframes updPulse{0%,100%{box-shadow:0 0 0 0 rgba(255,61,104,.5)}50%{box-shadow:0 0 0 10px rgba(255,61,104,0)}}
 
+/* =====修复横向滚动预览图，每个子项强制16:9，不会被原图拉高变长===== */
 .detail-imgs{display:flex;overflow-x:auto;gap:16px;padding-bottom:16px;-webkit-overflow-scrolling:touch;animation:fadeUp .6s ease .1s both}
 .detail-imgs::-webkit-scrollbar{height:5px}
 .detail-imgs::-webkit-scrollbar-thumb{background:var(--line2)}
-/* ========== 详情页预览图修复 ========== */
-.detail-imgs img{flex:0 0 84%;height:min(460px,52vw);object-fit:cover;object-position:center;border:1px solid var(--line);background:#0a0a0c;transition:transform .5s;display:block;max-width:none;max-height:none;}
-.detail-imgs img:hover{transform:scale(1.02)}
+.preview-item{flex:0 0 84%;position:relative;overflow:hidden;background:#0a0a0c;border:1px solid var(--line);}
+.preview-item::before{content:"";display:block;padding-top:56.25%;/*16:9*/}
+.preview-item img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;transition:transform .5s;display:block;}
+.preview-item img:hover{transform:scale(1.02)}
+
 .detail-desc{font-size:14px;color:var(--ink2);line-height:2;background:var(--card);border:1px solid var(--line);padding:30px;white-space:pre-wrap;margin-top:26px;animation:fadeUp .6s ease .18s both;word-break:break-all}
 .detail-desc code{background:#0a0a0c;border:1px solid var(--line2);padding:2px 8px;font-size:12.5px;color:#fff;font-family:ui-monospace,Menlo,monospace;word-break:break-all;}
 
@@ -189,8 +192,7 @@ body::before{
 
   .detail{padding:24px 16px 54px}
   .detail-main h1{font-size:24px;letter-spacing:-.8px}
-  /* ========== 手机端预览图修复 ========== */
-  .detail-imgs img{flex:0 0 88%;height:62vw;object-fit:cover;object-position:center;max-width:none;max-height:none}
+  .preview-item{flex:0 0 88%;}
   .detail-desc{padding:22px;font-size:13px}
 
   .modal{padding:16px}
@@ -235,7 +237,6 @@ body::before{
 </nav>
 
 <div class="detail">
-  <!-- 返回第二页，链接 ../page2/ 不带index.html -->
   <a href="../page2/" class="detail-back">← 返回第二页</a>
   
   <div class="detail-grid">
@@ -243,9 +244,15 @@ body::before{
       <h1>AXON_BODY4_64 <span class="hero-new">NEW</span></h1>
 
       <div class="detail-imgs">
-        <img src="../body4-1.jpg" alt="AXON_BODY4_64 预览 1" onerror="this.parentElement.style.background='#0a0a0c'">
-        <img src="../body4-2.jpg" alt="AXON_BODY4_64 预览 2" onerror="this.parentElement.style.background='#0a0a0c'">
-        <img src="../body4-3.jpg" alt="AXON_BODY4_64 预览 3" onerror="this.parentElement.style.background='#0a0a0c'">
+        <div class="preview-item">
+          <img src="../body4-1.jpg" alt="AXON_BODY4_64 预览 1" onerror="this.parentElement.style.background='#0a0a0c'">
+        </div>
+        <div class="preview-item">
+          <img src="../body4-2.jpg" alt="AXON_BODY4_64 预览 2" onerror="this.parentElement.style.background='#0a0a0c'">
+        </div>
+        <div class="preview-item">
+          <img src="../body4-3.jpg" alt="AXON_BODY4_64 预览 3" onerror="this.parentElement.style.background='#0a0a0c'">
+        </div>
       </div>
       
       <div class="detail-desc">
