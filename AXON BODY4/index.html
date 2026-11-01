@@ -60,20 +60,18 @@ body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;bac
 .gallery img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s;}
 .gallery a:hover img{transform:scale(1.05);}
 
-/* 原生详情下载展开逻辑 */
-details{background:var(--card);border:1px solid var(--line);margin-bottom:40px;}
-summary{padding:20px 26px;font-size:15px;font-weight:800;color:#fff;cursor:pointer;list-style:none;display:flex;align-items:center;justify-content:space-between;user-select:none;}
-summary::-webkit-details-marker{display:none;}
-summary::after{content:"▼";font-size:12px;color:var(--accent);transition:transform .3s;}
-details[open] summary::after{transform:rotate(180deg);}
-.download-content{border-top:1px solid var(--line);padding:0 26px;}
+/* 纯净的下载区域样式，没有任何乱七八糟的联动 */
+.download-box{background:var(--card);border:1px solid var(--line);padding:26px;margin-bottom:40px;}
+.download-btn-wrap{text-align:center;padding:10px 0;}
+.download-info{display:none; margin-top:24px; border-top:1px dashed var(--line2); padding-top:24px;}
 .download-row{display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap;padding:16px 0;border-bottom:1px solid var(--line);}
-.download-row:last-child{border-bottom:0;padding-bottom:24px;}
+.download-row:last-child{border-bottom:0;}
 .download-row .k{font-size:13.5px;color:var(--ink2);}
 .download-row .v{font-size:15px;font-weight:800;color:#fff;font-family:ui-monospace,Menlo,monospace;word-break:break-all;}
 .download-row .v.accent{color:var(--accent);}
 
 .footer-nav{max-width:var(--max);margin:0 auto 60px;padding:0 28px;display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;}
+
 @media(max-width:960px){
   .nav-menu{display:none}
   .hero{padding:32px 16px 20px;}
@@ -101,7 +99,7 @@ details[open] summary::after{transform:rotate(180deg);}
     </a>
     <div class="nav-menu">
       <a href="../index.html">首页</a>
-      <a href="../page2/">第二页</a>
+      <a href="../page2/index.html">第二页</a>
     </div>
     <a href="../index.html" class="nav-cta" style="text-decoration:none;display:inline-block;">返回首页</a>
   </div>
@@ -110,6 +108,7 @@ details[open] summary::after{transform:rotate(180deg);}
 <div class="hero">
   <div class="hero-in">
     <div class="hero-cover">
+      <!-- 自动识别上一级根目录的图片 -->
       <img src="../OIF-C.png" alt="AXON_BODY4_64 封面" onerror="this.style.display='none'">
     </div>
     <div class="hero-info">
@@ -125,8 +124,8 @@ details[open] summary::after{transform:rotate(180deg);}
       </div>
 
       <div class="hero-actions">
-        <a href="#download" class="btn-primary">立即下载</a>
-        <a href="../index.html" class="btn-ghost">返回首页</a>
+        <a href="#download" class="btn-primary">查看下载</a>
+        <a href="../page2/index.html" class="btn-ghost">返回第二页</a>
       </div>
     </div>
   </div>
@@ -158,11 +157,10 @@ details[open] summary::after{transform:rotate(180deg);}
   </div>
   <div class="panel">
     <div class="gallery">
-      <!-- 同样增加 ../ 路径 -->
-      <a href="../OIF-C.png" target="_blank" rel="noopener"><img src="../OIF-C.png" alt="AXON_BODY4_64 预览 1" onerror="this.parentNode.style.display='none'"></a>
-      <a href="../body4-1.jpg" target="_blank" rel="noopener"><img src="../body4-1.jpg" alt="AXON_BODY4_64 预览 2" onerror="this.parentNode.style.display='none'"></a>
-      <a href="../body4-2.jpg" target="_blank" rel="noopener"><img src="../body4-2.jpg" alt="AXON_BODY4_64 预览 3" onerror="this.parentNode.style.display='none'"></a>
-      <a href="../body4-3.jpg" target="_blank" rel="noopener"><img src="../body4-3.jpg" alt="AXON_BODY4_64 预览 4" onerror="this.parentNode.style.display='none'"></a>
+      <a href="../OIF-C.png" target="_blank" rel="noopener"><img src="../OIF-C.png" alt="预览 1" onerror="this.parentNode.style.display='none'"></a>
+      <a href="../body4-1.jpg" target="_blank" rel="noopener"><img src="../body4-1.jpg" alt="预览 2" onerror="this.parentNode.style.display='none'"></a>
+      <a href="../body4-2.jpg" target="_blank" rel="noopener"><img src="../body4-2.jpg" alt="预览 3" onerror="this.parentNode.style.display='none'"></a>
+      <a href="../body4-3.jpg" target="_blank" rel="noopener"><img src="../body4-3.jpg" alt="预览 4" onerror="this.parentNode.style.display='none'"></a>
     </div>
   </div>
 </div>
@@ -187,13 +185,16 @@ details[open] summary::after{transform:rotate(180deg);}
     <span class="label">Download · 下载</span>
   </div>
   
-  <!-- 使用原生 details 标签做折叠，点击旁边的三角不会误触，原生自带展开动画 -->
-  <details>
-    <summary>点击展开/收起下载链接及提取码</summary>
-    <div class="download-content">
+  <!-- 纯净下载区，点击按钮才出现下面的信息，不用任何多余的折叠元素 -->
+  <div class="download-box">
+    <div class="download-btn-wrap">
+      <button onclick="document.getElementById('dl-info').style.display='block'; this.style.display='none';" class="btn-primary" style="width:100%;">点击获取下载链接</button>
+    </div>
+    
+    <div id="dl-info" class="download-info">
       <div class="download-row">
         <span class="k">下载链接</span>
-        <span class="v accent" style="font-size:13px;">https://wwbgu.lanzoum.com/iPU4M4e9rxra</span>
+        <span class="v accent" style="font-size:13px; word-break:break-all;">https://wwbgu.lanzoum.com/iPU4M4e9rxra</span>
       </div>
       <div class="download-row">
         <span class="k">提取码</span>
@@ -204,16 +205,15 @@ details[open] summary::after{transform:rotate(180deg);}
         <span class="v">1.30M</span>
       </div>
       <div class="download-row" style="padding-top:22px;">
-        <!-- 纯正原生跳转，不受任何折叠影响 -->
-        <a href="https://wwbgu.lanzoum.com/iPU4M4e9rxra" target="_blank" rel="noopener" class="btn-primary" style="width:100%;text-align:center;">前往蓝奏云下载</a>
+        <!-- 跳转按钮，绝对安全不触发任何折叠 -->
+        <a href="https://wwbgu.lanzoum.com/iPU4M4e9rxra" target="_blank" rel="noopener" class="btn-primary" style="width:100%; text-align:center;">前往蓝奏云下载</a>
       </div>
     </div>
-  </details>
-  
+  </div>
 </div>
 
 <div class="footer-nav">
-  <a href="../page2/" class="btn-ghost">← 返回第二页</a>
+  <a href="../page2/index.html" class="btn-ghost">← 返回第二页</a>
   <a href="../index.html" class="btn-primary">返回首页</a>
 </div>
 
