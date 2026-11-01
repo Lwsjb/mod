@@ -6,7 +6,6 @@
 <meta name="theme-color" content="#0a0a0c">
 <title>GTA SA 原创模组站 - 第 2 页</title>
 <style>
-/* 这里复用主页大部分样式，只修改一些因为路径不同引起的细节 */
 *{margin:0;padding:0;box-sizing:border-box}
 :root{--bg:#0a0a0c;--card:#141418;--line:#26262e;--line2:#33333d;--ink:#f4f4f6;--ink2:#a0a0ac;--dim:#5f5f6b;--accent:#ff3d68;--max:1240px;}
 body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--ink);line-height:1.7;overflow-x:hidden;-webkit-font-smoothing:antialiased;position:relative;}
@@ -22,9 +21,6 @@ body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;bac
 .nav-menu a::after{content:"";position:absolute;left:0;bottom:0;width:0;height:1px;background:var(--accent);transition:width .35s;}
 .nav-menu a:hover::after{width:100%;}
 .nav-search-box{position:relative;display:flex;align-items:center;width:260px;flex-shrink:0;}
-.nav-search{flex:1;padding:10px 16px;background:var(--card);border:1px solid var(--line2);border-right:0;color:var(--ink);font-size:13px;outline:none;}
-.nav-search-btn{padding:10px 18px;border:1px solid var(--line2);background:var(--card);color:var(--ink2);font-size:12.5px;font-weight:750;letter-spacing:.5px;text-transform:uppercase;cursor:pointer;transition:all .3s;}
-.nav-search-btn:hover{background:var(--accent);color:#0a0a0c;border-color:var(--accent);}
 .nav-cta{padding:11px 22px;border:0;font-size:12.5px;font-weight:750;color:#0a0a0c;background:var(--accent);letter-spacing:.5px;text-transform:uppercase;transition:transform .25s;}
 .nav-cta:hover{transform:translateY(-2px);}
 .hero{max-width:var(--max);margin:auto;padding:60px 28px 40px;text-align:center;}
@@ -41,7 +37,6 @@ body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;bac
 .feature-img img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;transition:transform 1s;}
 .feature-card:hover .feature-img img{transform:scale(1.06);}
 .feature-tag{position:absolute;top:12px;left:12px;padding:5px 12px;background:var(--accent);color:#0a0a0c;font-size:11px;font-weight:800;letter-spacing:1px;text-transform:uppercase;z-index:3;}
-.feature-update{position:absolute;top:12px;right:12px;z-index:4;padding:5px 12px;background:var(--accent);color:#0a0a0c;font-size:11px;font-weight:900;letter-spacing:1px;text-transform:uppercase;animation:updPulse 1.8s ease-in-out infinite;}
 @keyframes updPulse{0%,100%{box-shadow:0 0 0 0 rgba(255,61,104,.5)}50%{box-shadow:0 0 0 10px rgba(255,61,104,0)}}
 .feature-body{padding:24px;display:flex;flex-direction:column;gap:10px;}
 .feature-no{font-size:12px;font-weight:800;color:var(--accent);letter-spacing:1px;}
@@ -57,7 +52,6 @@ body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;bac
 .page-btn:hover{transform:translateY(-2px);box-shadow:0 10px 20px rgba(255,61,104,.4);}
 .page-btn.outline{background:transparent;border:1px solid var(--line2);color:var(--ink2);}
 .page-btn.outline:hover{border-color:var(--accent);color:var(--accent);}
-/* 手机端适配 */
 @media(max-width:960px){
   .nav-menu{display:none}
   .hero h1{font-size:36px}
@@ -102,16 +96,36 @@ body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;bac
 </div>
 
 <div class="feature" style="padding-top:0;">
+
+  <!-- AXON_BODY4_64 -->
+  <div class="feature-card" onclick="window.location.href='../axon-body4/'">
+    <div class="feature-img">
+      <img src="../axon-body4/OIF-C.png" alt="AXON_BODY4_64" onerror="this.style.display='none'">
+      <span class="feature-tag">AML插件</span>
+    </div>
+    <div class="feature-body">
+      <span class="feature-no">No.01 · 执法记录仪</span>
+      <h3 class="feature-title">AXON_BODY4_64 <span class="feature-new">NEW</span></h3>
+      <p class="feature-desc">AXON_BODY4_64｜GTA SA安卓2.10 64位AML执法记录仪水印模组，实时现实时间水印，中文悬浮球菜单，支持HUD隐藏、时间天气同步，仿真Axon Body4记录仪画面效果。</p>
+      <div class="feature-meta">
+        <div><b>v1.0</b><span>版本</span></div>
+        <div><b>1.30M</b><span>大小</span></div>
+        <div><b>2026.11.1</b><span>发布</span></div>
+        <div><b>暂无</b><span>更新</span></div>
+      </div>
+      <span class="feature-cta">查看详情 →</span>
+    </div>
+  </div>
+
   <!-- CinematicIdleCamera_SA -->
   <div class="feature-card" onclick="window.location.href='../cinematic/'">
     <div class="feature-img">
       <img src="../1793277212963.png" alt="CinematicIdleCamera_SA" onerror="this.style.display='none'">
       <span class="feature-tag">AML插件</span>
-      <span class="feature-update">已发布 v1.0</span>
     </div>
     <div class="feature-body">
-      <span class="feature-no">No.01 · 电影运镜</span>
-      <h3 class="feature-title">CinematicIdleCamera_SA <span class="feature-new">NEW</span></h3>
+      <span class="feature-no">No.02 · 电影运镜</span>
+      <h3 class="feature-title">CinematicIdleCamera_SA</h3>
       <p class="feature-desc">CinematicIdleCamera 是GTA圣安地列斯安卓32位专用空闲电影运镜模组。</p>
       <div class="feature-meta">
         <div><b>v1.0</b><span>版本</span></div>
@@ -122,6 +136,7 @@ body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;bac
       <span class="feature-cta">查看详情 →</span>
     </div>
   </div>
+
 </div>
 
 <div class="page-nav">
