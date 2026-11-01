@@ -70,7 +70,8 @@ body::before{
 .detail-imgs{display:flex;overflow-x:auto;gap:16px;padding-bottom:16px;-webkit-overflow-scrolling:touch;animation:fadeUp .6s ease .1s both}
 .detail-imgs::-webkit-scrollbar{height:5px}
 .detail-imgs::-webkit-scrollbar-thumb{background:var(--line2)}
-.detail-imgs img{flex:0 0 84%;height:min(460px,52vw);object-fit:cover;border:1px solid var(--line);background:#0a0a0c;transition:transform .5s}
+/* ========== 详情页预览图修复 ========== */
+.detail-imgs img{flex:0 0 84%;height:min(460px,52vw);object-fit:cover;object-position:center;border:1px solid var(--line);background:#0a0a0c;transition:transform .5s;display:block;max-width:none;max-height:none;}
 .detail-imgs img:hover{transform:scale(1.02)}
 .detail-desc{font-size:14px;color:var(--ink2);line-height:2;background:var(--card);border:1px solid var(--line);padding:30px;white-space:pre-wrap;margin-top:26px;animation:fadeUp .6s ease .18s both;word-break:break-all}
 .detail-desc code{background:#0a0a0c;border:1px solid var(--line2);padding:2px 8px;font-size:12.5px;color:#fff;font-family:ui-monospace,Menlo,monospace;word-break:break-all;}
@@ -188,7 +189,8 @@ body::before{
 
   .detail{padding:24px 16px 54px}
   .detail-main h1{font-size:24px;letter-spacing:-.8px}
-  .detail-imgs img{flex:0 0 88%;height:62vw}
+  /* ========== 手机端预览图修复 ========== */
+  .detail-imgs img{flex:0 0 88%;height:62vw;object-fit:cover;object-position:center;max-width:none;max-height:none}
   .detail-desc{padding:22px;font-size:13px}
 
   .modal{padding:16px}
@@ -241,9 +243,9 @@ body::before{
       <h1>AXON_BODY4_64 <span class="hero-new">NEW</span></h1>
 
       <div class="detail-imgs">
-        <img src="../body4-1.jpg" alt="AXON_BODY4_64 预览 1" onerror="this.style.display='none'">
-        <img src="../body4-2.jpg" alt="AXON_BODY4_64 预览 2" onerror="this.style.display='none'">
-        <img src="../body4-3.jpg" alt="AXON_BODY4_64 预览 3" onerror="this.style.display='none'">
+        <img src="../body4-1.jpg" alt="AXON_BODY4_64 预览 1" onerror="this.parentElement.style.background='#0a0a0c'">
+        <img src="../body4-2.jpg" alt="AXON_BODY4_64 预览 2" onerror="this.parentElement.style.background='#0a0a0c'">
+        <img src="../body4-3.jpg" alt="AXON_BODY4_64 预览 3" onerror="this.parentElement.style.background='#0a0a0c'">
       </div>
       
       <div class="detail-desc">
