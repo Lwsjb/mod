@@ -38,7 +38,8 @@ body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;bac
 .feature-card{position:relative;background:var(--card);border:1px solid var(--line);cursor:pointer;overflow:hidden;transition:border-color .3s,transform .5s,box-shadow .5s;}
 .feature-card:hover{border-color:var(--line2);transform:translateY(-6px);box-shadow:0 26px 60px rgba(0,0,0,.55);}
 .feature-img{position:relative;overflow:hidden;background:#0a0a0c;min-height:180px;aspect-ratio:16/9;}
-.feature-img img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;transition:transform 1s;}
+/* ========== 修复封面图片显示不全 ========== */
+.feature-img img{width:100%;height:100%;object-fit:cover;object-position:center;position:absolute;inset:0;transition:transform 1s;display:block;max-width:none;max-height:none;}
 .feature-card:hover .feature-img img{transform:scale(1.06);}
 .feature-tag{position:absolute;top:12px;left:12px;padding:5px 12px;background:var(--accent);color:#0a0a0c;font-size:11px;font-weight:800;letter-spacing:1px;text-transform:uppercase;z-index:3;}
 .feature-update{position:absolute;top:12px;right:12px;z-index:4;padding:5px 12px;background:var(--accent);color:#0a0a0c;font-size:11px;font-weight:900;letter-spacing:1px;text-transform:uppercase;animation:updPulse 1.8s ease-in-out infinite;}
@@ -105,7 +106,7 @@ body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;bac
   <!-- CinematicIdleCamera_SA 无NEW标签 -->
   <div class="feature-card" onclick="window.location.href='../cinematic/'">
     <div class="feature-img">
-      <img src="../1793277212963.png" alt="CinematicIdleCamera_SA" onerror="this.style.display='none'">
+      <img src="../1793277212963.png" alt="CinematicIdleCamera_SA" onerror="this.parentElement.style.background='#0a0a0c'">
       <span class="feature-tag">AML插件</span>
       <span class="feature-update">已发布 v1.0</span>
     </div>
@@ -126,7 +127,7 @@ body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;bac
   <!-- AXON_BODY4_64 跳转地址改为 ../AXON%20BODY4/ 不带index.html -->
   <div class="feature-card" onclick="window.location.href='../AXON%20BODY4/'">
     <div class="feature-img">
-      <img src="../OIF-C.png" alt="AXON_BODY4_64" onerror="this.style.display='none'">
+      <img src="../OIF-C.png" alt="AXON_BODY4_64" onerror="this.parentElement.style.background='#0a0a0c'">
       <span class="feature-tag">AML插件</span>
       <span class="feature-update">已发布 v1.0</span>
     </div>
