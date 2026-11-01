@@ -93,7 +93,7 @@ body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;bac
     </a>
     <div class="nav-menu">
       <a href="../index.html">首页</a>
-      <a href="../index.html">第二页</a>
+      <a href="../page2/">第二页</a>
     </div>
     <a href="../index.html" class="nav-cta" style="text-decoration:none;display:inline-block;">返回首页</a>
   </div>
@@ -102,7 +102,8 @@ body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;bac
 <div class="hero">
   <div class="hero-in">
     <div class="hero-cover">
-      <img src="OIF-C.png" alt="AXON_BODY4_64 封面" onerror="this.style.display='none'">
+      <!-- 注意图片路径加了 ../ 代表返回上一级找图片 -->
+      <img src="../OIF-C.png" alt="AXON_BODY4_64 封面" onerror="this.style.display='none'">
     </div>
     <div class="hero-info">
       <span class="hero-badge">AML插件</span>
@@ -150,10 +151,11 @@ body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;bac
   </div>
   <div class="panel">
     <div class="gallery">
-      <a href="OIF-C.png" target="_blank" rel="noopener"><img src="OIF-C.png" alt="AXON_BODY4_64 预览 1" onerror="this.parentNode.style.display='none'"></a>
-      <a href="body4-1.jpg" target="_blank" rel="noopener"><img src="body4-1.jpg" alt="AXON_BODY4_64 预览 2" onerror="this.parentNode.style.display='none'"></a>
-      <a href="body4-2.jpg" target="_blank" rel="noopener"><img src="body4-2.jpg" alt="AXON_BODY4_64 预览 3" onerror="this.parentNode.style.display='none'"></a>
-      <a href="body4-3.jpg" target="_blank" rel="noopener"><img src="body4-3.jpg" alt="AXON_BODY4_64 预览 4" onerror="this.parentNode.style.display='none'"></a>
+      <!-- 注意图片路径加了 ../ -->
+      <a href="../OIF-C.png" target="_blank" rel="noopener"><img src="../OIF-C.png" alt="AXON_BODY4_64 预览 1" onerror="this.parentNode.style.display='none'"></a>
+      <a href="../body4-1.jpg" target="_blank" rel="noopener"><img src="../body4-1.jpg" alt="AXON_BODY4_64 预览 2" onerror="this.parentNode.style.display='none'"></a>
+      <a href="../body4-2.jpg" target="_blank" rel="noopener"><img src="../body4-2.jpg" alt="AXON_BODY4_64 预览 3" onerror="this.parentNode.style.display='none'"></a>
+      <a href="../body4-3.jpg" target="_blank" rel="noopener"><img src="../body4-3.jpg" alt="AXON_BODY4_64 预览 4" onerror="this.parentNode.style.display='none'"></a>
     </div>
   </div>
 </div>
@@ -197,8 +199,8 @@ body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;bac
 </div>
 
 <div class="footer-nav">
-  <a href="../index.html" class="btn-ghost">← 返回首页</a>
-  <a href="../index.html" class="btn-primary">更多模组</a>
+  <a href="../page2/" class="btn-ghost">← 返回第二页</a>
+  <a href="../index.html" class="btn-primary">返回首页</a>
 </div>
 
 </body>
