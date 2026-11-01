@@ -6,7 +6,6 @@
 <meta name="theme-color" content="#0a0a0c">
 <title>GTA SA 原创模组站 - 第 2 页</title>
 <style>
-/* 这里复用主页大部分样式，只修改一些因为路径不同引起的细节 */
 *{margin:0;padding:0;box-sizing:border-box}
 :root{--bg:#0a0a0c;--card:#141418;--line:#26262e;--line2:#33333d;--ink:#f4f4f6;--ink2:#a0a0ac;--dim:#5f5f6b;--accent:#ff3d68;--max:1240px;}
 body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--ink);line-height:1.7;overflow-x:hidden;-webkit-font-smoothing:antialiased;position:relative;}
@@ -103,11 +102,10 @@ body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;bac
 
 <div class="feature" style="padding-top:0;">
 
-  <!-- AXON_BODY4_64 （新增卡片） -->
-  <div class="feature-card" onclick="window.location.href='../AXON BODY4/'">
+  <!-- AXON_BODY4_64 （修复：空格编码 %20，图片使用仓库存在的Axon-Logo.jpg） -->
+  <div class="feature-card" onclick="window.location.href='../AXON%20BODY4/'">
     <div class="feature-img">
-      <!-- 图片加了 ../ 从上一级根目录读取 -->
-      <img src="../OIF-C.png" alt="AXON_BODY4_64" onerror="this.style.display='none'">
+      <img src="../Axon-Logo.jpg" alt="AXON_BODY4_64" onerror="this.style.display='none'">
       <span class="feature-tag">AML插件</span>
       <span class="feature-update">已发布 v1.0</span>
     </div>
@@ -125,7 +123,7 @@ body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;bac
     </div>
   </div>
 
-  <!-- CinematicIdleCamera_SA （原卡片） -->
+  <!-- CinematicIdleCamera_SA -->
   <div class="feature-card" onclick="window.location.href='../cinematic/'">
     <div class="feature-img">
       <img src="../1793277212963.png" alt="CinematicIdleCamera_SA" onerror="this.style.display='none'">
