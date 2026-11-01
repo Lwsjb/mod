@@ -4,210 +4,202 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="theme-color" content="#0a0a0c">
-<meta name="description" content="64位的AXON_BODY4模组 - GTA SA 原创模组站">
-<title>64位的AXON_BODY4模组 - GTA SA 原创模组站</title>
+<title>AXON_BODY4_64 - GTA SA 模组站</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-:root{
-  --bg:#0a0a0c;--card:#141418;--card2:#1a1a20;
-  --line:#26262e;--line2:#33333d;
-  --ink:#f4f4f6;--ink2:#a0a0ac;--dim:#5f5f6b;
-  --accent:#ff3d68;--max:1240px;
-}
-html{scroll-behavior:smooth}
-body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--ink);line-height:1.7;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+:root{--bg:#0a0a0c;--card:#141418;--line:#26262e;--line2:#33333d;--ink:#f4f4f6;--ink2:#a0a0ac;--dim:#5f5f6b;--accent:#ff3d68;--max:1240px;}
+body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--ink);line-height:1.7;overflow-x:hidden;-webkit-font-smoothing:antialiased;position:relative;}
 body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;background:radial-gradient(900px 500px at 15% -5%,rgba(255,61,104,.12),transparent 60%),radial-gradient(800px 500px at 90% 5%,rgba(255,138,61,.08),transparent 60%),radial-gradient(700px 500px at 50% 100%,rgba(255,61,104,.06),transparent 60%);}
-.wrap{position:relative;z-index:1;max-width:var(--max);margin:auto;padding:40px 28px 70px}
-.back{display:inline-flex;align-items:center;gap:8px;padding:11px 20px;border:1px solid var(--line2);background:transparent;color:var(--ink2);font-size:12.5px;font-weight:700;letter-spacing:1px;text-transform:uppercase;text-decoration:none;margin-bottom:32px;transition:all .3s;cursor:pointer}
-.back:hover{color:var(--accent);border-color:var(--accent);transform:translateX(-4px)}
-.grid{display:grid;grid-template-columns:1.35fr .65fr;gap:40px;align-items:start}
-h1{font-size:38px;font-weight:900;color:#fff;margin-bottom:22px;letter-spacing:-1.2px;line-height:1.15;word-break:break-all}
-.imgs{display:flex;overflow-x:auto;gap:16px;padding-bottom:16px;-webkit-overflow-scrolling:touch}
-.imgs::-webkit-scrollbar{height:5px}
-.imgs::-webkit-scrollbar-thumb{background:var(--line2)}
-.imgs img{flex:0 0 84%;height:min(460px,52vw);object-fit:cover;border:1px solid var(--line);background:#0a0a0c;transition:transform .5s}
-.imgs img:hover{transform:scale(1.02)}
-.desc{font-size:14px;color:var(--ink2);line-height:2;background:var(--card);border:1px solid var(--line);padding:30px;white-space:pre-wrap;margin-top:26px;word-break:break-all}
-.side{position:sticky;top:96px;display:flex;flex-direction:column;gap:18px}
-.side-card{background:var(--card);border:1px solid var(--line);padding:26px}
-.side-card h3{font-size:11.5px;color:var(--dim);letter-spacing:2.5px;text-transform:uppercase;margin-bottom:16px;font-weight:750}
-.row{display:flex;justify-content:space-between;padding:13px 0;border-bottom:1px solid var(--line);font-size:13.5px;word-break:break-all}
-.row:last-child{border-bottom:0;padding-bottom:0}
-.row .k{color:var(--ink2)}
-.row .v{color:#fff;font-weight:750}
-.row .v.accent{color:var(--accent)}
-.download{display:block;width:100%;text-align:center;padding:18px;font-size:14px;font-weight:800;color:#0a0a0c!important;background:var(--accent);letter-spacing:1px;text-transform:uppercase;border:0;cursor:pointer;transition:transform .25s,box-shadow .3s;position:relative;overflow:hidden;text-decoration:none}
-.download:hover{transform:translateY(-4px);box-shadow:0 18px 46px rgba(255,61,104,.5)}
-.pw{text-align:center;font-size:13px;color:var(--dim);margin-top:14px;letter-spacing:.5px}
-.pw b{color:var(--accent);font-weight:850}
-.update-banner{margin-bottom:24px;padding:22px 24px;background:linear-gradient(135deg,rgba(255,61,104,.12),rgba(255,138,61,.06));border:1px solid rgba(255,61,104,.45);border-left:4px solid var(--accent)}
-.update-banner .ub-head{display:flex;align-items:center;gap:10px;margin-bottom:12px}
-.update-banner .ub-tag{padding:4px 10px;background:var(--accent);color:#0a0a0c;font-size:11px;font-weight:900;letter-spacing:1.5px;text-transform:uppercase}
-.update-banner .ub-title{font-size:14px;font-weight:800;color:#fff}
-.update-banner ul{list-style:none;padding:0;margin:0}
-.update-banner li{font-size:13.5px;color:var(--ink2);line-height:1.9;padding-left:18px;position:relative;margin-bottom:8px}
-.update-banner li::before{content:"";position:absolute;left:0;top:11px;width:6px;height:6px;background:var(--accent)}
-@media(max-width:960px){.grid{grid-template-columns:1fr;gap:28px}.side{position:static}}
-@media(max-width:560px){.wrap{padding:24px 16px 54px}h1{font-size:24px}.imgs img{flex:0 0 88%;height:62vw}.desc{padding:22px;font-size:13px}}
-
-/* 弹窗样式 */
-.modal{display:none;position:fixed;inset:0;z-index:2000;padding:24px;background:rgba(0,0,0,.85);backdrop-filter:blur(12px);align-items:center;justify-content:center;animation:fadeIn .28s ease}
-.modal.show{display:flex}
-@keyframes fadeIn{from{opacity:0}to{opacity:1}}
-.modal-box{position:relative;width:min(560px,100%);max-height:85vh;overflow:auto;background:var(--card);border:1px solid var(--line2);animation:popIn .4s cubic-bezier(.34,1.56,.64,1);box-shadow:0 30px 80px rgba(0,0,0,.8)}
-@keyframes popIn{from{opacity:0;transform:scale(.94) translateY(12px)}to{opacity:1;transform:none}}
-.modal-close{position:absolute;right:16px;top:14px;width:36px;height:36px;border:1px solid var(--line2);background:transparent;color:var(--ink2);font-size:20px;z-index:5;transition:all .3s;display:flex;align-items:center;justify-content:center;cursor:pointer}
-.modal-close:hover{background:var(--accent);color:#0a0a0c;border-color:var(--accent);transform:rotate(90deg)}
-.modal-body{padding:32px}
-.modal-body h3{font-size:18px;color:#fff;margin-bottom:18px;padding-left:14px;border-left:3px solid var(--accent);font-weight:850}
-/* 版本列表 */
-.ver-item{border:1px solid var(--line);margin-bottom:14px;background:var(--card2)}
-.ver-item.latest{border-color:rgba(255,61,104,.5);background:linear-gradient(135deg,rgba(255,61,104,.06),transparent)}
-.ver-head{display:flex;align-items:center;gap:14px;padding:16px 18px;flex-wrap:wrap}
-.ver-name{font-size:15.5px;font-weight:850;color:#fff;display:flex;align-items:center;gap:10px}
-.ver-badge{padding:3px 9px;font-size:10px;font-weight:900;color:#0a0a0c;background:var(--accent)}
-.ver-date{font-size:12px;color:var(--dim)}
-.ver-actions{margin-left:auto;display:flex;align-items:center;gap:10px}
-.ver-download{display:flex;align-items:center;justify-content:center;min-width:88px;height:38px;padding:0 20px;font-size:12.5px;font-weight:800;color:#0a0a0c!important;background:var(--accent);text-decoration:none;border:0;}
-.ver-toggle{width:38px;height:38px;border:1px solid var(--line2);background:transparent;color:var(--ink2);font-size:14px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:.3s}
-.ver-toggle.open{transform:rotate(180deg);color:var(--accent);border-color:var(--accent)}
-.ver-body{max-height:0;overflow:hidden;transition:max-height .4s,padding .4s;padding:0 18px}
-.ver-body.open{max-height:800px;padding:0 18px 18px}
-.ver-body p{font-size:13px;color:var(--ink2);line-height:1.85;margin:0 0 8px}
-.ver-pw{display:inline-block;margin-top:8px;padding:6px 12px;background:#0f1218;border:1px solid var(--line);font-size:12.5px;color:var(--ink2);}
-.ver-pw b{color:var(--accent);font-weight:850}
+.navbar{position:sticky;top:0;z-index:1000;background:rgba(10,10,12,.88);backdrop-filter:blur(20px);border-bottom:1px solid var(--line);}
+.nav-in{max-width:var(--max);height:72px;margin:auto;padding:0 28px;display:flex;align-items:center;gap:22px;}
+.nav-logo{display:flex;align-items:center;gap:11px;font-size:19px;font-weight:900;color:#fff;text-decoration:none;letter-spacing:-.5px;white-space:nowrap;}
+.nav-logo .mark{width:8px;height:22px;background:var(--accent);flex-shrink:0;}
+.nav-logo b{color:var(--accent);}
+.nav-menu{flex:1;display:flex;justify-content:center;gap:32px;}
+.nav-menu a{position:relative;color:var(--ink2);text-decoration:none;font-size:13.5px;font-weight:650;letter-spacing:.5px;text-transform:uppercase;transition:color .25s;}
+.nav-menu a:hover{color:#fff;}
+.nav-menu a::after{content:"";position:absolute;left:0;bottom:0;width:0;height:1px;background:var(--accent);transition:width .35s;}
+.nav-menu a:hover::after{width:100%;}
+.nav-cta{padding:11px 22px;border:0;font-size:12.5px;font-weight:750;color:#0a0a0c;background:var(--accent);letter-spacing:.5px;text-transform:uppercase;transition:transform .25s;}
+.nav-cta:hover{transform:translateY(-2px);}
+.hero{max-width:var(--max);margin:auto;padding:56px 28px 32px;}
+.hero-in{display:flex;gap:32px;align-items:flex-start;flex-wrap:wrap;}
+.hero-cover{flex:0 0 420px;max-width:100%;border:1px solid var(--line);background:var(--card);overflow:hidden;aspect-ratio:16/9;position:relative;}
+.hero-cover img{width:100%;height:100%;object-fit:cover;display:block;}
+.hero-info{flex:1;min-width:260px;}
+.hero-badge{display:inline-block;padding:5px 12px;background:var(--accent);color:#0a0a0c;font-size:11px;font-weight:800;letter-spacing:1px;text-transform:uppercase;margin-bottom:14px;}
+.hero-info h1{font-size:40px;font-weight:900;color:#fff;letter-spacing:-1px;line-height:1.2;margin-bottom:14px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
+.hero-new{display:inline-block;padding:4px 10px;font-size:11px;font-weight:900;color:#0a0a0c;background:var(--accent);animation:updPulse 1.8s ease-in-out infinite;}
+@keyframes updPulse{0%,100%{box-shadow:0 0 0 0 rgba(255,61,104,.5)}50%{box-shadow:0 0 0 10px rgba(255,61,104,0)}}
+.hero-desc{font-size:15px;color:var(--ink2);margin-bottom:24px;max-width:720px;}
+.meta-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:14px;padding:20px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-bottom:26px;}
+.meta-item b{display:block;color:#fff;font-size:16px;font-weight:800;}
+.meta-item span{font-size:10.5px;color:var(--dim);text-transform:uppercase;letter-spacing:1px;}
+.hero-actions{display:flex;gap:14px;flex-wrap:wrap;}
+.btn-primary{display:inline-block;padding:14px 32px;background:var(--accent);color:#0a0a0c;font-size:14px;font-weight:800;text-transform:uppercase;text-decoration:none;border:0;cursor:pointer;transition:.3s;}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 26px rgba(255,61,104,.4);}
+.btn-ghost{display:inline-block;padding:14px 32px;background:transparent;border:1px solid var(--line2);color:var(--ink2);font-size:14px;font-weight:800;text-transform:uppercase;text-decoration:none;cursor:pointer;transition:.3s;}
+.btn-ghost:hover{border-color:var(--accent);color:var(--accent);}
+.section{max-width:var(--max);margin:auto;padding:20px 28px 0;}
+.section-head{display:flex;align-items:center;gap:14px;margin-bottom:20px;}
+.section-head .no{font-size:12px;font-weight:800;color:var(--accent);letter-spacing:2px;}
+.section-head .line{flex:1;height:1px;background:linear-gradient(90deg,var(--line2),transparent);}
+.section-head .label{font-size:11.5px;color:var(--dim);letter-spacing:2.5px;text-transform:uppercase;font-weight:750;}
+.panel{background:var(--card);border:1px solid var(--line);padding:28px;margin-bottom:28px;}
+.panel h2{font-size:22px;font-weight:900;color:#fff;margin-bottom:18px;}
+.panel h3{font-size:16px;font-weight:800;color:#fff;margin:20px 0 10px;display:flex;align-items:center;gap:8px;}
+.panel h3::before{content:"";width:6px;height:16px;background:var(--accent);display:inline-block;flex-shrink:0;}
+.panel p{font-size:14px;color:var(--ink2);margin-bottom:10px;}
+.panel ul{list-style:none;margin:0 0 8px;}
+.panel ul li{position:relative;padding-left:20px;font-size:14px;color:var(--ink2);margin-bottom:8px;}
+.panel ul li::before{content:"";position:absolute;left:0;top:10px;width:8px;height:2px;background:var(--accent);}
+.panel code{background:#0a0a0c;border:1px solid var(--line2);padding:2px 8px;font-size:12.5px;color:#fff;font-family:ui-monospace,Menlo,monospace;word-break:break-all;}
+.note-box{background:rgba(255,61,104,.08);border-left:3px solid var(--accent);padding:14px 18px;font-size:13.5px;color:var(--ink);margin:16px 0;}
+.gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;}
+.gallery a{display:block;border:1px solid var(--line);background:#0a0a0c;overflow:hidden;aspect-ratio:16/9;position:relative;}
+.gallery img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s;}
+.gallery a:hover img{transform:scale(1.05);}
+.download-box{background:var(--card);border:1px solid var(--line);padding:26px;margin-bottom:40px;}
+.download-row{display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap;padding:16px 0;border-bottom:1px solid var(--line);}
+.download-row:last-child{border-bottom:0;}
+.download-row .k{font-size:13.5px;color:var(--ink2);}
+.download-row .v{font-size:15px;font-weight:800;color:#fff;font-family:ui-monospace,Menlo,monospace;word-break:break-all;}
+.download-row .v.accent{color:var(--accent);}
+.footer-nav{max-width:var(--max);margin:0 auto 60px;padding:0 28px;display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;}
+@media(max-width:960px){
+  .nav-menu{display:none}
+  .hero{padding:32px 16px 20px;}
+  .hero-cover{flex:1 1 100%;}
+  .hero-info h1{font-size:28px;}
+  .hero-desc{font-size:13.5px;}
+  .meta-grid{grid-template-columns:1fr 1fr;gap:10px;}
+  .section{padding:16px 16px 0;}
+  .panel{padding:20px;}
+  .panel h2{font-size:19px;}
+  .btn-primary,.btn-ghost{padding:12px 22px;font-size:13px;flex:1;text-align:center;}
+  .hero-actions{gap:10px;}
+  .footer-nav{flex-direction:column;}
+  .footer-nav .btn-primary,.footer-nav .btn-ghost{width:100%;text-align:center;}
+}
 </style>
 </head>
 <body>
-<div class="wrap">
-  <a class="back" href="../">← 返回模组站</a>
-  <div class="grid">
-    <div>
-      <h1>64位的AXON_BODY4模组</h1>
 
-      <div class="update-banner">
-        <div class="ub-head">
-          <span class="ub-tag">已发布 v1.0</span>
-          <span class="ub-title">主要功能：</span>
-        </div>
-        <ul>
-          <li>画面实时水印：显示本地日期、时间、时区，自动读取设备序列号；提供3种AXON黄色标识样式切换。</li>
-          <li>可拖动悬浮球：点一下悬浮球则开启AXON_BODY4水印，附带开关音效；长按呼出完整中文设置菜单。</li>
-          <li>实用选项：隐藏原版HUD（保留雷达）、游戏时间同步现实时钟、联网同步并锁定真实天气。</li>
-          <li>布局自定义：水印文字、Logo图形可独立调整位置、缩放大小，参数自动保存配置文件。</li>
-          <li>自带日志系统，记录运行信息与崩溃堆栈，方便排查闪退、渲染异常。</li>
-        </ul>
-      </div>
-
-      <div class="imgs">
-        <img src="../OIF-C.png" alt="预览1" onerror="this.style.display='none'">
-        <img src="../body4-1.jpg" alt="预览2" onerror="this.style.display='none'">
-        <img src="../body4-2.jpg" alt="预览3" onerror="this.style.display='none'">
-        <img src="../body4-3.jpg" alt="预览4" onerror="this.style.display='none'">
-      </div>
-
-      <div class="desc">AXON_BODY4_64｜GTA SA安卓2.10 64位AML执法记录仪水印模组，实时现实时间水印，中文悬浮球菜单，支持HUD隐藏、时间天气同步，仿真Axon Body4记录仪画面效果。
-
-📌安装
-把com.rockstargames.gtasa文件夹复制到/storage/emulated/0/Android_unprotected/data/即可  
-
-注意只支持2.10 64位，因为这是专为64位开发的。</div>
+<nav class="navbar">
+  <div class="nav-in">
+    <a class="nav-logo" href="../index.html">
+      <span class="mark"></span>
+      GTA SA <b>模组站</b>
+    </a>
+    <div class="nav-menu">
+      <a href="../index.html">首页</a>
+      <a href="../index.html">第二页</a>
     </div>
+    <a href="../index.html" class="nav-cta" style="text-decoration:none;display:inline-block;">返回首页</a>
+  </div>
+</nav>
 
-    <div class="side">
-      <div class="side-card">
-        <h3>模组信息</h3>
-        <div class="row"><span class="k">版本</span><span class="v">v1.0</span></div>
-        <div class="row"><span class="k">压缩包大小</span><span class="v">1.30M</span></div>
-        <div class="row"><span class="k">发布时间</span><span class="v">2026.11.1</span></div>
-        <div class="row"><span class="k">更新日期</span><span class="v accent">暂无</span></div>
-        <div class="row"><span class="k">类型</span><span class="v accent">AML插件</span></div>
+<div class="hero">
+  <div class="hero-in">
+    <div class="hero-cover">
+      <img src="OIF-C.png" alt="AXON_BODY4_64 封面" onerror="this.style.display='none'">
+    </div>
+    <div class="hero-info">
+      <span class="hero-badge">AML插件</span>
+      <h1>AXON_BODY4_64 <span class="hero-new">NEW</span></h1>
+      <p class="hero-desc">AXON_BODY4_64｜GTA SA安卓2.10 64位AML执法记录仪水印模组，实时现实时间水印，中文悬浮球菜单，支持HUD隐藏、时间天气同步，仿真Axon Body4记录仪画面效果。</p>
+
+      <div class="meta-grid">
+        <div class="meta-item"><b>v1.0</b><span>版本</span></div>
+        <div class="meta-item"><b>1.30M</b><span>压缩包大小</span></div>
+        <div class="meta-item"><b>2026.11.1</b><span>发布日期</span></div>
+        <div class="meta-item"><b>暂无</b><span>更新日期</span></div>
       </div>
-      <button class="download" onclick="openVersions()">⬇ 下载模组</button>
+
+      <div class="hero-actions">
+        <a href="#download" class="btn-primary">立即下载</a>
+        <a href="../index.html" class="btn-ghost">返回首页</a>
+      </div>
     </div>
   </div>
 </div>
 
-<div class="modal" id="versionsModal">
-  <div class="modal-box">
-    <button class="modal-close" onclick="closeModal('versionsModal')">×</button>
-    <div class="modal-body">
-      <h3>选择下载版本</h3>
-      <div id="versionsList"></div>
+<div class="section">
+  <div class="section-head">
+    <span class="no">01</span>
+    <span class="line"></span>
+    <span class="label">Features · 主要功能</span>
+  </div>
+  <div class="panel">
+    <h2>AXON_BODY4 主要功能</h2>
+    <ul>
+      <li>画面实时水印：显示本地日期、时间、时区，自动读取设备序列号；提供3种AXON黄色标识样式切换。</li>
+      <li>可拖动悬浮球：点一下悬浮球则开启AXON_BODY4水印，附带开关音效；长按呼出完整中文设置菜单。</li>
+      <li>实用选项：隐藏原版HUD（保留雷达）、游戏时间同步现实时钟、联网同步并锁定真实天气。</li>
+      <li>布局自定义：水印文字、Logo图形可独立调整位置、缩放大小，参数自动保存配置文件。</li>
+      <li>自带日志系统，记录运行信息与崩溃堆栈，方便排查闪退、渲染异常。</li>
+    </ul>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-head">
+    <span class="no">02</span>
+    <span class="line"></span>
+    <span class="label">Preview · 预览图</span>
+  </div>
+  <div class="panel">
+    <div class="gallery">
+      <a href="OIF-C.png" target="_blank" rel="noopener"><img src="OIF-C.png" alt="AXON_BODY4_64 预览 1" onerror="this.parentNode.style.display='none'"></a>
+      <a href="body4-1.jpg" target="_blank" rel="noopener"><img src="body4-1.jpg" alt="AXON_BODY4_64 预览 2" onerror="this.parentNode.style.display='none'"></a>
+      <a href="body4-2.jpg" target="_blank" rel="noopener"><img src="body4-2.jpg" alt="AXON_BODY4_64 预览 3" onerror="this.parentNode.style.display='none'"></a>
+      <a href="body4-3.jpg" target="_blank" rel="noopener"><img src="body4-3.jpg" alt="AXON_BODY4_64 预览 4" onerror="this.parentNode.style.display='none'"></a>
     </div>
   </div>
 </div>
 
-<script>
-  const versionData = [
-    {
-      v: "v1.0", date: "2026.11.1", latest: true, link: "https://wwbgu.lanzoum.com/iPU4M4e9rxra", pw: "6jtt",
-      log: ["首发 v1.0 版本。", "实时现实时间水印，中文悬浮球菜单。", "支持HUD隐藏、时间天气同步，仿真Axon Body4记录仪画面效果。"]
-    }
-  ];
+<div class="section">
+  <div class="section-head">
+    <span class="no">03</span>
+    <span class="line"></span>
+    <span class="label">Install · 安装说明</span>
+  </div>
+  <div class="panel">
+    <h2>📌 安装</h2>
+    <p>把 <code>com.rockstargames.gtasa</code> 文件夹复制到 <code>/storage/emulated/0/Android_unprotected/data/</code> 即可。</p>
+    <div class="note-box">注意：只支持 2.10 64位，因为这是专为 64位 开发的。</div>
+  </div>
+</div>
 
-  function renderVersions() {
-    const vList = document.getElementById("versionsList");
-    vList.innerHTML = "";
-    versionData.forEach(ver => {
-      const item = document.createElement("div");
-      item.className = "ver-item" + (ver.latest ? " latest" : "");
-      item.innerHTML = `
-        <div class="ver-head">
-          <div>
-            <div class="ver-name">${ver.v} ${ver.latest ? '<span class="ver-badge">最新</span>' : ''}</div>
-            <div class="ver-date">更新于 ${ver.date}</div>
-          </div>
-          <div class="ver-actions">
-            <a class="ver-download" href="${ver.link}" target="_blank" rel="noopener">下载</a>
-            <button class="ver-toggle" onclick="toggleVer(this)">▾</button>
-          </div>
-        </div>
-        <div class="ver-body">
-          ${ver.log.map(l => `<p>· ${l}</p>`).join('')}
-          <span class="ver-pw">提取码：<b>${ver.pw}</b></span>
-        </div>
-      `;
-      vList.appendChild(item);
-    });
-  }
+<div class="section" id="download">
+  <div class="section-head">
+    <span class="no">04</span>
+    <span class="line"></span>
+    <span class="label">Download · 下载</span>
+  </div>
+  <div class="download-box">
+    <div class="download-row">
+      <span class="k">下载链接</span>
+      <span class="v accent" style="font-size:13px;">https://wwbgu.lanzoum.com/iPU4M4e9rxra</span>
+    </div>
+    <div class="download-row">
+      <span class="k">提取码</span>
+      <span class="v">6jtt</span>
+    </div>
+    <div class="download-row">
+      <span class="k">压缩包大小</span>
+      <span class="v">1.30M</span>
+    </div>
+    <div class="download-row" style="padding-top:22px;">
+      <a href="https://wwbgu.lanzoum.com/iPU4M4e9rxra" target="_blank" rel="noopener" class="btn-primary" style="width:100%;text-align:center;">前往下载页面</a>
+    </div>
+  </div>
+</div>
 
-  function openVersions() {
-    renderVersions();
-    const items = document.querySelectorAll("#versionsModal .ver-item");
-    items.forEach((item, index) => {
-      const body = item.querySelector(".ver-body");
-      const toggle = item.querySelector(".ver-toggle");
-      if (versionData[index].latest) {
-        body.classList.add("open");
-        toggle.classList.add("open");
-      } else {
-        body.classList.remove("open");
-        toggle.classList.remove("open");
-      }
-    });
-    document.getElementById("versionsModal").classList.add("show");
-  }
+<div class="footer-nav">
+  <a href="../index.html" class="btn-ghost">← 返回首页</a>
+  <a href="../index.html" class="btn-primary">更多模组</a>
+</div>
 
-  function toggleVer(btn) {
-    const body = btn.closest(".ver-item").querySelector(".ver-body");
-    const isOpen = body.classList.contains("open");
-    if (isOpen) {
-      body.classList.remove("open");
-      btn.classList.remove("open");
-    } else {
-      body.classList.add("open");
-      btn.classList.add("open");
-    }
-  }
-
-  function closeModal(id) {
-    document.getElementById(id).classList.remove("show");
-  }
-
-  document.getElementById('versionsModal').addEventListener('click', function(e) {
-    if (e.target === this) this.classList.remove('show');
-  });
-</script>
 </body>
 </html>
