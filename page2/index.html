@@ -20,7 +20,6 @@ body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;bac
 .nav-menu a:hover{color:#fff;}
 .nav-menu a::after{content:"";position:absolute;left:0;bottom:0;width:0;height:1px;background:var(--accent);transition:width .35s;}
 .nav-menu a:hover::after{width:100%;}
-.nav-search-box{position:relative;display:flex;align-items:center;width:260px;flex-shrink:0;}
 .nav-cta{padding:11px 22px;border:0;font-size:12.5px;font-weight:750;color:#0a0a0c;background:var(--accent);letter-spacing:.5px;text-transform:uppercase;transition:transform .25s;}
 .nav-cta:hover{transform:translateY(-2px);}
 .hero{max-width:var(--max);margin:auto;padding:60px 28px 40px;text-align:center;}
@@ -98,9 +97,10 @@ body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;bac
 <div class="feature" style="padding-top:0;">
 
   <!-- AXON_BODY4_64 -->
-  <div class="feature-card" onclick="window.location.href='../axon-body4/'">
+  <div class="feature-card" onclick="window.location.href='../AXON BODY4/'">
     <div class="feature-img">
-      <img src="../axon-body4/OIF-C.png" alt="AXON_BODY4_64" onerror="this.style.display='none'">
+      <!-- 图片在根目录，所以用 ../ 返回上一级 -->
+      <img src="../OIF-C.png" alt="AXON_BODY4_64" onerror="this.style.display='none'">
       <span class="feature-tag">AML插件</span>
     </div>
     <div class="feature-body">
