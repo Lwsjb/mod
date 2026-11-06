@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0a0a0c">
+<title>HeadCam SA 第一人称视角模组 - GTA SA 原创模组站</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0a0a0c;--card:#141418;--line:#26262e;--ink:#f4f4f6;--ink2:#a0a0ac;--dim:#5f5f6b;--accent:#ff3d68;--max:1120px}
+body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--ink);line-height:1.75;min-height:100vh}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;background:radial-gradient(900px 500px at 15% -5%,rgba(255,61,104,.12),transparent 60%);z-index:-1}
+a{color:inherit;text-decoration:none}
+.topbar{border-bottom:1px solid var(--line);font-size:11px;color:var(--dim);padding:10px 25px}
+.topbar div{max-width:var(--max);margin:auto;display:flex;justify-content:space-between}
+.topbar a:hover,.back:hover{color:var(--accent)}
+header{position:sticky;top:0;background:rgba(10,10,12,.92);backdrop-filter:blur(15px);border-bottom:1px solid var(--line);z-index:5}
+.nav{max-width:var(--max);height:70px;margin:auto;padding:0 25px;display:flex;align-items:center}
+.logo{font-size:19px;font-weight:900}
+.logo b{color:var(--accent)}
+.mark{display:inline-block;width:7px;height:20px;background:var(--accent);margin-right:10px;vertical-align:-4px}
+.back{margin-left:auto;color:var(--ink2);font-size:13px}
+main{max-width:var(--max);margin:auto;padding:55px 25px 80px}
+.meta{display:flex;align-items:center;gap:12px;color:var(--dim);font-size:11px;letter-spacing:2px;font-weight:800}
+.dot{width:6px;height:6px;background:var(--accent);box-shadow:0 0 12px var(--accent)}
+h1{font-size:clamp(30px,5vw,46px);line-height:1.2;letter-spacing:-1px;margin:18px 0}
+.intro{color:var(--ink2);font-size:15px;margin-bottom:32px}
+.layout{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:22px;align-items:start}
+.panel{background:var(--card);border:1px solid var(--line);padding:25px;margin-bottom:20px}
+h2{font-size:17px;margin-bottom:18px;padding-left:12px;border-left:3px solid var(--accent)}
+.description{white-space:pre-line;color:#c6c6d0;font-size:13.5px;line-height:2}
+.gallery{display:grid;grid-template-columns:1fr;gap:12px;margin-top:22px}
+.gallery img{width:100%;aspect-ratio:16/9;object-fit:cover;background:#080808;border:1px solid var(--line);cursor:zoom-in}
+.info{display:flex;justify-content:space-between;gap:12px;padding:11px 0;border-bottom:1px solid var(--line);font-size:12px}
+.info span{color:var(--dim)}
+.info b{text-align:right}
+.download{display:block;text-align:center;background:var(--accent);color:#09090b;font-size:13px;font-weight:900;padding:14px;margin-top:20px}
+.password{text-align:center;color:var(--ink2);font-size:12px;margin-top:10px}
+.password b{color:var(--accent);letter-spacing:1px}
+.notice{border-left:3px solid var(--accent);background:rgba(255,61,104,.07);padding:13px;margin-top:16px;font-size:12px;color:#d7cbd0}
+.version{border:1px solid rgba(255,61,104,.55);padding:17px;margin-top:12px;background:#1a1a20}
+.version-head{display:flex;justify-content:space-between;gap:12px;align-items:center}
+.version-title{font-size:15px;font-weight:850}
+.tag{background:var(--accent);color:#09090b;font-size:9px;padding:2px 6px;margin-left:7px}
+.version-date{font-size:11px;color:var(--dim)}
+.version ul{padding-left:20px;margin:13px 0;color:var(--ink2);font-size:12px;line-height:1.9}
+.version-download{background:#292932;padding:7px 13px;font-size:11px;font-weight:800;white-space:nowrap}
+footer{border-top:1px solid var(--line);padding:25px;text-align:center;color:var(--dim);font-size:10px;letter-spacing:1px}
+#viewer{display:none;position:fixed;inset:0;background:rgba(0,0,0,.94);z-index:20;align-items:center;justify-content:center;padding:20px}
+#viewer img{max-width:96%;max-height:92vh;object-fit:contain}
+@media(max-width:760px){main{padding:35px 16px 55px}.layout{grid-template-columns:1fr}.side{order:-1}.panel{padding:19px}.nav{padding:0 16px}}
+</style>
+</head>
+<body>
+<div class="topbar"><div><span>GTA SA ORIGINAL MODS</span><a href="../index.html">返回首页</a></div></div>
+<header><div class="nav"><a class="logo" href="../index.html"><span class="mark"></span>GTA SA <b>原创模组站</b></a><a class="back" href="../index.html">← 返回模组列表</a></div></header>
+
+<main>
+<div class="meta"><span class="dot"></span>AML 插件 · 第一人称视角</div>
+<h1>HeadCam SA 第一人称视角模组</h1>
+<p class="intro">为 GTA SA 安卓版打造的头戴式第一人称模组，带物理反馈、镜头惯性与复古滤镜。</p>
+
+<div class="layout">
+<section>
+<article class="panel">
+<h2>项目介绍</h2>
+<div class="description">HeadCam SA 1.0.0
+
+GTA: San Andreas 安卓版的头戴式第一人称模组。镜头挂在 CJ 头部，跟着头走，头跟着身体走。
+
+仅支持 GTA SA Android 2.00 32 位。
+
+步行：
+呼吸微抖、一步一沉、冲刺视角变宽、横移侧倾、转身慢半拍、落地一记下沉、举枪自动收稳。
+
+战斗：
+每把枪自己的后坐，连发是连续抖；被打中和旁边爆炸各震一下。
+
+车载：
+方向一打画面就先转向弯道（比车身转起来更早），倒车会转过去看后窗，给油后仰刹车前倾，过坎顶头、烂路碎震、怠速有点引擎抖，车速越快视野越宽。
+怕晕可以开固定镜头，视角钉在车头方向，划屏幕不转，但动态全留；地平线锁定调高后，真翻车时自动松手。
+
+复古镜头：
+鱼眼、暗角、边缘色差，默认关闭，上车自动不启用。
+
+操作：
+左上角蓝按钮点一下开关，长按出设置卡片。步行和车载是两页，上车自动翻。卡片能拖能缩放，改动实时生效，关掉就保存。每项单独可关。
+
+作者：流王星者_Streamer</div>
+<div class="gallery">
+<img src="../fm.png" alt="HeadCam SA 游戏截图" onerror="this.style.display='none'">
+</div>
+</article>
+
+<article class="panel">
+<h2>版本记录</h2>
+<div class="version">
+<div class="version-head"><div><div class="version-title">v1.0.0 <span class="tag">最新版本</span></div><div class="version-date">发布日期：2026.10.23</div></div><a class="version-download" href="https://wwbgu.lanzoum.com/iext44d10z8h" target="_blank">下载版本</a></div>
+<ul><li>首发 v1.0.0 版本。</li><li>支持 GTA SA Android v2.00（armeabi-v7a）。</li><li>将 com.rockstargames.gtasa 文件夹放入 /storage/emulated/0/Android_unprotected/data/ 文件夹即可。</li><li>包含步行、战斗、车载物理反馈及复古镜头效果。</li><li>左上角蓝按钮开关，长按打开设置卡片。</li></ul>
+<div class="password">提取码：<b>4nyk</b></div>
+</div>
+</article>
+</section>
+
+<aside class="side">
+<article class="panel">
+<h2>模组信息</h2>
+<div class="info"><span>版本</span><b>v1.0.0</b></div>
+<div class="info"><span>压缩包大小</span><b>656.85 KB</b></div>
+<div class="info"><span>发布时间</span><b>2026.10.23</b></div>
+<div class="info"><span>更新日期</span><b>暂无</b></div>
+<div class="info"><span>类型</span><b>AML 插件</b></div>
+<a class="download" href="https://wwbgu.lanzoum.com/iext44d10z8h" target="_blank">下载最新版本</a>
+<div class="password">提取码：<b>4nyk</b></div>
+</article>
+<article class="panel">
+<h2>安装说明</h2>
+<div class="description">仅支持 GTA SA Android 2.00 32 位。
+
+将压缩包中的 com.rockstargames.gtasa 文件夹放入：
+
+/storage/emulated/0/Android_unprotected/data/
+
+进入游戏后，点击左上角蓝色按钮开启模组，长按按钮打开设置卡片。</div>
+<div class="notice">版本限制：GTA SA Android 2.00，32 位。其他游戏版本不在当前页面标注的支持范围内。</div>
+</article>
+</aside>
+</div>
+</main>
+
+<footer>GTA SA ORIGINAL MODS · FREE SHARING<br>© 2026 保留所有权利</footer>
+<div id="viewer" onclick="this.style.display='none'"><img id="viewerImg" src="" alt="图片预览"></div>
+<script>
+document.querySelectorAll(".gallery img").forEach(img=>{
+img.addEventListener("click",()=>{
+document.getElementById("viewerImg").src=img.src;
+document.getElementById("viewer").style.display="flex";
+});
+});
+document.addEventListener("keydown",e=>{
+if(e.key==="Escape")document.getElementById("viewer").style.display="none";
+});
+</script>
+</body>
+</html>
