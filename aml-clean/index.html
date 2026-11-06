@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0a0a0c">
+<title>AML纯净版安装包插件 - GTA SA 原创模组站</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0a0a0c;--card:#141418;--line:#26262e;--ink:#f4f4f6;--ink2:#a0a0ac;--dim:#5f5f6b;--accent:#ff3d68;--max:1120px}
+body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--ink);line-height:1.75;min-height:100vh}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;background:radial-gradient(900px 500px at 15% -5%,rgba(255,61,104,.12),transparent 60%);z-index:-1}
+a{color:inherit;text-decoration:none}
+.topbar{border-bottom:1px solid var(--line);font-size:11px;color:var(--dim);padding:10px 25px}
+.topbar div{max-width:var(--max);margin:auto;display:flex;justify-content:space-between}
+.topbar a:hover,.back:hover{color:var(--accent)}
+header{position:sticky;top:0;background:rgba(10,10,12,.92);backdrop-filter:blur(15px);border-bottom:1px solid var(--line);z-index:5}
+.nav{max-width:var(--max);height:70px;margin:auto;padding:0 25px;display:flex;align-items:center}
+.logo{font-size:19px;font-weight:900}
+.logo b{color:var(--accent)}
+.mark{display:inline-block;width:7px;height:20px;background:var(--accent);margin-right:10px;vertical-align:-4px}
+.back{margin-left:auto;color:var(--ink2);font-size:13px}
+main{max-width:var(--max);margin:auto;padding:55px 25px 80px}
+.meta{display:flex;align-items:center;gap:12px;color:var(--dim);font-size:11px;letter-spacing:2px;font-weight:800}
+.dot{width:6px;height:6px;background:var(--accent);box-shadow:0 0 12px var(--accent)}
+h1{font-size:clamp(30px,5vw,46px);line-height:1.2;letter-spacing:-1px;margin:18px 0}
+.intro{color:var(--ink2);font-size:15px;margin-bottom:32px}
+.layout{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:22px;align-items:start}
+.panel{background:var(--card);border:1px solid var(--line);padding:25px;margin-bottom:20px}
+h2{font-size:17px;margin-bottom:18px;padding-left:12px;border-left:3px solid var(--accent)}
+.description{white-space:pre-line;color:#c6c6d0;font-size:13.5px;line-height:2}
+.gallery{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:22px}
+.gallery img{width:100%;aspect-ratio:16/10;object-fit:cover;background:#080808;border:1px solid var(--line);cursor:zoom-in}
+.info{display:flex;justify-content:space-between;gap:12px;padding:11px 0;border-bottom:1px solid var(--line);font-size:12px}
+.info span{color:var(--dim)}
+.info b{text-align:right}
+.download{display:block;text-align:center;background:var(--accent);color:#09090b;font-size:13px;font-weight:900;padding:14px;margin-top:20px}
+.password{text-align:center;color:var(--ink2);font-size:12px;margin-top:10px}
+.password b{color:var(--accent);letter-spacing:1px}
+.notice{border-left:3px solid var(--accent);background:rgba(255,61,104,.07);padding:13px;margin-top:16px;font-size:12px;color:#d7cbd0}
+.version{border:1px solid rgba(255,61,104,.55);padding:17px;margin-top:12px;background:#1a1a20}
+.version-head{display:flex;justify-content:space-between;gap:12px;align-items:center}
+.version-title{font-size:15px;font-weight:850}
+.tag{background:var(--accent);color:#09090b;font-size:9px;padding:2px 6px;margin-left:7px}
+.version-date{font-size:11px;color:var(--dim)}
+.version ul{padding-left:20px;margin:13px 0;color:var(--ink2);font-size:12px;line-height:1.9}
+.version-download{background:#292932;padding:7px 13px;font-size:11px;font-weight:800;white-space:nowrap}
+footer{border-top:1px solid var(--line);padding:25px;text-align:center;color:var(--dim);font-size:10px;letter-spacing:1px}
+#viewer{display:none;position:fixed;inset:0;background:rgba(0,0,0,.94);z-index:20;align-items:center;justify-content:center;padding:20px}
+#viewer img{max-width:96%;max-height:92vh;object-fit:contain}
+@media(max-width:760px){main{padding:35px 16px 55px}.layout{grid-template-columns:1fr}.side{order:-1}.panel{padding:19px}.nav{padding:0 16px}}
+@media(max-width:420px){.gallery{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="topbar"><div><span>GTA SA ORIGINAL MODS</span><a href="../index.html">返回首页</a></div></div>
+<header><div class="nav"><a class="logo" href="../index.html"><span class="mark"></span>GTA SA <b>原创模组站</b></a><a class="back" href="../index.html">← 返回模组列表</a></div></header>
+
+<main>
+<div class="meta"><span class="dot"></span>其它 · AML 安装包</div>
+<h1>AML纯净版安装包插件</h1>
+<p class="intro">AML 纯净版安装包，搭配本站模组使用，可改善部分闪退问题。</p>
+
+<div class="layout">
+<section>
+<article class="panel">
+<h2>项目介绍</h2>
+<div class="description">重要提示：本插件仅为安装包，不包含游戏数据包，需要您自己获取数据包。
+
+这个是 AML 的纯净版插件，若你使用本站各类插件模组时遇到闪退问题，可以搭配本 AML 安装包，能够有效改善、解决本站模组出现的闪退故障。</div>
+<div class="gallery">
+<img src="../xperiaicon.png" alt="AML安装包" onerror="this.style.display='none'">
+<img src="../AML1.jpg" alt="AML安装包截图" onerror="this.style.display='none'">
+</div>
+</article>
+
+<article class="panel">
+<h2>版本记录</h2>
+<div class="version">
+<div class="version-head"><div><div class="version-title">v1.0 <span class="tag">最新版本</span></div><div class="version-date">发布日期：2026.10.17</div></div><a class="version-download" href="https://wwbgu.lanzoum.com/iFrLx4caxm6d" target="_blank">下载版本</a></div>
+<ul><li>本插件仅为安装包，不包含游戏数据包，需要您自己获取数据包。</li><li>搭配本站模组可有效改善、解决部分闪退故障。</li></ul>
+<div class="password">提取码：<b>7486</b></div>
+</div>
+</article>
+</section>
+
+<aside class="side">
+<article class="panel">
+<h2>模组信息</h2>
+<div class="info"><span>版本</span><b>v1.0</b></div>
+<div class="info"><span>压缩包大小</span><b>18.14M</b></div>
+<div class="info"><span>发布时间</span><b>2026.10.17</b></div>
+<div class="info"><span>更新日期</span><b>暂无</b></div>
+<div class="info"><span>类型</span><b>AML 安装包</b></div>
+<a class="download" href="https://wwbgu.lanzoum.com/iFrLx4caxm6d" target="_blank">下载最新版本</a>
+<div class="password">提取码：<b>7486</b></div>
+</article>
+<article class="panel">
+<h2>安装说明</h2>
+<div class="description">本插件仅为 AML 安装包，不包含游戏数据包，需要您自己获取数据包。
+
+下载后请按照安装包内的安装说明操作。
+
+如果你使用本站各类插件模组时遇到闪退问题，可以尝试搭配本 AML 安装包。</div>
+<div class="notice">重要提示：本插件不包含 GTA SA 游戏数据包。请自行准备合法来源的游戏数据包。安装前建议备份原有游戏文件。</div>
+</article>
+</aside>
+</div>
+</main>
+
+<footer>GTA SA ORIGINAL MODS · FREE SHARING<br>© 2026 保留所有权利</footer>
+<div id="viewer" onclick="this.style.display='none'"><img id="viewerImg" src="" alt="图片预览"></div>
+<script>
+document.querySelectorAll(".gallery img").forEach(img=>{
+img.addEventListener("click",()=>{
+document.getElementById("viewerImg").src=img.src;
+document.getElementById("viewer").style.display="flex";
+});
+});
+document.addEventListener("keydown",e=>{
+if(e.key==="Escape")document.getElementById("viewer").style.display="none";
+});
+</script>
+</body>
+</html>
