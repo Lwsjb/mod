@@ -1,125 +1,327 @@
+
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="theme-color" content="#0a0a0c">
+<meta name="description" content="AML纯净版安装包插件 - GTA SA 原创模组站">
 <title>AML纯净版安装包插件 - GTA SA 原创模组站</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-:root{--bg:#0a0a0c;--card:#141418;--line:#26262e;--ink:#f4f4f6;--ink2:#a0a0ac;--dim:#5f5f6b;--accent:#ff3d68;--max:1120px}
-body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--ink);line-height:1.75;min-height:100vh}
-body:before{content:"";position:fixed;inset:0;pointer-events:none;background:radial-gradient(900px 500px at 15% -5%,rgba(255,61,104,.12),transparent 60%);z-index:-1}
-a{color:inherit;text-decoration:none}
-.topbar{border-bottom:1px solid var(--line);font-size:11px;color:var(--dim);padding:10px 25px}
-.topbar div{max-width:var(--max);margin:auto;display:flex;justify-content:space-between}
-.topbar a:hover,.back:hover{color:var(--accent)}
-header{position:sticky;top:0;background:rgba(10,10,12,.92);backdrop-filter:blur(15px);border-bottom:1px solid var(--line);z-index:5}
-.nav{max-width:var(--max);height:70px;margin:auto;padding:0 25px;display:flex;align-items:center}
-.logo{font-size:19px;font-weight:900}
-.logo b{color:var(--accent)}
-.mark{display:inline-block;width:7px;height:20px;background:var(--accent);margin-right:10px;vertical-align:-4px}
-.back{margin-left:auto;color:var(--ink2);font-size:13px}
-main{max-width:var(--max);margin:auto;padding:55px 25px 80px}
-.meta{display:flex;align-items:center;gap:12px;color:var(--dim);font-size:11px;letter-spacing:2px;font-weight:800}
-.dot{width:6px;height:6px;background:var(--accent);box-shadow:0 0 12px var(--accent)}
-h1{font-size:clamp(30px,5vw,46px);line-height:1.2;letter-spacing:-1px;margin:18px 0}
-.intro{color:var(--ink2);font-size:15px;margin-bottom:32px}
-.layout{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:22px;align-items:start}
-.panel{background:var(--card);border:1px solid var(--line);padding:25px;margin-bottom:20px}
-h2{font-size:17px;margin-bottom:18px;padding-left:12px;border-left:3px solid var(--accent)}
-.description{white-space:pre-line;color:#c6c6d0;font-size:13.5px;line-height:2}
-.gallery{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:22px}
-.gallery img{width:100%;aspect-ratio:16/10;object-fit:cover;background:#080808;border:1px solid var(--line);cursor:zoom-in}
-.info{display:flex;justify-content:space-between;gap:12px;padding:11px 0;border-bottom:1px solid var(--line);font-size:12px}
-.info span{color:var(--dim)}
-.info b{text-align:right}
-.download{display:block;text-align:center;background:var(--accent);color:#09090b;font-size:13px;font-weight:900;padding:14px;margin-top:20px}
-.password{text-align:center;color:var(--ink2);font-size:12px;margin-top:10px}
-.password b{color:var(--accent);letter-spacing:1px}
-.notice{border-left:3px solid var(--accent);background:rgba(255,61,104,.07);padding:13px;margin-top:16px;font-size:12px;color:#d7cbd0}
-.version{border:1px solid rgba(255,61,104,.55);padding:17px;margin-top:12px;background:#1a1a20}
-.version-head{display:flex;justify-content:space-between;gap:12px;align-items:center}
-.version-title{font-size:15px;font-weight:850}
-.tag{background:var(--accent);color:#09090b;font-size:9px;padding:2px 6px;margin-left:7px}
-.version-date{font-size:11px;color:var(--dim)}
-.version ul{padding-left:20px;margin:13px 0;color:var(--ink2);font-size:12px;line-height:1.9}
-.version-download{background:#292932;padding:7px 13px;font-size:11px;font-weight:800;white-space:nowrap}
-footer{border-top:1px solid var(--line);padding:25px;text-align:center;color:var(--dim);font-size:10px;letter-spacing:1px}
-#viewer{display:none;position:fixed;inset:0;background:rgba(0,0,0,.94);z-index:20;align-items:center;justify-content:center;padding:20px}
-#viewer img{max-width:96%;max-height:92vh;object-fit:contain}
-@media(max-width:760px){main{padding:35px 16px 55px}.layout{grid-template-columns:1fr}.side{order:-1}.panel{padding:19px}.nav{padding:0 16px}}
-@media(max-width:420px){.gallery{grid-template-columns:1fr}}
+:root{
+  --bg:#0a0a0c;--card:#141418;--card2:#1a1a20;
+  --line:#26262e;--line2:#33333d;
+  --ink:#f4f4f6;--ink2:#a0a0ac;--dim:#5f5f6b;
+  --accent:#ff3d68;--accent2:#ff8a3d;
+  --max:1240px;
+}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;
+  background:var(--bg);color:var(--ink);line-height:1.7;overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;position:relative;
+}
+button,a{font:inherit}
+button{cursor:pointer}
+img{max-width:100%}
+a{color:inherit}
+body::before{
+  content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:
+    radial-gradient(900px 500px at 15% -5%,rgba(255,61,104,.12),transparent 60%),
+    radial-gradient(800px 500px at 90% 5%,rgba(255,138,61,.08),transparent 60%),
+    radial-gradient(700px 500px at 50% 100%,rgba(255,61,104,.06),transparent 60%);
+  animation:bgPulse 10s ease-in-out infinite;
+}
+@keyframes bgPulse{0%,100%{opacity:.7}50%{opacity:1}}
+.navbar,.detail,.modal,.topbar,.footer{position:relative;z-index:1}
+.topbar{background:rgba(10,10,12,.7);border-bottom:1px solid var(--line);font-size:11.5px;color:var(--dim);letter-spacing:.5px;backdrop-filter:blur(12px)}
+.topbar-in{max-width:var(--max);margin:auto;padding:10px 28px;display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap}
+.topbar a{color:var(--ink2);text-decoration:none;margin-left:16px;transition:color .25s,transform .25s;display:inline-block}
+.topbar a:first-child{margin-left:0}
+.topbar a:hover{color:var(--accent);transform:translateY(-1px)}
+.navbar{position:sticky;top:0;z-index:1000;background:rgba(10,10,12,.88);backdrop-filter:blur(20px);border-bottom:1px solid var(--line);animation:navDrop .6s cubic-bezier(.22,1,.36,1)}
+@keyframes navDrop{from{transform:translateY(-100%);opacity:0}to{transform:translateY(0);opacity:1}}
+.nav-in{max-width:var(--max);height:72px;margin:auto;padding:0 28px;display:flex;align-items:center;gap:22px}
+.nav-logo{display:flex;align-items:center;gap:11px;font-size:19px;font-weight:900;color:#fff;text-decoration:none;letter-spacing:-.5px;white-space:nowrap;cursor:pointer}
+.nav-logo .mark{width:8px;height:22px;background:var(--accent);flex-shrink:0;transition:transform .3s}
+.nav-logo:hover .mark{transform:scaleY(1.2)}
+.nav-logo b{color:var(--accent)}
+.nav-menu{flex:1;display:flex;justify-content:center;gap:32px}
+.nav-menu a{position:relative;color:var(--ink2);text-decoration:none;font-size:13.5px;font-weight:650;letter-spacing:.5px;padding:6px 0;transition:color .25s;text-transform:uppercase;cursor:pointer}
+.nav-menu a::after{content:"";position:absolute;left:0;bottom:0;width:0;height:1px;background:var(--accent);transition:width .35s cubic-bezier(.22,1,.36,1);box-shadow:0 0 8px rgba(255,61,104,.6)}
+.nav-menu a:hover{color:#fff}
+.nav-menu a:hover::after{width:100%}
+.nav-cta{padding:11px 22px;border:0;border-radius:0;font-size:12.5px;font-weight:750;color:#0a0a0c;background:var(--accent);letter-spacing:.5px;transition:transform .25s,box-shadow .3s,background .3s;white-space:nowrap;text-transform:uppercase;position:relative;overflow:hidden;text-decoration:none}
+.nav-cta:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(255,61,104,.55)}
+.detail{display:block;max-width:var(--max);margin:auto;padding:40px 28px 70px;animation:detailIn .55s cubic-bezier(.22,1,.36,1)}
+@keyframes detailIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+.detail-back{display:inline-flex;align-items:center;gap:8px;padding:11px 20px;border:1px solid var(--line2);background:transparent;color:var(--ink2);font-size:12.5px;font-weight:700;letter-spacing:1px;text-transform:uppercase;text-decoration:none;margin-bottom:32px;transition:all .3s;cursor:pointer}
+.detail-back:hover{color:var(--accent);border-color:var(--accent);transform:translateX(-4px)}
+.detail-grid{display:grid;grid-template-columns:1.35fr .65fr;gap:40px;align-items:start}
+.detail-main h1{font-size:38px;font-weight:900;color:#fff;margin-bottom:22px;letter-spacing:-1.2px;line-height:1.15;animation:fadeUp .6s ease both;word-break:break-all;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.hero-new{display:inline-block;padding:4px 10px;font-size:11px;font-weight:900;color:#0a0a0c;background:var(--accent);animation:updPulse 1.8s ease-in-out infinite}
+@keyframes updPulse{0%,100%{box-shadow:0 0 0 0 rgba(255,61,104,.5)}50%{box-shadow:0 0 0 10px rgba(255,61,104,0)}}
+.detail-imgs{display:flex;overflow-x:auto;gap:16px;padding-bottom:16px;-webkit-overflow-scrolling:touch;animation:fadeUp .6s ease .1s both}
+.detail-imgs::-webkit-scrollbar{height:5px}
+.detail-imgs::-webkit-scrollbar-thumb{background:var(--line2)}
+.preview-item{flex:0 0 72%;position:relative;overflow:hidden;background:#0a0a0c;border:1px solid var(--line)}
+.preview-item::before{content:"";display:block;padding-top:56.25%}
+.preview-item img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;transition:transform .5s;display:block}
+.preview-item img:hover{transform:scale(1.02)}
+.detail-desc{font-size:14px;color:var(--ink2);line-height:2;background:var(--card);border:1px solid var(--line);padding:30px;white-space:pre-wrap;margin-top:26px;animation:fadeUp .6s ease .18s both;word-break:break-all}
+.detail-desc code{background:#0a0a0c;border:1px solid var(--line2);padding:2px 8px;font-size:12.5px;color:#fff;font-family:ui-monospace,Menlo,monospace;word-break:break-all}
+.detail-side{position:sticky;top:96px;display:flex;flex-direction:column;gap:18px;animation:fadeUp .6s ease .12s both}
+.side-card{background:var(--card);border:1px solid var(--line);padding:26px}
+.side-card h3{font-size:11.5px;color:var(--dim);letter-spacing:2.5px;text-transform:uppercase;margin-bottom:16px;font-weight:750}
+.side-row{display:flex;justify-content:space-between;padding:13px 0;border-bottom:1px solid var(--line);font-size:13.5px;transition:padding-left .25s;word-break:break-all}
+.side-row:hover{padding-left:5px}
+.side-row:last-child{border-bottom:0;padding-bottom:0}
+.side-row .k{color:var(--ink2)}
+.side-row .v{color:#fff;font-weight:750}
+.side-row .v.accent{color:var(--accent)}
+.detail-download{display:block;width:100%;text-align:center;padding:18px;font-size:14px;font-weight:800;color:#0a0a0c!important;background:var(--accent);letter-spacing:1px;text-transform:uppercase;border:0;cursor:pointer;transition:transform .25s,box-shadow .3s;position:relative;overflow:hidden}
+.detail-download::after{content:"";position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.35),transparent);transition:left .7s}
+.detail-download:hover{transform:translateY(-4px);box-shadow:0 18px 46px rgba(255,61,104,.5)}
+.detail-download:hover::after{left:100%}
+.detail-download:active{transform:translateY(-1px) scale(.98)}
+.detail-password{text-align:center;font-size:13px;color:var(--dim);margin-top:14px;letter-spacing:.5px}
+.detail-password b{color:var(--accent);font-weight:850}
+@keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+.modal{display:none;position:fixed;inset:0;z-index:2000;padding:24px;background:rgba(0,0,0,.85);backdrop-filter:blur(12px);align-items:center;justify-content:center;animation:fadeIn .28s ease}
+.modal.show{display:flex}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+.modal-box{position:relative;width:min(560px,100%);max-height:85vh;overflow:auto;background:var(--card);border:1px solid var(--line2);animation:popIn .4s cubic-bezier(.34,1.56,.64,1);box-shadow:0 30px 80px rgba(0,0,0,.8)}
+@keyframes popIn{from{opacity:0;transform:scale(.94) translateY(12px)}to{opacity:1;transform:none}}
+.modal-close{position:absolute;right:16px;top:14px;width:36px;height:36px;border:1px solid var(--line2);background:transparent;color:var(--ink2);font-size:20px;z-index:5;transition:all .3s;display:flex;align-items:center;justify-content:center}
+.modal-close:hover{background:var(--accent);color:#0a0a0c;border-color:var(--accent);transform:rotate(90deg)}
+.modal-body{padding:32px}
+.modal-body h3{font-size:18px;color:#fff;margin-bottom:18px;padding-left:14px;border-left:3px solid var(--accent);font-weight:850}
+.ver-item{border:1px solid var(--line);margin-bottom:14px;background:var(--card2);transition:border-color .3s,background .3s}
+.ver-item:hover{border-color:var(--line2)}
+.ver-item.latest{border-color:rgba(255,61,104,.5);background:linear-gradient(135deg,rgba(255,61,104,.06),transparent)}
+.ver-head{display:flex;align-items:center;gap:14px;padding:16px 18px;flex-wrap:wrap}
+.ver-name{font-size:15.5px;font-weight:850;color:#fff;letter-spacing:-.3px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.ver-badge{padding:3px 9px;font-size:10px;font-weight:900;letter-spacing:1.5px;text-transform:uppercase;color:#0a0a0c;background:var(--accent);animation:updPulse 1.8s ease-in-out infinite}
+.ver-date{font-size:12px;color:var(--dim);letter-spacing:.5px}
+.ver-actions{margin-left:auto;display:flex;align-items:center;gap:10px}
+.ver-download{display:flex;align-items:center;justify-content:center;min-width:88px;height:38px;padding:0 20px;font-size:12.5px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;color:#0a0a0c!important;background:var(--accent);text-decoration:none;transition:transform .25s,box-shadow .3s;white-space:nowrap;border:0;line-height:1}
+.ver-download:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(255,61,104,.5)}
+.ver-toggle{width:38px;height:38px;border:1px solid var(--line2);background:transparent;color:var(--ink2);font-size:14px;display:flex;align-items:center;justify-content:center;transition:all .3s;flex-shrink:0}
+.ver-toggle:hover{color:var(--accent);border-color:var(--accent)}
+.ver-toggle.open{transform:rotate(180deg);color:var(--accent);border-color:var(--accent)}
+.ver-body{max-height:0;overflow:hidden;transition:max-height .4s cubic-bezier(.22,1,.36,1),padding .4s cubic-bezier(.22,1,.36,1);padding:0 18px}
+.ver-body.open{max-height:800px;padding:0 18px 18px}
+.ver-body p{font-size:13px;color:var(--ink2);line-height:1.85;margin:0 0 8px;word-break:break-all}
+.ver-body p:last-child{margin-bottom:0}
+.ver-pw{display:inline-block;margin-top:8px;padding:6px 12px;background:#0f1218;border:1px solid var(--line);font-size:12.5px;color:var(--ink2);letter-spacing:.5px}
+.ver-pw b{color:var(--accent);font-weight:850}
+.footer{border-top:1px solid var(--line);background:#0a0a0c;padding:56px 28px 30px;margin-top:60px}
+.footer-in{max-width:var(--max);margin:auto;display:grid;grid-template-columns:1.8fr 1fr 1fr 1fr;gap:44px;padding-bottom:34px;border-bottom:1px solid var(--line)}
+.footer-col h5{font-size:11.5px;color:var(--dim);letter-spacing:2px;text-transform:uppercase;margin-bottom:16px;font-weight:750}
+.footer-col p{font-size:13px;color:var(--ink2);line-height:1.8;max-width:340px}
+.footer-col a{display:block;font-size:13px;color:var(--ink2);text-decoration:none;margin-bottom:10px;transition:color .25s,transform .25s}
+.footer-col a:hover{color:var(--accent);transform:translateX(4px)}
+.footer-brand{display:flex;align-items:center;gap:11px;margin-bottom:14px}
+.footer-brand .mark{width:8px;height:22px;background:var(--accent)}
+.footer-brand b{color:#fff;font-size:16px;font-weight:850}
+.footer-bot{max-width:var(--max);margin:24px auto 0;display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;font-size:11.5px;color:var(--dim);letter-spacing:1px}
+@media(max-width:960px){
+  .nav-menu{display:none}
+  .footer-in{grid-template-columns:1fr 1fr;gap:32px}
+  .detail-grid{grid-template-columns:1fr;gap:28px}
+  .detail-side{position:static}
+}
+@media(max-width:560px){
+  .topbar{display:none}
+  .nav-in{flex-wrap:wrap;height:auto;padding:12px 16px;gap:10px}
+  .nav-logo{font-size:16px}
+  .nav-cta{padding:9px 14px;font-size:11px}
+  .detail{padding:24px 16px 54px}
+  .detail-main h1{font-size:24px;letter-spacing:-.8px}
+  .preview-item{flex:0 0 88%}
+  .detail-desc{padding:22px;font-size:13px}
+  .modal{padding:16px}
+  .modal-body{padding:24px}
+  .modal-body h3{font-size:16px}
+  .ver-head{padding:14px 16px;gap:10px;flex-direction:column;align-items:flex-start}
+  .ver-actions{width:100%;margin-left:0;justify-content:space-between;display:flex}
+  .ver-download{flex:1}
+  .ver-toggle{flex-shrink:0}
+  .footer{padding:40px 16px 24px}
+  .footer-in{grid-template-columns:1fr;gap:26px}
+  .footer-bot{flex-direction:column;text-align:center}
+}
+@media(prefers-reduced-motion:reduce){*,*:before,:after{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
 </style>
 </head>
 <body>
-<div class="topbar"><div><span>GTA SA ORIGINAL MODS</span><a href="../index.html">返回首页</a></div></div>
-<header><div class="nav"><a class="logo" href="../index.html"><span class="mark"></span>GTA SA <b>原创模组站</b></a><a class="back" href="../index.html">← 返回模组列表</a></div></header>
 
-<main>
-<div class="meta"><span class="dot"></span>其它 · AML 安装包</div>
-<h1>AML纯净版安装包插件</h1>
-<p class="intro">AML 纯净版安装包，搭配本站模组使用，可改善部分闪退问题。</p>
-
-<div class="layout">
-<section>
-<article class="panel">
-<h2>项目介绍</h2>
-<div class="description">重要提示：本插件仅为安装包，不包含游戏数据包，需要您自己获取数据包。
-
-这个是 AML 的纯净版插件，若你使用本站各类插件模组时遇到闪退问题，可以搭配本 AML 安装包，能够有效改善、解决本站模组出现的闪退故障。</div>
-<div class="gallery">
-<img src="../xperiaicon.png" alt="AML安装包" onerror="this.style.display='none'">
-<img src="../AML1.jpg" alt="AML安装包截图" onerror="this.style.display='none'">
+<div class="topbar">
+  <div class="topbar-in">
+    <span>GTA SA 安卓手机版模组与插件分享 · 全部免费</span>
+    <span>
+      <a href="https://b23.tv/AtXUMm9" target="_blank" rel="noopener">举报倒卖</a>
+    </span>
+  </div>
 </div>
-</article>
 
-<article class="panel">
-<h2>版本记录</h2>
-<div class="version">
-<div class="version-head"><div><div class="version-title">v1.0 <span class="tag">最新版本</span></div><div class="version-date">发布日期：2026.10.17</div></div><a class="version-download" href="https://wwbgu.lanzoum.com/iFrLx4caxm6d" target="_blank">下载版本</a></div>
-<ul><li>本插件仅为安装包，不包含游戏数据包，需要您自己获取数据包。</li><li>搭配本站模组可有效改善、解决部分闪退故障。</li></ul>
-<div class="password">提取码：<b>7486</b></div>
+<nav class="navbar">
+  <div class="nav-in">
+    <a class="nav-logo" href="../index.html">
+      <span class="mark"></span>
+      GTA SA <b>模组站</b>
+    </a>
+    <div class="nav-menu">
+      <a href="../index.html">首页</a>
+      <a href="../page2/">第二页</a>
+    </div>
+    <a href="../index.html" class="nav-cta">返回首页</a>
+  </div>
+</nav>
+
+<div class="detail">
+  <a href="../page2/" class="detail-back">← 返回第二页</a>
+
+  <div class="detail-grid">
+    <div class="detail-main">
+      <h1>AML 纯净版安装包 <span class="hero-new">NEW</span></h1>
+
+      <div class="detail-imgs">
+        <div class="preview-item">
+          <img src="../AML1.jpg" alt="AML纯净版安装包预览 1" onerror="this.parentElement.style.background='#0a0a0c'">
+        </div>
+        <div class="preview-item">
+          <img src="../xperiaicon.png" alt="AML纯净版安装包图标" onerror="this.parentElement.style.background='#0a0a0c'">
+        </div>
+      </div>
+
+      <div class="detail-desc">
+AML 纯净版安装包插件
+
+这是一个专门用于 GTA SA Android 的 AML 纯净版安装包，可配合本站发布的 AML 插件使用。
+
+主要用途：
+
+- 提供 AML 纯净安装环境。
+- 如果安装本站插件后出现闪退或运行异常，可以尝试使用此安装包。
+- 适用于需要单独安装 AML 环境的玩家。
+
+📌安装说明
+
+1. 下载 AML 纯净版安装包。
+2. 按照安装包内的说明完成安装。
+3. 本安装包只包含 AML 安装程序，不包含 GTA SA 游戏本体及游戏数据。
+4. 游戏数据需要玩家自行准备。
+
+⚠️注意
+
+此安装包不包含游戏本体，也不会自动提供游戏数据。安装前建议备份原有游戏文件。如果原有 AML 环境运行正常，不需要为了安装而重复覆盖。
+      </div>
+    </div>
+
+    <div class="detail-side">
+      <div class="side-card">
+        <h3>模组信息</h3>
+        <div class="side-row"><span class="k">版本</span><span class="v">v1.0</span></div>
+        <div class="side-row"><span class="k">压缩包大小</span><span class="v">18.14M</span></div>
+        <div class="side-row"><span class="k">发布时间</span><span class="v">2026.10.17</span></div>
+        <div class="side-row"><span class="k">更新日期</span><span class="v">暂无</span></div>
+        <div class="side-row"><span class="k">类型</span><span class="v accent">AML安装包</span></div>
+      </div>
+      <button class="detail-download" onclick="openVersions()">⬇ 下载模组</button>
+      <div class="detail-password" id="detailPassword" style="display:none;">提取码：<b>7486</b></div>
+    </div>
+  </div>
 </div>
-</article>
-</section>
 
-<aside class="side">
-<article class="panel">
-<h2>模组信息</h2>
-<div class="info"><span>版本</span><b>v1.0</b></div>
-<div class="info"><span>压缩包大小</span><b>18.14M</b></div>
-<div class="info"><span>发布时间</span><b>2026.10.17</b></div>
-<div class="info"><span>更新日期</span><b>暂无</b></div>
-<div class="info"><span>类型</span><b>AML 安装包</b></div>
-<a class="download" href="https://wwbgu.lanzoum.com/iFrLx4caxm6d" target="_blank">下载最新版本</a>
-<div class="password">提取码：<b>7486</b></div>
-</article>
-<article class="panel">
-<h2>安装说明</h2>
-<div class="description">本插件仅为 AML 安装包，不包含游戏数据包，需要您自己获取数据包。
+<div class="modal" id="versionsModal">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal('versionsModal')">×</button>
+    <div class="modal-body">
+      <h3>选择下载版本</h3>
+      <div id="versionsList">
 
-下载后请按照安装包内的安装说明操作。
+        <div class="ver-item latest">
+          <div class="ver-head">
+            <div>
+              <div class="ver-name">v1.0 <span class="ver-badge">最新</span></div>
+              <div class="ver-date">发布于 2026.10.17</div>
+            </div>
+            <div class="ver-actions">
+              <a class="ver-download" href="https://wwbgu.lanzoum.com/iFrLx4caxm6d" target="_blank" rel="noopener">下载</a>
+              <button class="ver-toggle" onclick="toggleVer(this)">▾</button>
+            </div>
+          </div>
+          <div class="ver-body">
+            <p>· AML 纯净版安装包首次发布。</p>
+            <p>· 提供独立 AML 安装程序，不包含 GTA SA 游戏本体及游戏数据。</p>
+            <p>· 部分插件运行出现异常时，可以尝试使用此纯净版安装环境。</p>
+            <span class="ver-pw">提取码：<b>7486</b></span>
+          </div>
+        </div>
 
-如果你使用本站各类插件模组时遇到闪退问题，可以尝试搭配本 AML 安装包。</div>
-<div class="notice">重要提示：本插件不包含 GTA SA 游戏数据包。请自行准备合法来源的游戏数据包。安装前建议备份原有游戏文件。</div>
-</article>
-</aside>
+      </div>
+    </div>
+  </div>
 </div>
-</main>
 
-<footer>GTA SA ORIGINAL MODS · FREE SHARING<br>© 2026 保留所有权利</footer>
-<div id="viewer" onclick="this.style.display='none'"><img id="viewerImg" src="" alt="图片预览"></div>
+<footer class="footer">
+  <div class="footer-in">
+    <div class="footer-col">
+      <div class="footer-brand"><span class="mark"></span><b>GTA SA 原创模组站</b></div>
+      <p>专注 GTA SA 安卓手机版模组与插件分享，持续更新，全部免费。</p>
+    </div>
+    <div class="footer-col">
+      <h5>导航</h5>
+      <a href="../index.html">首页</a>
+      <a href="../page2/">第二页</a>
+    </div>
+    <div class="footer-col">
+      <h5>制作</h5>
+      <a href="https://b23.tv/tECAcfc" target="_blank" rel="noopener">流王星者_Streamer</a>
+    </div>
+    <div class="footer-col">
+      <h5>相关</h5>
+      <a href="https://b23.tv/AtXUMm9" target="_blank" rel="noopener">举报倒卖</a>
+    </div>
+  </div>
+  <div class="footer-bot">
+    <span>GTA SA ORIGINAL MODS · FREE SHARING</span>
+    <span>© 2026 保留所有权利</span>
+  </div>
+</footer>
+
 <script>
-document.querySelectorAll(".gallery img").forEach(img=>{
-img.addEventListener("click",()=>{
-document.getElementById("viewerImg").src=img.src;
-document.getElementById("viewer").style.display="flex";
+window.openVersions=function(){
+  document.getElementById("versionsModal").classList.add("show");
+};
+window.closeModal=function(id){
+  document.getElementById(id).classList.remove("show");
+};
+window.toggleVer=function(btn){
+  const body=btn.closest(".ver-item").querySelector(".ver-body");
+  const isOpen=body.classList.contains("open");
+  if(isOpen){
+    body.classList.remove("open");
+    btn.classList.remove("open");
+  }else{
+    body.classList.add("open");
+    btn.classList.add("open");
+  }
+};
+document.querySelectorAll(".modal").forEach(function(m){
+  m.addEventListener("click",function(e){
+    if(e.target===m)m.classList.remove("show");
+  });
 });
-});
-document.addEventListener("keydown",e=>{
-if(e.key==="Escape")document.getElementById("viewer").style.display="none";
+document.addEventListener("keydown",function(e){
+  if(e.key==="Escape"){
+    document.querySelectorAll(".modal.show").forEach(el=>el.classList.remove("show"));
+  }
 });
 </script>
+
 </body>
 </html>
