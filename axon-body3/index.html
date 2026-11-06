@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0a0a0c">
+<title>AXON BODY 3 执法记录仪模组 - GTA SA 原创模组站</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0a0a0c;--card:#141418;--line:#26262e;--ink:#f4f4f6;--ink2:#a0a0ac;--dim:#5f5f6b;--accent:#ff3d68;--max:1120px}
+body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--ink);line-height:1.75;min-height:100vh}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;background:radial-gradient(900px 500px at 15% -5%,rgba(255,61,104,.12),transparent 60%);z-index:-1}
+a{color:inherit;text-decoration:none}
+.topbar{border-bottom:1px solid var(--line);font-size:11px;color:var(--dim);padding:10px 25px}
+.topbar div{max-width:var(--max);margin:auto;display:flex;justify-content:space-between}
+.topbar a:hover,.back:hover{color:var(--accent)}
+header{position:sticky;top:0;background:rgba(10,10,12,.92);backdrop-filter:blur(15px);border-bottom:1px solid var(--line);z-index:5}
+.nav{max-width:var(--max);height:70px;margin:auto;padding:0 25px;display:flex;align-items:center}
+.logo{font-size:19px;font-weight:900}
+.logo b{color:var(--accent)}
+.mark{display:inline-block;width:7px;height:20px;background:var(--accent);margin-right:10px;vertical-align:-4px}
+.back{margin-left:auto;color:var(--ink2);font-size:13px}
+main{max-width:var(--max);margin:auto;padding:55px 25px 80px}
+.meta{display:flex;align-items:center;gap:12px;color:var(--dim);font-size:11px;letter-spacing:2px;font-weight:800}
+.dot{width:6px;height:6px;background:var(--accent);box-shadow:0 0 12px var(--accent)}
+h1{font-size:clamp(30px,5vw,46px);line-height:1.2;letter-spacing:-1px;margin:18px 0}
+.intro{color:var(--ink2);font-size:15px;margin-bottom:32px}
+.layout{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:22px;align-items:start}
+.panel{background:var(--card);border:1px solid var(--line);padding:25px;margin-bottom:20px}
+h2{font-size:17px;margin-bottom:18px;padding-left:12px;border-left:3px solid var(--accent)}
+.description{white-space:pre-line;color:#c6c6d0;font-size:13.5px;line-height:2}
+.gallery{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:22px}
+.gallery img{width:100%;aspect-ratio:16/10;object-fit:cover;background:#080808;border:1px solid var(--line);cursor:zoom-in}
+.info{display:flex;justify-content:space-between;gap:12px;padding:11px 0;border-bottom:1px solid var(--line);font-size:12px}
+.info span{color:var(--dim)}
+.info b{text-align:right}
+.download{display:block;text-align:center;background:var(--accent);color:#09090b;font-size:13px;font-weight:900;padding:14px;margin-top:20px}
+.password{text-align:center;color:var(--ink2);font-size:12px;margin-top:10px}
+.password b{color:var(--accent);letter-spacing:1px}
+.notice{border-left:3px solid var(--accent);background:rgba(255,61,104,.07);padding:13px;margin-top:16px;font-size:12px;color:#d7cbd0}
+.version{border:1px solid var(--line);padding:17px;margin-top:12px;background:#1a1a20}
+.version.latest{border-color:rgba(255,61,104,.55)}
+.version-head{display:flex;justify-content:space-between;gap:12px;align-items:center}
+.version-title{font-size:15px;font-weight:850}
+.tag{background:var(--accent);color:#09090b;font-size:9px;padding:2px 6px;margin-left:7px}
+.version-date{font-size:11px;color:var(--dim)}
+.version ul{padding-left:20px;margin:13px 0;color:var(--ink2);font-size:12px;line-height:1.9}
+.version-download{background:#292932;padding:7px 13px;font-size:11px;font-weight:800;white-space:nowrap}
+footer{border-top:1px solid var(--line);padding:25px;text-align:center;color:var(--dim);font-size:10px;letter-spacing:1px}
+#viewer{display:none;position:fixed;inset:0;background:rgba(0,0,0,.94);z-index:20;align-items:center;justify-content:center;padding:20px}
+#viewer img{max-width:96%;max-height:92vh;object-fit:contain}
+@media(max-width:760px){main{padding:35px 16px 55px}.layout{grid-template-columns:1fr}.side{order:-1}.panel{padding:19px}.nav{padding:0 16px}}
+@media(max-width:420px){.gallery{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="topbar"><div><span>GTA SA ORIGINAL MODS</span><a href="../index.html">返回首页</a></div></div>
+<header><div class="nav"><a class="logo" href="../index.html"><span class="mark"></span>GTA SA <b>原创模组站</b></a><a class="back" href="../index.html">← 返回模组列表</a></div></header>
+
+<main>
+<div class="meta"><span class="dot"></span>AML 插件 · 执法记录仪</div>
+<h1>AXON BODY 3 执法记录仪模组</h1>
+<p class="intro">GTASA 安卓端 SO 插件，复刻 AXON BODY 3 执法记录仪，用于警察角色扮演。</p>
+
+<div class="layout">
+<section>
+<article class="panel">
+<h2>项目介绍</h2>
+<div class="description">AXON BODY3 v3.1.1b 详细介绍
+
+这是 GTASA 安卓端的 SO 插件，复刻现实里的 AXON BODY3 胸挂执法记录仪，专门用于警察角色扮演。
+
+主要功能：
+1. 胸挂相机，模拟真实记录仪跑动晃动，支持持枪、车内视角。
+2. 记录仪机身水印读取本地时间，警员编号、电量位置可单独调整。
+3. 游戏打开只显示悬浮球，需手动开启，位置自动记忆。
+4. 内置完整设置菜单，可一键恢复默认参数。
+5. 水印开关有提示音，出错有详细报错。
+
+Beta 测试版，细节待完善，每次进游戏需手动激活。</div>
+<div class="gallery">
+<img src="../Axon-Logo.jpg" alt="AXON BODY 3" onerror="this.style.display='none'">
+<img src="../1.jpg" alt="模组截图" onerror="this.style.display='none'">
+<img src="../2.jpg" alt="模组截图" onerror="this.style.display='none'">
+<img src="../3.jpg" alt="模组截图" onerror="this.style.display='none'">
+<img src="../4.jpg" alt="模组截图" onerror="this.style.display='none'">
+<img src="../5.jpg" alt="模组截图" onerror="this.style.display='none'">
+<img src="../6.jpg" alt="模组截图" onerror="this.style.display='none'">
+<img src="../7.jpg" alt="模组截图" onerror="this.style.display='none'">
+<img src="../8.jpg" alt="模组截图" onerror="this.style.display='none'">
+</div>
+</article>
+
+<article class="panel">
+<h2>版本记录</h2>
+
+<div class="version latest">
+<div class="version-head"><div><div class="version-title">v3.1.1b <span class="tag">最新版本</span></div><div class="version-date">发布日期：2026.10.17</div></div><a class="version-download" href="https://wwbgu.lanzoum.com/iBOjx4cac9ha" target="_blank">下载版本</a></div>
+<ul><li>增加了稳定性，重新修复闪退问题。</li><li>重点修复主菜单黑屏闪退 bug。</li><li>本次更新没有新增任何功能，欢迎继续测试反馈。</li></ul>
+<div class="password">提取码：<b>arub</b></div>
+</div>
+
+<div class="version">
+<div class="version-head"><div><div class="version-title">v3.1b</div><div class="version-date">发布日期：2026.10.16</div></div><a class="version-download" href="https://wwbgu.lanzoum.com/i7RiH4c5831e" target="_blank">下载版本</a></div>
+<ul><li>修复有时候打开游戏，游戏画面会显示超大号的金钱。</li><li>修复点开灰色按钮之后，进入游戏主菜单界面闪退问题。</li><li>修复点灰色按钮进入主界面卡住一两秒闪退问题。</li></ul>
+<div class="password">提取码：<b>bc3n</b></div>
+</div>
+
+<div class="version">
+<div class="version-head"><div><div class="version-title">v3.0b</div><div class="version-date">发布日期：2026.10.14</div></div><a class="version-download" href="https://wwbgu.lanzoum.com/i5vcs4bytsmj" target="_blank">下载版本</a></div>
+<ul><li>v3.0b 为首发 Beta 测试版本。</li></ul>
+<div class="password">提取码：<b>9v40</b></div>
+</div>
+</article>
+</section>
+
+<aside class="side">
+<article class="panel">
+<h2>模组信息</h2>
+<div class="info"><span>版本</span><b>v3.1.1b</b></div>
+<div class="info"><span>压缩包大小</span><b>1.98 MB</b></div>
+<div class="info"><span>发布时间</span><b>2026.10.14</b></div>
+<div class="info"><span>更新日期</span><b>2026.10.17</b></div>
+<div class="info"><span>类型</span><b>AML 插件</b></div>
+<a class="download" href="https://wwbgu.lanzoum.com/iBOjx4cac9ha" target="_blank">下载最新版本</a>
+<div class="password">提取码：<b>arub</b></div>
+</article>
+<article class="panel">
+<h2>安装说明</h2>
+<div class="description">适用于 GTA SA 安卓端。
+
+这是 AML SO 插件。请按照压缩包内的目录结构，将文件放入对应游戏目录。
+
+注意：当前版本为 Beta 测试版，每次进入游戏需要手动激活。安装前建议备份原有文件。</div>
+<div class="notice">Beta 测试版，部分细节仍待完善。每次进入游戏需手动激活。</div>
+</article>
+</aside>
+</div>
+</main>
+
+<footer>GTA SA ORIGINAL MODS · FREE SHARING<br>© 2026 保留所有权利</footer>
+<div id="viewer" onclick="this.style.display='none'"><img id="viewerImg" src="" alt="图片预览"></div>
+<script>
+document.querySelectorAll(".gallery img").forEach(img=>{
+img.addEventListener("click",()=>{
+document.getElementById("viewerImg").src=img.src;
+document.getElementById("viewer").style.display="flex";
+});
+});
+document.addEventListener("keydown",e=>{
+if(e.key==="Escape")document.getElementById("viewer").style.display="none";
+});
+</script>
+</body>
+</html>
