@@ -2,143 +2,460 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="theme-color" content="#0a0a0c">
+<meta name="description" content="HeadCam SA - GTA SA 安卓手机版头戴式第一人称视角模组">
 <title>HeadCam SA 第一人称视角模组 - GTA SA 原创模组站</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-:root{--bg:#0a0a0c;--card:#141418;--line:#26262e;--ink:#f4f4f6;--ink2:#a0a0ac;--dim:#5f5f6b;--accent:#ff3d68;--max:1120px}
-body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--ink);line-height:1.75;min-height:100vh}
-body:before{content:"";position:fixed;inset:0;pointer-events:none;background:radial-gradient(900px 500px at 15% -5%,rgba(255,61,104,.12),transparent 60%);z-index:-1}
+:root{
+--bg:#0a0a0c;--card:#141418;--card2:#1a1a20;
+--line:#26262e;--line2:#33333d;--ink:#f4f4f6;
+--ink2:#a0a0ac;--dim:#5f5f6b;--accent:#ff3d68;
+--accent2:#ff8a3d;--max:1240px
+}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{
+font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;
+background:var(--bg);color:var(--ink);line-height:1.7;
+-webkit-font-smoothing:antialiased;overflow-x:hidden
+}
+body::before{
+content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;
+background:
+radial-gradient(ellipse at 15% 0%,rgba(255,61,104,.09),transparent 42%),
+radial-gradient(ellipse at 85% 20%,rgba(255,138,61,.06),transparent 38%),
+radial-gradient(ellipse at 50% 100%,rgba(100,70,180,.05),transparent 45%);
+animation:bgPulse 12s ease-in-out infinite alternate
+}
+@keyframes bgPulse{from{opacity:.65}to{opacity:1}}
 a{color:inherit;text-decoration:none}
-.topbar{border-bottom:1px solid var(--line);font-size:11px;color:var(--dim);padding:10px 25px}
-.topbar div{max-width:var(--max);margin:auto;display:flex;justify-content:space-between}
-.topbar a:hover,.back:hover{color:var(--accent)}
-header{position:sticky;top:0;background:rgba(10,10,12,.92);backdrop-filter:blur(15px);border-bottom:1px solid var(--line);z-index:5}
-.nav{max-width:var(--max);height:70px;margin:auto;padding:0 25px;display:flex;align-items:center}
-.logo{font-size:19px;font-weight:900}
-.logo b{color:var(--accent)}
-.mark{display:inline-block;width:7px;height:20px;background:var(--accent);margin-right:10px;vertical-align:-4px}
-.back{margin-left:auto;color:var(--ink2);font-size:13px}
-main{max-width:var(--max);margin:auto;padding:55px 25px 80px}
-.meta{display:flex;align-items:center;gap:12px;color:var(--dim);font-size:11px;letter-spacing:2px;font-weight:800}
-.dot{width:6px;height:6px;background:var(--accent);box-shadow:0 0 12px var(--accent)}
-h1{font-size:clamp(30px,5vw,46px);line-height:1.2;letter-spacing:-1px;margin:18px 0}
-.intro{color:var(--ink2);font-size:15px;margin-bottom:32px}
-.layout{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:22px;align-items:start}
-.panel{background:var(--card);border:1px solid var(--line);padding:25px;margin-bottom:20px}
-h2{font-size:17px;margin-bottom:18px;padding-left:12px;border-left:3px solid var(--accent)}
-.description{white-space:pre-line;color:#c6c6d0;font-size:13.5px;line-height:2}
-.gallery{display:grid;grid-template-columns:1fr;gap:12px;margin-top:22px}
-.gallery img{width:100%;aspect-ratio:16/9;object-fit:cover;background:#080808;border:1px solid var(--line);cursor:zoom-in}
-.info{display:flex;justify-content:space-between;gap:12px;padding:11px 0;border-bottom:1px solid var(--line);font-size:12px}
-.info span{color:var(--dim)}
-.info b{text-align:right}
-.download{display:block;text-align:center;background:var(--accent);color:#09090b;font-size:13px;font-weight:900;padding:14px;margin-top:20px}
-.password{text-align:center;color:var(--ink2);font-size:12px;margin-top:10px}
-.password b{color:var(--accent);letter-spacing:1px}
-.notice{border-left:3px solid var(--accent);background:rgba(255,61,104,.07);padding:13px;margin-top:16px;font-size:12px;color:#d7cbd0}
-.version{border:1px solid rgba(255,61,104,.55);padding:17px;margin-top:12px;background:#1a1a20}
-.version-head{display:flex;justify-content:space-between;gap:12px;align-items:center}
-.version-title{font-size:15px;font-weight:850}
-.tag{background:var(--accent);color:#09090b;font-size:9px;padding:2px 6px;margin-left:7px}
-.version-date{font-size:11px;color:var(--dim)}
-.version ul{padding-left:20px;margin:13px 0;color:var(--ink2);font-size:12px;line-height:1.9}
-.version-download{background:#292932;padding:7px 13px;font-size:11px;font-weight:800;white-space:nowrap}
-footer{border-top:1px solid var(--line);padding:25px;text-align:center;color:var(--dim);font-size:10px;letter-spacing:1px}
-#viewer{display:none;position:fixed;inset:0;background:rgba(0,0,0,.94);z-index:20;align-items:center;justify-content:center;padding:20px}
-#viewer img{max-width:96%;max-height:92vh;object-fit:contain}
-@media(max-width:760px){main{padding:35px 16px 55px}.layout{grid-template-columns:1fr}.side{order:-1}.panel{padding:19px}.nav{padding:0 16px}}
+button{font:inherit}
+.topbar{
+background:#08080a;border-bottom:1px solid var(--line);
+padding:8px 20px;font-size:12px;color:var(--ink2)
+}
+.topbar-in{
+max-width:var(--max);margin:auto;display:flex;
+justify-content:space-between;align-items:center;gap:12px
+}
+.topbar a{color:var(--accent)}
+.navbar{
+position:sticky;top:0;z-index:100;
+background:rgba(10,10,12,.88);backdrop-filter:blur(18px);
+border-bottom:1px solid var(--line)
+}
+.nav-in{
+max-width:var(--max);margin:auto;padding:15px 20px;
+display:flex;align-items:center;justify-content:space-between;gap:20px
+}
+.logo{display:flex;align-items:center;gap:11px;font-size:17px;font-weight:800}
+.logo-mark{
+width:34px;height:34px;border-radius:10px;
+background:linear-gradient(135deg,var(--accent),var(--accent2));
+display:grid;place-items:center;color:#fff;font-size:17px
+}
+.nav-menu{display:flex;align-items:center;gap:27px;font-size:13px;color:var(--ink2)}
+.nav-menu a{transition:color .2s}
+.nav-menu a:hover{color:var(--ink)}
+.nav-cta{
+padding:9px 17px;border-radius:8px;
+background:var(--card2);border:1px solid var(--line2);
+font-size:12px;font-weight:700;transition:.2s
+}
+.nav-cta:hover{border-color:var(--accent);color:var(--accent)}
+.detail{
+max-width:var(--max);margin:auto;padding:36px 20px 90px;
+animation:detailIn .6s ease both
+}
+@keyframes detailIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.detail-back{
+display:inline-flex;align-items:center;gap:8px;
+font-size:13px;color:var(--ink2);margin-bottom:28px;transition:.2s
+}
+.detail-back:hover{color:var(--accent)}
+.detail-grid{display:grid;grid-template-columns:1.35fr .65fr;gap:35px;align-items:start}
+.detail-main h1{
+font-size:clamp(25px,4vw,36px);font-weight:850;
+letter-spacing:-.8px;line-height:1.3;margin-bottom:23px
+}
+.hero-new{
+display:inline-block;vertical-align:middle;margin-left:9px;
+padding:3px 8px;border-radius:5px;font-size:10px;
+letter-spacing:1px;color:#fff;
+background:linear-gradient(110deg,var(--accent),var(--accent2));
+animation:newPulse 2s ease-in-out infinite
+}
+@keyframes newPulse{0%,100%{box-shadow:0 0 0 rgba(255,61,104,0)}50%{box-shadow:0 0 13px rgba(255,61,104,.45)}}
+.detail-imgs{
+display:flex;gap:13px;overflow-x:auto;padding:2px 2px 15px;
+scroll-snap-type:x mandatory;scrollbar-width:thin;
+scrollbar-color:var(--line2) transparent
+}
+.preview-item{
+flex:0 0 78%;max-width:560px;aspect-ratio:16/9;
+border-radius:12px;overflow:hidden;background:var(--card);
+border:1px solid var(--line);scroll-snap-align:start
+}
+.preview-item img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s}
+.preview-item:hover img{transform:scale(1.035)}
+.detail-desc{
+margin-top:20px;padding:25px 27px;
+background:var(--card);border:1px solid var(--line);
+border-radius:13px;color:var(--ink2);
+font-size:14px;line-height:1.9;white-space:pre-wrap
+}
+.detail-desc h2,.detail-desc h3{
+color:var(--ink);font-size:17px;margin:22px 0 9px
+}
+.detail-desc h2:first-child,.detail-desc h3:first-child{margin-top:0}
+.detail-desc strong{color:var(--ink);font-weight:700}
+.detail-desc code{
+padding:2px 6px;border-radius:4px;background:#22222a;
+color:#ff9aab;font-size:12px
+}
+.detail-side{position:sticky;top:96px}
+.side-card{
+padding:22px;background:var(--card);
+border:1px solid var(--line);border-radius:13px
+}
+.side-card h3{font-size:16px;margin-bottom:17px}
+.side-row{
+display:flex;justify-content:space-between;gap:15px;
+padding:11px 0;border-bottom:1px solid var(--line);
+font-size:13px
+}
+.side-row:last-child{border-bottom:0}
+.side-row span:first-child{color:var(--dim)}
+.side-row span:last-child{color:var(--ink);text-align:right}
+.detail-download{
+width:100%;margin-top:17px;padding:15px;border:0;
+border-radius:9px;color:#fff;font-size:14px;font-weight:800;
+cursor:pointer;background:linear-gradient(110deg,var(--accent),#ed315c);
+box-shadow:0 7px 22px rgba(255,61,104,.15);transition:.2s
+}
+.detail-download:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(255,61,104,.28)}
+.detail-password{
+margin-top:12px;padding:12px 14px;border-radius:8px;
+background:var(--card2);border:1px solid var(--line);
+font-size:12px;color:var(--ink2);text-align:center
+}
+.detail-password strong{color:var(--ink);letter-spacing:1px}
+.modal{
+position:fixed;inset:0;z-index:1000;
+display:none;align-items:center;justify-content:center;
+padding:20px;background:rgba(0,0,0,.76);
+backdrop-filter:blur(9px)
+}
+.modal.show{display:flex;animation:fadeIn .2s ease}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+.modal-box{
+width:100%;max-width:570px;max-height:85vh;overflow-y:auto;
+background:#141418;border:1px solid var(--line2);
+border-radius:15px;box-shadow:0 25px 80px rgba(0,0,0,.5);
+animation:popIn .25s ease
+}
+@keyframes popIn{from{opacity:0;transform:translateY(12px) scale(.98)}to{opacity:1;transform:translateY(0) scale(1)}}
+.modal-close{
+float:right;margin:15px 17px 0 0;width:32px;height:32px;
+border-radius:8px;border:1px solid var(--line2);
+background:var(--card2);color:var(--ink2);
+font-size:19px;cursor:pointer
+}
+.modal-close:hover{color:var(--ink);border-color:var(--accent)}
+.modal-body{padding:25px}
+.modal-body h3{font-size:19px;margin:0 0 20px}
+.ver-item{
+border:1px solid var(--line);border-radius:10px;
+overflow:hidden;margin-bottom:12px;background:var(--card)
+}
+.ver-head{
+padding:15px;display:flex;align-items:center;
+justify-content:space-between;gap:12px;flex-wrap:wrap
+}
+.ver-name{font-size:14px;font-weight:800}
+.ver-badge{
+display:inline-block;margin-left:7px;padding:2px 7px;
+border-radius:4px;background:rgba(255,61,104,.13);
+color:var(--accent);font-size:10px
+}
+.ver-date{font-size:11px;color:var(--dim);margin-top:4px}
+.ver-actions{display:flex;align-items:center;gap:8px}
+.ver-download{
+padding:7px 12px;border-radius:6px;
+background:var(--accent);color:#fff;font-size:11px;font-weight:700
+}
+.ver-toggle{
+width:30px;height:30px;border-radius:6px;
+background:var(--card2);border:1px solid var(--line2);
+color:var(--ink2);cursor:pointer;transition:.2s
+}
+.ver-toggle.open{transform:rotate(180deg)}
+.ver-body{
+display:none;padding:14px 15px 16px;
+border-top:1px solid var(--line);
+color:var(--ink2);font-size:12px;line-height:1.8
+}
+.ver-body.open{display:block}
+.ver-pw{
+margin-top:9px;padding:9px 11px;
+border-radius:6px;background:var(--card2)
+}
+.ver-pw strong{color:var(--ink);letter-spacing:1px}
+footer{
+border-top:1px solid var(--line);background:#08080a;
+padding:45px 20px 20px
+}
+.footer-in{
+max-width:var(--max);margin:auto;
+display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:35px
+}
+.footer-brand{font-size:16px;font-weight:800;margin-bottom:12px}
+.footer-in p{font-size:12px;color:var(--dim);line-height:1.8}
+.footer-col h4{font-size:13px;margin-bottom:14px}
+.footer-col a{
+display:block;font-size:12px;color:var(--dim);
+margin:9px 0;transition:color .2s
+}
+.footer-col a:hover{color:var(--accent)}
+.footer-bot{
+max-width:var(--max);margin:30px auto 0;padding-top:17px;
+border-top:1px solid var(--line);font-size:11px;color:var(--dim);
+display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap
+}
+@media(max-width:960px){
+.detail-grid{grid-template-columns:1fr;gap:25px}
+.detail-side{position:static}
+.footer-in{grid-template-columns:1fr 1fr}
+}
+@media(max-width:560px){
+.topbar{padding:8px 14px;font-size:10px}
+.nav-in{padding:12px 14px}
+.nav-menu{gap:13px;font-size:11px}
+.nav-cta{padding:8px 10px;font-size:10px}
+.logo{font-size:14px}
+.logo-mark{width:30px;height:30px}
+.detail{padding:25px 14px 60px}
+.detail-main h1{font-size:25px}
+.preview-item{flex-basis:88%}
+.detail-desc{padding:19px 17px;font-size:13px}
+.side-card{padding:18px}
+.footer-in{grid-template-columns:1fr 1fr;gap:25px 15px}
+.footer-bot{font-size:10px}
+.modal{padding:12px}
+.modal-body{padding:20px 16px}
+.ver-head{align-items:flex-start}
+}
+@media(prefers-reduced-motion:reduce){
+*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+}
 </style>
 </head>
+
 <body>
-<div class="topbar"><div><span>GTA SA ORIGINAL MODS</span><a href="../index.html">返回首页</a></div></div>
-<header><div class="nav"><a class="logo" href="../index.html"><span class="mark"></span>GTA SA <b>原创模组站</b></a><a class="back" href="../index.html">← 返回模组列表</a></div></header>
-
-<main>
-<div class="meta"><span class="dot"></span>AML 插件 · 第一人称视角</div>
-<h1>HeadCam SA 第一人称视角模组</h1>
-<p class="intro">为 GTA SA 安卓版打造的头戴式第一人称模组，带物理反馈、镜头惯性与复古滤镜。</p>
-
-<div class="layout">
-<section>
-<article class="panel">
-<h2>项目介绍</h2>
-<div class="description">HeadCam SA 1.0.0
-
-GTA: San Andreas 安卓版的头戴式第一人称模组。镜头挂在 CJ 头部，跟着头走，头跟着身体走。
-
-仅支持 GTA SA Android 2.00 32 位。
-
-步行：
-呼吸微抖、一步一沉、冲刺视角变宽、横移侧倾、转身慢半拍、落地一记下沉、举枪自动收稳。
-
-战斗：
-每把枪自己的后坐，连发是连续抖；被打中和旁边爆炸各震一下。
-
-车载：
-方向一打画面就先转向弯道（比车身转起来更早），倒车会转过去看后窗，给油后仰刹车前倾，过坎顶头、烂路碎震、怠速有点引擎抖，车速越快视野越宽。
-怕晕可以开固定镜头，视角钉在车头方向，划屏幕不转，但动态全留；地平线锁定调高后，真翻车时自动松手。
-
-复古镜头：
-鱼眼、暗角、边缘色差，默认关闭，上车自动不启用。
-
-操作：
-左上角蓝按钮点一下开关，长按出设置卡片。步行和车载是两页，上车自动翻。卡片能拖能缩放，改动实时生效，关掉就保存。每项单独可关。
-
-作者：流王星者_Streamer</div>
-<div class="gallery">
-<img src="../fm.png" alt="HeadCam SA 游戏截图" onerror="this.style.display='none'">
+<div class="topbar">
+  <div class="topbar-in">
+    <span>GTA SA 安卓手机版模组与插件分享 · 全部免费</span>
+    <span>发现倒卖？<a href="https://b23.tv/AtXUMm9" target="_blank">点击举报</a></span>
+  </div>
 </div>
-</article>
 
-<article class="panel">
-<h2>版本记录</h2>
-<div class="version">
-<div class="version-head"><div><div class="version-title">v1.0.0 <span class="tag">最新版本</span></div><div class="version-date">发布日期：2026.10.23</div></div><a class="version-download" href="https://wwbgu.lanzoum.com/iext44d10z8h" target="_blank">下载版本</a></div>
-<ul><li>首发 v1.0.0 版本。</li><li>支持 GTA SA Android v2.00（armeabi-v7a）。</li><li>将 com.rockstargames.gtasa 文件夹放入 /storage/emulated/0/Android_unprotected/data/ 文件夹即可。</li><li>包含步行、战斗、车载物理反馈及复古镜头效果。</li><li>左上角蓝按钮开关，长按打开设置卡片。</li></ul>
-<div class="password">提取码：<b>4nyk</b></div>
-</div>
-</article>
-</section>
+<nav class="navbar">
+  <div class="nav-in">
+    <a class="logo" href="../index.html">
+      <span class="logo-mark">G</span>
+      <span>GTA SA 模组站</span>
+    </a>
+    <div class="nav-menu">
+      <a href="../index.html">首页</a>
+      <a href="../page2/">第二页</a>
+    </div>
+    <a class="nav-cta" href="../index.html">返回首页</a>
+  </div>
+</nav>
 
-<aside class="side">
-<article class="panel">
-<h2>模组信息</h2>
-<div class="info"><span>版本</span><b>v1.0.0</b></div>
-<div class="info"><span>压缩包大小</span><b>656.85 KB</b></div>
-<div class="info"><span>发布时间</span><b>2026.10.23</b></div>
-<div class="info"><span>更新日期</span><b>暂无</b></div>
-<div class="info"><span>类型</span><b>AML 插件</b></div>
-<a class="download" href="https://wwbgu.lanzoum.com/iext44d10z8h" target="_blank">下载最新版本</a>
-<div class="password">提取码：<b>4nyk</b></div>
-</article>
-<article class="panel">
-<h2>安装说明</h2>
-<div class="description">仅支持 GTA SA Android 2.00 32 位。
+<main class="detail">
+  <a class="detail-back" href="../page2/">← 返回模组列表</a>
 
-将压缩包中的 com.rockstargames.gtasa 文件夹放入：
+  <div class="detail-grid">
+    <section class="detail-main">
+      <h1>HeadCam SA 第一人称视角模组 <span class="hero-new">NEW</span></h1>
+
+      <div class="detail-imgs">
+        <div class="preview-item"><img src="../fm.png" alt="HeadCam SA 第一人称视角模组预览"></div>
+      </div>
+
+      <div class="detail-desc">HeadCam SA 第一人称视角模组
+
+作者：流王星者_Streamer
+
+HeadCam SA 是一款为 GTA SA 安卓版制作的头戴式第一人称视角模组。摄像机安装在 CJ 头部位置，跟随头部动作，并通过身体运动产生自然的视角反馈。
+
+【适用版本】
+
+仅支持 GTA SA Android 2.00 版本，32 位架构。
+
+【头部视角与身体反馈】
+
+• 摄像机固定在角色头部位置，头部运动会自然影响视角。
+• 行走时产生轻微呼吸晃动、步伐上下起伏和左右重心摆动。
+• 奔跑时视野角度随速度扩大，停止后逐渐恢复。
+• 转向时摄像机存在自然延迟，避免视角机械式瞬间转动。
+• 起跳和落地时产生对应的视角反馈。
+• 举枪时摄像机更加稳定，减少不必要的晃动。
+
+【战斗反馈】
+
+• 不同武器拥有独立的后坐力反馈。
+• 连续射击时产生持续的摄像机震动。
+• 受到攻击或附近发生爆炸时，摄像机产生对应冲击反馈。
+
+【车辆视角】
+
+• 摄像机在车辆转弯时提前产生转向倾斜，随后跟随车身运动。
+• 倒车时可以通过视角转动观察后方。
+• 加速时视角向后倾斜，刹车时向前倾斜。
+• 车辆经过颠簸路面时产生头部震动。
+• 怠速时保留轻微发动机震动，行驶时根据路面情况产生振动。
+• 车辆速度提高时视野角度逐渐扩大。
+• 支持固定摄像机模式和水平线锁定。
+• 车辆翻滚时自动解除固定视角，避免摄像机异常锁定。
+
+【复古镜头效果】
+
+提供鱼眼、暗角和色差效果，用于模拟复古摄像机画面。
+该效果默认关闭，进入车辆时也不会自动开启。
+
+【控制与设置】
+
+• 屏幕左上角的蓝色按钮用于开启或关闭第一人称视角。
+• 长按蓝色按钮可以打开设置面板。
+• 设置面板分为步行和车辆两个页面。
+• 进入车辆时自动切换到车辆设置页面。
+• 设置面板可以拖动位置并调整大小。
+• 所有参数支持实时调整，关闭面板时自动保存。
+• 各项摄像机效果均可以独立开启或关闭。
+
+【安装方法】
+
+1. 确认游戏版本为 GTA SA Android 2.00 32 位。
+2. 将压缩包内的 com.rockstargames.gtasa 文件夹放入：
 
 /storage/emulated/0/Android_unprotected/data/
 
-进入游戏后，点击左上角蓝色按钮开启模组，长按按钮打开设置卡片。</div>
-<div class="notice">版本限制：GTA SA Android 2.00，32 位。其他游戏版本不在当前页面标注的支持范围内。</div>
-</article>
-</aside>
-</div>
+3. 启动游戏后，点击屏幕左上角的蓝色按钮开启第一人称视角。
+4. 长按该按钮进入设置面板，调整摄像机参数。
+
+注意：本模组仅适用于 GTA SA Android 2.00 32 位版本。其他游戏版本或架构不保证兼容。</div>
+    </section>
+
+    <aside class="detail-side">
+      <div class="side-card">
+        <h3>模组信息</h3>
+        <div class="side-row"><span>模组名称</span><span>HeadCam SA</span></div>
+        <div class="side-row"><span>模组类型</span><span>AML插件 / 第一人称视角</span></div>
+        <div class="side-row"><span>适用版本</span><span>GTA SA 2.00 32位</span></div>
+        <div class="side-row"><span>当前版本</span><span>v1.0.0</span></div>
+        <div class="side-row"><span>文件大小</span><span>656.85 KB</span></div>
+        <div class="side-row"><span>发布时间</span><span>2026.10.23</span></div>
+        <div class="side-row"><span>最近更新</span><span>暂无</span></div>
+        <div class="side-row"><span>作者</span><span>流王星者_Streamer</span></div>
+
+        <button class="detail-download" onclick="openVersions()">选择下载版本</button>
+        <div class="detail-password" style="display:none">提取码：<strong>4nyk</strong></div>
+      </div>
+    </aside>
+  </div>
 </main>
 
-<footer>GTA SA ORIGINAL MODS · FREE SHARING<br>© 2026 保留所有权利</footer>
-<div id="viewer" onclick="this.style.display='none'"><img id="viewerImg" src="" alt="图片预览"></div>
+<div class="modal" id="versionsModal">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal('versionsModal')">×</button>
+    <div class="modal-body">
+      <h3>选择下载版本</h3>
+
+      <div class="ver-item">
+        <div class="ver-head">
+          <div>
+            <div class="ver-name">v1.0.0 <span class="ver-badge">最新版本</span></div>
+            <div class="ver-date">2026.10.23 · 656.85 KB</div>
+          </div>
+          <div class="ver-actions">
+            <a class="ver-download" href="https://wwbgu.lanzoum.com/iext44d10z8h" target="_blank">立即下载</a>
+            <button class="ver-toggle" onclick="toggleVer(this)">⌄</button>
+          </div>
+        </div>
+        <div class="ver-body">
+          首次发布 HeadCam SA 第一人称视角模组。
+          <br>适用于 GTA SA Android 2.00 32 位版本。
+          <br>包含头部视角、步行与奔跑反馈、武器后坐力、受击反馈和车辆视角反馈。
+          <br>提供复古镜头效果及可调整的摄像机设置面板。
+          <br>通过屏幕左上角蓝色按钮控制视角，长按进入设置。
+          <div class="ver-pw">下载地址：<a href="https://wwbgu.lanzoum.com/iext44d10z8h" target="_blank">蓝奏云下载</a><br>提取码：<strong>4nyk</strong></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-in">
+    <div>
+      <div class="footer-brand">GTA SA 模组站</div>
+      <p>专注于 GTA SA 安卓手机版模组与插件分享。所有资源均为免费分享，请勿倒卖。</p>
+    </div>
+    <div class="footer-col">
+      <h4>网站导航</h4>
+      <a href="../index.html">首页</a>
+      <a href="../page2/">第二页</a>
+    </div>
+    <div class="footer-col">
+      <h4>制作与维护</h4>
+      <a href="https://b23.tv/tECAcfc" target="_blank">流王星者_Streamer</a>
+    </div>
+    <div class="footer-col">
+      <h4>相关链接</h4>
+      <a href="https://b23.tv/AtXUMm9" target="_blank">举报资源倒卖</a>
+    </div>
+  </div>
+  <div class="footer-bot">
+    <span>© 2026 GTA SA 模组站</span>
+    <span>仅供学习与交流使用</span>
+  </div>
+</footer>
+
 <script>
-document.querySelectorAll(".gallery img").forEach(img=>{
-img.addEventListener("click",()=>{
-document.getElementById("viewerImg").src=img.src;
-document.getElementById("viewer").style.display="flex";
+window.openVersions = function() {
+  document.getElementById("versionsModal").classList.add("show");
+};
+
+window.closeModal = function(id) {
+  document.getElementById(id).classList.remove("show");
+};
+
+window.toggleVer = function(btn) {
+  const body = btn.closest(".ver-item").querySelector(".ver-body");
+  const isOpen = body.classList.contains("open");
+  if (isOpen) {
+    body.classList.remove("open");
+    btn.classList.remove("open");
+  } else {
+    body.classList.add("open");
+    btn.classList.add("open");
+  }
+};
+
+document.querySelectorAll(".modal").forEach(function(m) {
+  m.addEventListener("click", function(e) {
+    if (e.target === m) m.classList.remove("show");
+  });
 });
-});
-document.addEventListener("keydown",e=>{
-if(e.key==="Escape")document.getElementById("viewer").style.display="none";
+
+document.addEventListener("keydown", function(e) {
+  if (e.key === "Escape") {
+    document.querySelectorAll(".modal.show").forEach(el => el.classList.remove("show"));
+  }
 });
 </script>
 </body>
