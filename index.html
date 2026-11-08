@@ -1,0 +1,741 @@
+
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<meta content="#0a0a0c" name="theme-color"/>
+<meta content="GTA SA 原创模组站 · AML插件与CLEO插件免费分享。" name="description"/>
+<title>GTA SA 原创模组站 - 第 1 页</title>
+<link href="https://lwsjb.github.io/mod/" rel="canonical"/>
+<script>
+(function () {
+  if (window.location.pathname === "/mod/index.html") {
+    window.history.replaceState(window.history.state, "", "/mod/" + window.location.search + window.location.hash);
+  }
+})();
+</script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#0a0a0c;--card:#141418;--card2:#1a1a20;
+  --line:#26262e;--line2:#33333d;
+  --ink:#f4f4f6;--ink2:#a0a0ac;--dim:#5f5f6b;
+  --accent:#ff3d68;--accent2:#ff8a3d;
+  --max:1240px;
+}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;
+  background:var(--bg);color:var(--ink);line-height:1.7;overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;position:relative;
+}
+button,a{font:inherit}
+button{cursor:pointer}
+img{max-width:100%}
+a{color:inherit}
+
+body::before{
+  content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:
+    radial-gradient(900px 500px at 15% -5%,rgba(255,61,104,.12),transparent 60%),
+    radial-gradient(800px 500px at 90% 5%,rgba(255,138,61,.08),transparent 60%),
+    radial-gradient(700px 500px at 50% 100%,rgba(255,61,104,.06),transparent 60%);
+  animation:bgPulse 10s ease-in-out infinite;
+}
+@keyframes bgPulse{0%,100%{opacity:.7}50%{opacity:1}}
+.navbar,#homeView,.modal,.topbar,.footer{position:relative;z-index:1}
+
+.topbar{background:rgba(10,10,12,.7);border-bottom:1px solid var(--line);font-size:11.5px;color:var(--dim);letter-spacing:.5px;backdrop-filter:blur(12px)}
+.topbar-in{max-width:var(--max);margin:auto;padding:10px 28px;display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap}
+.topbar a{color:var(--ink2);text-decoration:none;margin-left:16px;transition:color .25s,transform .25s;display:inline-block}
+.topbar a:first-child{margin-left:0}
+.topbar a:hover{color:var(--accent);transform:translateY(-1px)}
+
+.navbar{position:sticky;top:0;z-index:1000;background:rgba(10,10,12,.88);backdrop-filter:blur(20px);border-bottom:1px solid var(--line);animation:navDrop .6s cubic-bezier(.22,1,.36,1)}
+@keyframes navDrop{from{transform:translateY(-100%);opacity:0}to{transform:translateY(0);opacity:1}}
+.nav-in{max-width:var(--max);height:72px;margin:auto;padding:0 28px;display:flex;align-items:center;gap:22px}
+.nav-logo{display:flex;align-items:center;gap:11px;font-size:19px;font-weight:900;color:#fff;text-decoration:none;letter-spacing:-.5px;white-space:nowrap;cursor:pointer}
+.nav-logo .mark{width:8px;height:22px;background:var(--accent);flex-shrink:0;transition:transform .3s}
+.nav-logo:hover .mark{transform:scaleY(1.2)}
+.nav-logo b{color:var(--accent)}
+.nav-menu{flex:1;display:flex;justify-content:center;gap:32px}
+.nav-menu a{position:relative;color:var(--ink2);text-decoration:none;font-size:13.5px;font-weight:650;letter-spacing:.5px;padding:6px 0;transition:color .25s;text-transform:uppercase;cursor:pointer}
+.nav-menu a::after{content:"";position:absolute;left:0;bottom:0;width:0;height:1px;background:var(--accent);transition:width .35s cubic-bezier(.22,1,.36,1);box-shadow:0 0 8px rgba(255,61,104,.6)}
+.nav-menu a:hover{color:#fff}
+.nav-menu a:hover::after{width:100%}
+.nav-search-box{position:relative;display:flex;align-items:center;width:260px;flex-shrink:0}
+.nav-search{flex:1;padding:10px 16px;background:var(--card);border:1px solid var(--line2);border-right:0;color:var(--ink);font-size:13px;outline:none;transition:border-color .25s,box-shadow .25s;min-width:0}
+.nav-search:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(255,61,104,.15)}
+.nav-search::placeholder{color:var(--dim)}
+.nav-search-btn{padding:10px 18px;border:1px solid var(--line2);background:var(--card);color:var(--ink2);font-size:12.5px;font-weight:750;letter-spacing:.5px;text-transform:uppercase;cursor:pointer;transition:all .3s;white-space:nowrap;position:relative;overflow:hidden}
+.nav-search-btn::after{content:"";position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.2),transparent);transition:left .6s}
+.nav-search-btn:hover{background:var(--accent);color:#0a0a0c;border-color:var(--accent);box-shadow:0 0 20px rgba(255,61,104,.5)}
+.nav-search-btn:hover::after{left:100%}
+.nav-cta{padding:11px 22px;border:0;border-radius:0;font-size:12.5px;font-weight:750;color:#0a0a0c;background:var(--accent);letter-spacing:.5px;transition:transform .25s,box-shadow .3s,background .3s;white-space:nowrap;text-transform:uppercase;position:relative;overflow:hidden}
+.nav-cta::after{content:"";position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.35),transparent);transition:left .7s}
+.nav-cta:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(255,61,104,.55)}
+.nav-cta:hover::after{left:100%}
+.nav-cta:active{transform:translateY(0) scale(.97)}
+
+.hero{max-width:var(--max);margin:auto;padding:80px 28px 40px}
+.hero-meta{display:flex;align-items:center;gap:14px;font-size:11.5px;color:var(--dim);letter-spacing:2.5px;text-transform:uppercase;font-weight:750;animation:fadeUp .7s ease both}
+.hero-meta .dot{width:6px;height:6px;background:var(--accent);box-shadow:0 0 12px var(--accent);animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.8)}}
+.hero h1{font-size:76px;line-height:1;letter-spacing:-3.5px;font-weight:900;color:#fff;margin:24px 0 26px;animation:fadeUp .9s ease .05s both}
+.hero h1 em{
+  font-style:normal;
+  background:linear-gradient(120deg,#ff3d68,#ff8a3d,#ff3d68);
+  background-size:200% auto;
+  -webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;
+  animation:shine 5s ease infinite;
+}
+@keyframes shine{0%,100%{background-position:0% center}50%{background-position:100% center}}
+.hero-sub{max-width:640px;font-size:16px;color:var(--ink2);line-height:1.8;animation:fadeUp .9s ease .12s both}
+.hero-btns{display:flex;gap:14px;flex-wrap:wrap;margin-top:34px;animation:fadeUp .9s ease .2s both}
+.btn-main{padding:16px 36px;border:0;border-radius:0;font-size:14px;font-weight:800;color:#0a0a0c;background:var(--accent);letter-spacing:.5px;text-transform:uppercase;transition:transform .25s,box-shadow .3s;position:relative;overflow:hidden}
+.btn-main::after{content:"";position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.35),transparent);transition:left .7s}
+.btn-main:hover{transform:translateY(-3px);box-shadow:0 16px 40px rgba(255,61,104,.5)}
+.btn-main:hover::after{left:100%}
+.btn-main:active{transform:translateY(-1px) scale(.98)}
+.btn-line{padding:15px 32px;border:1px solid var(--line2);border-radius:0;color:var(--ink);background:transparent;font-size:14px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;transition:all .3s;display:inline-block;cursor:pointer}
+.btn-line:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-3px);box-shadow:0 10px 30px rgba(255,61,104,.2)}
+
+.band{max-width:var(--max);margin:auto;padding:0 28px;display:flex;align-items:center;gap:18px}
+.band .no{font-size:12px;font-weight:800;color:var(--accent);letter-spacing:2px}
+.band .line{flex:1;height:1px;background:linear-gradient(90deg,var(--line2),var(--line),transparent)}
+.band .label{font-size:11.5px;color:var(--dim);letter-spacing:2.5px;text-transform:uppercase;font-weight:750}
+
+.feature{max-width:var(--max);margin:auto;padding:36px 28px 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:24px}
+.feature-card{
+  position:relative;display:grid;grid-template-columns:1fr;
+  background:var(--card);border:1px solid var(--line);cursor:pointer;overflow:hidden;
+  transition:border-color .3s,transform .5s cubic-bezier(.22,1,.36,1),box-shadow .5s;
+  animation:fadeUp .9s ease both;
+}
+.feature-card:hover{border-color:var(--line2);transform:translateY(-6px);box-shadow:0 26px 60px rgba(0,0,0,.55),0 0 40px rgba(255,61,104,.08)}
+.feature-img{position:relative;overflow:hidden;background:#0a0a0c;min-height:180px;aspect-ratio:16/9}
+.feature-img img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;transition:transform 1s cubic-bezier(.22,1,.36,1)}
+.feature-card:hover .feature-img img{transform:scale(1.06)}
+.feature-tag{position:absolute;top:12px;left:12px;padding:5px 12px;background:var(--accent);color:#0a0a0c;font-size:11px;font-weight:800;letter-spacing:1px;text-transform:uppercase;z-index:3;box-shadow:0 6px 20px rgba(255,61,104,.5)}
+
+.feature-body{padding:24px;display:flex;flex-direction:column;justify-content:center;gap:10px}
+.feature-no{font-size:12px;font-weight:800;color:var(--accent);letter-spacing:1px}
+.feature-title{font-size:22px;line-height:1.2;letter-spacing:-.5px;font-weight:900;color:#fff;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.feature-desc{font-size:13px;color:var(--ink2);line-height:1.6}
+.feature-meta{display:flex;gap:16px;font-size:12px;color:var(--dim);letter-spacing:.5px;padding-top:12px;border-top:1px solid var(--line);margin-top:4px;flex-wrap:wrap}
+.feature-meta b{color:#fff;font-weight:750;display:block;font-size:13px;margin-bottom:2px}
+.feature-meta span{font-size:10.5px;text-transform:uppercase;letter-spacing:1px}
+.feature-meta .upd b{color:var(--accent)}
+.feature-cta{margin-top:2px;display:inline-flex;align-items:center;gap:8px;font-size:12.5px;font-weight:800;color:var(--accent);letter-spacing:.5px;text-transform:uppercase}
+.feature-cta .arrow{transition:transform .35s cubic-bezier(.22,1,.36,1)}
+.feature-card:hover .feature-cta .arrow{transform:translateX(6px)}
+
+.update-banner{
+  margin-bottom:24px;padding:22px 24px;
+  background:linear-gradient(135deg,rgba(255,61,104,.12),rgba(255,138,61,.06));
+  border:1px solid rgba(255,61,104,.45);
+  border-left:4px solid var(--accent);
+  animation:fadeUp .6s ease both;
+  position:relative;overflow:hidden;
+}
+.update-banner::before{
+  content:"";position:absolute;top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,var(--accent),transparent);
+  animation:shine 3s ease infinite;
+}
+.update-banner .ub-head{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.update-banner .ub-tag{
+  padding:4px 10px;background:var(--accent);color:#0a0a0c;
+  font-size:11px;font-weight:900;letter-spacing:1.5px;text-transform:uppercase;
+  animation:updPulse 1.8s ease-in-out infinite;
+}
+.update-banner .ub-title{font-size:14px;font-weight:800;color:#fff;letter-spacing:.5px}
+.update-banner ul{list-style:none;padding:0;margin:0}
+.update-banner li{
+  font-size:13.5px;color:var(--ink2);line-height:1.9;padding-left:18px;position:relative;word-break:break-all;
+}
+.update-banner li::before{
+  content:"";position:absolute;left:0;top:12px;width:6px;height:6px;background:var(--accent);
+}
+
+.filterbar{max-width:var(--max);margin:auto;padding:26px 28px 0;display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.filterbar .flabel{font-size:12px;color:var(--dim);letter-spacing:1.5px;text-transform:uppercase;font-weight:750;margin-right:6px}
+.fbtn{padding:10px 20px;border:1px solid var(--line2);background:transparent;color:var(--ink2);font-size:12.5px;font-weight:750;letter-spacing:.5px;text-transform:uppercase;transition:all .3s;position:relative;overflow:hidden}
+.fbtn::after{content:"";position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.15),transparent);transition:left .6s}
+.fbtn:hover{color:#fff;border-color:var(--accent);transform:translateY(-2px);box-shadow:0 8px 22px rgba(255,61,104,.2)}
+.fbtn:hover::after{left:100%}
+.fbtn.active{background:var(--accent);color:#0a0a0c;border-color:var(--accent);box-shadow:0 8px 22px rgba(255,61,104,.4)}
+.btn-next-page{background:var(--accent);color:#0a0a0c;border:0;padding:10px 24px;font-size:12.5px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;transition:all .3s;text-decoration:none;margin-left:auto}
+.btn-next-page:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(255,61,104,.5)}
+
+.rail{max-width:var(--max);margin:auto;padding:36px 0 0}
+.rail-head{padding:0 28px;margin-bottom:18px;display:flex;justify-content:space-between;align-items:flex-end;gap:14px;flex-wrap:wrap}
+.rail-head h2{font-size:22px;font-weight:850;color:#fff;letter-spacing:-.5px}
+.rail-head .hint{font-size:11.5px;color:var(--dim);letter-spacing:1.5px;text-transform:uppercase}
+.rail-scroll{display:flex;gap:20px;overflow-x:auto;padding:0 28px 16px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch}
+.rail-scroll::-webkit-scrollbar{height:5px}
+.rail-scroll::-webkit-scrollbar-thumb{background:var(--line2)}
+.rail-card{
+  flex:0 0 340px;background:var(--card);border:1px solid var(--line);cursor:pointer;scroll-snap-align:start;
+  transition:border-color .3s,transform .5s cubic-bezier(.22,1,.36,1),box-shadow .5s;
+  animation:cardIn .7s cubic-bezier(.22,1,.36,1) both;
+}
+.rail-card:hover{border-color:var(--line2);transform:translateY(-8px);box-shadow:0 26px 60px rgba(0,0,0,.55),0 0 40px rgba(255,61,104,.08)}
+.rail-img{position:relative;aspect-ratio:16/10;overflow:hidden;background:#0a0a0c}
+.rail-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .9s cubic-bezier(.22,1,.36,1)}
+.rail-card:hover .rail-img img{transform:scale(1.08)}
+.rail-tag{position:absolute;top:14px;left:14px;padding:5px 11px;background:rgba(10,10,12,.85);backdrop-filter:blur(10px);color:#fff;font-size:10.5px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;border:1px solid rgba(255,255,255,.12)}
+.rail-body{padding:20px}
+.rail-title{font-size:16px;font-weight:800;color:#fff;line-height:1.35;margin-bottom:7px}
+.rail-desc{font-size:12.5px;color:var(--ink2);line-height:1.6;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;margin-bottom:14px}
+.rail-foot{display:flex;justify-content:space-between;align-items:center;padding-top:12px;border-top:1px solid var(--line);font-size:11px;color:var(--dim);letter-spacing:.5px}
+.rail-foot b{color:var(--accent);font-weight:800;font-size:12px}
+.rail-empty{padding:0 28px 40px;font-size:13px;color:var(--dim);letter-spacing:.5px}
+
+.numlist{max-width:var(--max);margin:auto;padding:50px 28px 70px}
+.num-item{
+  display:grid;grid-template-columns:70px 1fr auto;gap:24px;align-items:center;
+  padding:26px 0;border-bottom:1px solid var(--line);cursor:pointer;
+  transition:padding-left .35s cubic-bezier(.22,1,.36,1),border-color .3s,background .3s;
+  animation:cardIn .7s cubic-bezier(.22,1,.36,1) both;
+}
+.num-item:hover{padding-left:14px;border-color:var(--line2);background:linear-gradient(90deg,rgba(255,61,104,.04),transparent 60%)}
+.num-no{font-size:34px;font-weight:900;color:var(--line2);line-height:1;letter-spacing:-1.5px;transition:color .3s,transform .3s}
+.num-item:hover .num-no{color:var(--accent);transform:translateX(4px)}
+.num-main{min-width:0}
+.num-title{font-size:18px;font-weight:800;color:#fff;margin-bottom:6px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.num-tag{padding:2px 9px;font-size:10.5px;font-weight:800;letter-spacing:1px;color:var(--accent);border:1px solid rgba(255,61,104,.35);text-transform:uppercase}
+.num-desc{font-size:13px;color:var(--ink2);line-height:1.65;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.num-right{text-align:right;font-size:11.5px;color:var(--dim);letter-spacing:.5px;flex-shrink:0}
+.num-right b{display:block;color:#fff;font-size:13px;font-weight:750;margin-bottom:3px}
+.num-arrow{color:var(--dim);font-size:20px;margin-left:10px;transition:transform .35s,color .3s}
+.num-item:hover .num-arrow{color:var(--accent);transform:translateX(6px)}
+.num-empty{padding:40px 0;font-size:13px;color:var(--dim);letter-spacing:.5px}
+.num-divider{display:flex;align-items:center;gap:16px;padding:40px 0 20px;font-size:12px;color:var(--dim);letter-spacing:2px;text-transform:uppercase;font-weight:750;animation:fadeUp .6s ease both}
+.num-divider::before,.num-divider::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--line2),transparent)}
+
+.about{max-width:var(--max);margin:auto;padding:60px 28px 70px;border-top:1px solid var(--line)}
+.about-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-left:1px solid var(--line)}
+.about-card{padding:32px 28px;border-right:1px solid var(--line);transition:background .3s,transform .3s;animation:fadeUp .7s ease both}
+.about-card:hover{background:var(--card);transform:translateY(-3px)}
+.about-no{font-size:12px;font-weight:800;color:var(--accent);letter-spacing:2px;margin-bottom:18px}
+.about-card h3{font-size:17px;font-weight:850;color:#fff;margin-bottom:12px;letter-spacing:-.3px}
+.about-card p{font-size:13px;color:var(--ink2);line-height:1.8}
+
+.footer{border-top:1px solid var(--line);background:#0a0a0c;padding:56px 28px 30px}
+.footer-in{max-width:var(--max);margin:auto;display:grid;grid-template-columns:1.8fr 1fr 1fr 1fr;gap:44px;padding-bottom:34px;border-bottom:1px solid var(--line)}
+.footer-col h5{font-size:11.5px;color:var(--dim);letter-spacing:2px;text-transform:uppercase;margin-bottom:16px;font-weight:750}
+.footer-col p{font-size:13px;color:var(--ink2);line-height:1.8;max-width:340px}
+.footer-col a{display:block;font-size:13px;color:var(--ink2);text-decoration:none;margin-bottom:10px;transition:color .25s,transform .25s}
+.footer-col a:hover{color:var(--accent);transform:translateX(4px)}
+.footer-brand{display:flex;align-items:center;gap:11px;margin-bottom:14px}
+.footer-brand .mark{width:8px;height:22px;background:var(--accent)}
+.footer-brand b{color:#fff;font-size:16px;font-weight:850}
+.footer-bot{max-width:var(--max);margin:24px auto 0;display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;font-size:11.5px;color:var(--dim);letter-spacing:1px}
+
+.modal{display:none;position:fixed;inset:0;z-index:2000;padding:24px;background:rgba(0,0,0,.85);backdrop-filter:blur(12px);align-items:center;justify-content:center;animation:fadeIn .28s ease}
+.modal.show{display:flex}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+.modal-box{
+  position:relative;width:min(560px,100%);max-height:85vh;overflow:auto;
+  background:var(--card);border:1px solid var(--line2);
+  animation:popIn .4s cubic-bezier(.34,1.56,.64,1);
+  box-shadow:0 30px 80px rgba(0,0,0,.8);
+}
+@keyframes popIn{from{opacity:0;transform:scale(.94) translateY(12px)}to{opacity:1;transform:none}}
+.modal-close{position:absolute;right:16px;top:14px;width:36px;height:36px;border:1px solid var(--line2);background:transparent;color:var(--ink2);font-size:20px;z-index:5;transition:all .3s;display:flex;align-items:center;justify-content:center}
+.modal-close:hover{background:var(--accent);color:#0a0a0c;border-color:var(--accent);transform:rotate(90deg)}
+.modal-body{padding:32px}
+.modal-body h3{font-size:18px;color:#fff;margin-bottom:18px;padding-left:14px;border-left:3px solid var(--accent);font-weight:850}
+.modal-body p{font-size:13.5px;color:var(--ink2);line-height:1.9;margin-bottom:12px;word-break:break-all}
+.modal-body a{color:var(--accent);text-decoration:none}
+.modal-body a:hover{text-decoration:underline}
+
+.notice-box{text-align:center}
+.notice-box .notice-icon{
+  width:64px;height:64px;margin:0 auto 18px;
+  border-radius:50%;background:rgba(255,61,104,.15);
+  border:2px solid rgba(255,61,104,.4);
+  display:flex;align-items:center;justify-content:center;
+  font-size:28px;
+  animation:updPulse 2s ease-in-out infinite;
+}
+.notice-box h3{text-align:center;border:0;padding:0;font-size:19px;margin-bottom:14px}
+.notice-box p{text-align:center}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+@keyframes cardIn{from{opacity:0;transform:translateY(24px) scale(.97)}to{opacity:1;transform:none}}
+.rail-card:nth-child(1),.num-item:nth-child(1){animation-delay:.05s}
+.rail-card:nth-child(2),.num-item:nth-child(2){animation-delay:.12s}
+.rail-card:nth-child(3),.num-item:nth-child(3){animation-delay:.19s}
+.rail-card:nth-child(4),.num-item:nth-child(4){animation-delay:.26s}
+.rail-card:nth-child(5),.num-item:nth-child(5){animation-delay:.33s}
+.rail-card:nth-child(6),.num-item:nth-child(6){animation-delay:.4s}
+
+@media(max-width:960px){
+  .nav-menu{display:none}
+  .hero{padding:56px 20px 30px}
+  .hero h1{font-size:52px;letter-spacing:-2.5px}
+  .about-grid{grid-template-columns:1fr;border-left:0}
+  .about-card{border-right:0;border-bottom:1px solid var(--line)}
+  .footer-in{grid-template-columns:1fr 1fr;gap:32px}
+}
+
+@media(max-width:560px){
+  .topbar{display:none}
+  .nav-in{flex-wrap:wrap;height:auto;padding:12px 16px;gap:10px}
+  .nav-logo{font-size:16px}
+  .nav-cta{padding:9px 14px;font-size:11px}
+  .nav-search-box{width:100%;order:99;margin-top:2px}
+  .nav-search{padding:11px 14px;font-size:13.5px}
+  .nav-search-btn{padding:11px 16px;font-size:12px}
+
+  .hero{padding:40px 16px 26px}
+  .hero h1{font-size:36px;letter-spacing:-1.6px}
+  .hero-sub{font-size:14px}
+  .hero-btns>*{flex:1;text-align:center;padding:14px 20px;font-size:13px}
+
+  .band{padding:0 16px}
+  .feature{padding:24px 12px 0;grid-template-columns:1fr 1fr;gap:10px}
+  .feature-img{min-height:90px}
+  .feature-tag{top:6px;left:6px;padding:2px 5px;font-size:8px;letter-spacing:0}
+  .feature-body{padding:10px;gap:6px}
+  .feature-no{font-size:9px;letter-spacing:0}
+  .feature-title{font-size:12px;gap:4px;letter-spacing:0;line-height:1.3}
+  .feature-desc{font-size:10px;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+  .feature-meta{gap:4px 8px;padding-top:8px;margin-top:0;display:grid;grid-template-columns:1fr 1fr}
+  .feature-meta b{font-size:11px;margin-bottom:0}
+  .feature-meta span{font-size:8px;letter-spacing:0}
+  .feature-cta{font-size:10px;margin-top:2px}
+
+  .filterbar{padding:22px 16px 0}
+  .fbtn{padding:8px 12px;font-size:11px}
+  .btn-next-page{margin-left:0;width:100%;text-align:center}
+
+  .rail{padding:28px 0 0}
+  .rail-head{padding:0 16px}
+  .rail-head h2{font-size:19px}
+  .rail-scroll{padding:0 16px 14px;gap:14px}
+  .rail-card{flex:0 0 82vw}
+
+  .numlist{padding:32px 16px 46px}
+  .num-item{grid-template-columns:44px 1fr;gap:14px;padding:18px 0}
+  .num-no{font-size:22px}
+  .num-title{font-size:15px}
+  .num-desc{font-size:12.5px}
+  .num-right{grid-column:2;text-align:left;display:flex;gap:14px;align-items:center;margin-top:6px}
+  .num-right b{display:inline;margin:0}
+  .num-arrow{display:none}
+
+  .about{padding:40px 16px 46px}
+  .about-card{padding:22px 18px}
+
+  .footer{padding:40px 16px 24px}
+  .footer-in{grid-template-columns:1fr;gap:26px}
+  .footer-bot{flex-direction:column;text-align:center}
+
+  .modal{padding:16px}
+  .modal-body{padding:24px}
+  .modal-body h3{font-size:16px}
+}
+@media(prefers-reduced-motion:reduce){*,*:before,:after{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
+
+.filterbar a.fbtn{display:inline-block;text-decoration:none}
+</style>
+</head>
+<body>
+<div class="topbar">
+<div class="topbar-in">
+<span>GTA SA 安卓手机版模组与插件分享 · 全部免费</span>
+<span>
+<a href="javascript:void(0)" onclick="openReport()">举报倒卖</a>
+<a href="javascript:void(0)" onclick="openDisclaimer()">免责声明</a>
+</span>
+</div>
+</div>
+<nav class="navbar">
+<div class="nav-in">
+<a class="nav-logo" href="./">
+<span class="mark"></span>
+      GTA SA <b>模组站</b>
+</a>
+<div class="nav-menu">
+<a href="javascript:void(0)" onclick="document.getElementById('mods').scrollIntoView({behavior:'smooth'})">模组</a>
+<a href="javascript:void(0)" onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'})">关于</a>
+<a href="javascript:void(0)" onclick="openDisclaimer()">免责声明</a>
+</div>
+<div class="nav-search-box">
+<input class="nav-search" id="searchInput" onkeydown="if(event.key==='Enter'){event.preventDefault();onSearch();}" placeholder="搜索模组..." type="text"/>
+<button class="nav-search-btn" onclick="onSearch()">搜索</button>
+</div>
+<button class="nav-cta" onclick="document.getElementById('mods').scrollIntoView({behavior:'smooth'})">浏览模组</button>
+</div>
+</nav>
+<div id="homeView">
+<section class="hero">
+<div class="hero-meta"><span class="dot"></span> GTA SA MOBILE MODS · EST. 2026</div>
+<h1>GTA SA <em>原创模组站</em></h1>
+<p class="hero-sub">专注 GTA SA 安卓手机版模组与插件分享。AML 插件、CLEO 插件持续更新，全部免费。</p>
+<div class="hero-btns">
+<button class="btn-main" onclick="document.getElementById('mods').scrollIntoView({behavior:'smooth'})">⬇ 浏览模组</button>
+<button class="btn-line" onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'})">了解本站</button>
+</div>
+</section>
+<div class="band" id="mods">
+<span class="no">01</span>
+<span class="line"></span>
+<span class="label">Headline · 头版精选</span>
+</div>
+<div class="feature">
+<!-- AXON BODY 3 -->
+<div class="feature-card" data-tag="AML插件" data-title="AXON BODY 3 执法记录仪模组" onclick="window.location.href='axon-body3/'">
+<div class="feature-img">
+<img alt="" onerror="this.style.display='none'" src="Axon-Logo.jpg"/>
+<span class="feature-tag">AML插件</span>
+</div>
+<div class="feature-body">
+<span class="feature-no">No.01 · 执法记录仪</span>
+<h3 class="feature-title">AXON BODY 3 执法记录仪模组</h3>
+<p class="feature-desc">GTASA安卓SO插件，复刻AXON Body3执法记录仪，警向角色扮演使用。</p>
+<div class="feature-meta">
+<div><b>v3.1.1b</b><span>版本</span></div>
+<div><b>1.98 MB</b><span>大小</span></div>
+<div><b>2026.10.14</b><span>发布</span></div>
+<div class="upd"><b>2026.10.17</b><span>更新</span></div>
+</div>
+<span class="feature-cta">查看详情 <span class="arrow">→</span></span>
+</div>
+</div>
+<!-- AML 纯净版 -->
+<div class="feature-card" data-tag="其它" data-title="AML纯净版安装包插件" onclick="window.location.href='aml-clean/'">
+<div class="feature-img">
+<img alt="" onerror="this.style.display='none'" src="xperiaicon.png"/>
+<span class="feature-tag">其它</span>
+</div>
+<div class="feature-body">
+<span class="feature-no">No.02 · AML纯净版</span>
+<h3 class="feature-title">AML纯净版安装包插件</h3>
+<p class="feature-desc">这个是AML的纯净版插件，若你使用本站插件模组遇到闪退，可以搭配本安装包解决。</p>
+<div class="feature-meta">
+<div><b>v1.0</b><span>版本</span></div>
+<div><b>18.14M</b><span>大小</span></div>
+<div><b>2026.10.17</b><span>发布</span></div>
+<div><b>暂无</b><span>更新</span></div>
+</div>
+<span class="feature-cta">查看详情 <span class="arrow">→</span></span>
+</div>
+</div>
+<!-- Zmodeler流王版 -->
+<div class="feature-card" data-date="2026.10.26" data-desc="Zmodeler流王版（标准版），专为GTASA美警打造，全网独家汉化，重构界面动效与主题。" data-detail="Zmodeler流王版（标准版），是在原版Zmodeler基础上改出来的改版，专门给做GTASA美警车辆的人用。
+做了独家汉化，不用再对着外文界面折腾。
+整套UI换了新主题，所有按钮、面板都加了动效和光影反馈，原版死板的交互手感全部改掉。
+解决了原版对齐、复制部件麻烦的老问题，新增克隆批量对齐，父子层级也能保留。
+加了单选逐个重命名，可以挑哪个就改哪个名字，同时也支持多选、批量删除。
+原版建模、贴图管理、导入导出这些核心功能全都保留，兼容圣安地列斯的模组格式。
+还有别的小功能，自己慢慢试。
+本程序属于二改版本，不是官方原版。" data-download="https://wwbgu.lanzoum.com/ibVaP4dh2y6h" data-img="Qoder_1.jpg" data-password="174t" data-preview="Qoder_1.jpg,Qoder_2.jpg,Qoder_3.jpg,Qoder_4.jpg,Qoder_5.jpg,Qoder_6.jpg,Qoder_7.jpg,Qoder_8.jpg" data-publish="2026.10.25" data-size="9.02M" data-tag="其它" data-title="Zmodeler流王版" data-version="v1.0.3" onclick="window.location.href='zmodeler/'">
+<div class="feature-img">
+<img alt="" onerror="this.style.display='none'" src="Qoder_1.jpg"/>
+<span class="feature-tag">其它</span>
+</div>
+<div class="feature-body">
+<span class="feature-no">No.03 · 建模工具</span>
+<h3 class="feature-title">Zmodeler流王版</h3>
+<p class="feature-desc">Zmodeler流王版（标准版），专为GTASA美警打造，全网独家汉化，重构界面动效与主题。</p>
+<div class="feature-meta">
+<div><b>v1.0.3</b><span>版本</span></div>
+<div><b>9.02M</b><span>大小</span></div>
+<div><b>2026.10.25</b><span>发布</span></div>
+<div class="upd"><b>2026.10.26</b><span>更新</span></div>
+</div>
+<span class="feature-cta">查看详情 <span class="arrow">→</span></span>
+</div>
+</div>
+<!-- AML 汉化补丁 -->
+<div class="feature-card" data-tag="AML插件" data-title="AML警察模组 中文汉化补丁" onclick="window.location.href='modpolicia-cn/'">
+<div class="feature-img">
+<img alt="" onerror="this.style.display='none'" src="FM.png"/>
+<span class="feature-tag">AML插件</span>
+</div>
+<div class="feature-body">
+<span class="feature-no">No.04 · 汉化补丁</span>
+<h3 class="feature-title">AML警察模组 中文汉化补丁</h3>
+<p class="feature-desc">为安卓GTASA、AML的 ModPolicia 1.9.3 警察模组完整简体汉化。</p>
+<div class="feature-meta">
+<div><b>V1.0</b><span>版本</span></div>
+<div><b>2.28M</b><span>大小</span></div>
+<div><b>2026.10.17</b><span>发布</span></div>
+<div><b>暂无</b><span>更新</span></div>
+</div>
+<span class="feature-cta">查看详情 <span class="arrow">→</span></span>
+</div>
+</div>
+<!-- HeadCam SA -->
+<div class="feature-card" data-tag="AML插件" data-title="HeadCam SA 第一人称视角模组" onclick="window.location.href='headcam-sa/'">
+<div class="feature-img">
+<img alt="" onerror="this.style.display='none'" src="fm.png"/>
+<span class="feature-tag">AML插件</span>
+</div>
+<div class="feature-body">
+<span class="feature-no">No.05 · 第一人称</span>
+<h3 class="feature-title">HeadCam SA 第一人称视角模组</h3>
+<p class="feature-desc">为GTA SA安卓版打造的头戴式第一人称模组，带物理反馈、镜头惯性与复古滤镜。</p>
+<div class="feature-meta">
+<div><b>v1.0.0</b><span>版本</span></div>
+<div><b>656.85 KB</b><span>大小</span></div>
+<div><b>2026.10.23</b><span>发布</span></div>
+<div><b>暂无</b><span>更新</span></div>
+</div>
+<span class="feature-cta">查看详情 <span class="arrow">→</span></span>
+</div>
+</div>
+<!-- 道奇Charger2016 -->
+<div class="feature-card" data-date="2026.10.28" data-desc="2016道奇Charger警车，全车多位置爆闪灯，经典圣诞树魔改风格，灯光效果丰富。" data-detail="2016道奇Charger圣诞树魔改警车，车身多处加装爆闪灯组，多色灯光错落排布，频闪效果丰富，视觉冲击力强。" data-download="https://wwbgu.lanzoum.com/iaFWr4ds0s1a" data-img="dq4.jpg" data-password="eo94" data-preview="dq1.jpg,dq2.jpg,dq3.jpg,dq4.jpg,dq5.jpg,dq6.jpg,dq7.jpg,dq8.jpg" data-publish="2026.10.28" data-size="28.43M" data-tag="模型" data-title="道奇Charger2016" data-version="v1.0.1" onclick="window.location.href='charger/'">
+<div class="feature-img">
+<img alt="" onerror="this.style.display='none'" src="dq4.jpg"/>
+<span class="feature-tag">模型</span>
+</div>
+<div class="feature-body">
+<span class="feature-no">No.06 · 载具模型</span>
+<h3 class="feature-title">道奇Charger2016</h3>
+<p class="feature-desc">2016道奇Charger警车，全车多位置爆闪灯，经典圣诞树魔改风格，灯光效果丰富。</p>
+<div class="feature-meta">
+<div><b>v1.0.1</b><span>版本</span></div>
+<div><b>28.43M</b><span>大小</span></div>
+<div><b>2026.10.28</b><span>发布</span></div>
+<div class="upd"><b>2026.10.28</b><span>更新</span></div>
+</div>
+<span class="feature-cta">查看详情 <span class="arrow">→</span></span>
+</div>
+</div>
+<!-- CinematicIdleCamera_SA：默认隐藏，分类为 AML插件 时显示 -->
+<div class="feature-card" data-date="暂无" data-desc="CinematicIdleCamera 是GTA圣安地列斯安卓32位专用空闲电影运镜模组。" data-detail="gtasa安卓32位AML模组，车辆停稳不动视角就自动触发多套电影运镜，支持BGM、手持抖动、灯光修复，全部参数可配置，方便截图录视频。" data-download="https://wwbgu.lanzoum.com/igpfb4dwe4xg" data-img="1793277212963.png" data-password="bm85" data-preview="1793277212963.png" data-publish="2026.10.29" data-size="8.71M" data-tag="AML插件" data-title="CinematicIdleCamera_SA" data-version="v1.0" onclick="window.location.href='cinematic/'" style="display:none;">
+<div class="feature-img">
+<img alt="" onerror="this.style.display='none'" src="1793277212963.png"/>
+<span class="feature-tag">AML插件</span>
+</div>
+<div class="feature-body">
+<span class="feature-no">No.07 · 电影运镜</span>
+<h3 class="feature-title">CinematicIdleCamera_SA</h3>
+<p class="feature-desc">CinematicIdleCamera 是GTA圣安地列斯安卓32位专用空闲电影运镜模组。</p>
+<div class="feature-meta">
+<div><b>v1.0</b><span>版本</span></div>
+<div><b>8.71M</b><span>大小</span></div>
+<div><b>2026.10.29</b><span>发布</span></div>
+<div><b>暂无</b><span>更新</span></div>
+</div>
+<span class="feature-cta">查看详情 <span class="arrow">→</span></span>
+</div>
+</div>
+</div>
+<div class="filterbar"><span class="flabel">分类：</span>
+<a class="fbtn" href="category/all/">全部</a>
+<a class="fbtn" href="category/aml/">AML插件</a>
+<a class="fbtn" href="category/cleo/">CLEO插件</a>
+<a class="fbtn" href="category/models/">模型</a>
+<a class="fbtn" href="category/other/">其它</a>
+<a class="btn-next-page" href="page2/">下一页 →</a></div>
+<div class="rail">
+<div class="rail-head">
+<h2>精选模组</h2>
+<span class="hint">← 左右滑动 →</span>
+</div>
+<div class="rail-scroll" id="railScroll"></div>
+<div class="rail-empty" id="railEmpty">暂无精选模组，敬请期待。</div>
+</div>
+<div class="band" style="padding-top:56px">
+<span class="no">02</span>
+<span class="line"></span>
+<span class="label">Index · 全部模组</span>
+</div>
+<div class="numlist" id="numList">
+<div class="num-empty" id="numEmpty">暂无模组，敬请期待。</div>
+</div>
+<div class="about" id="about">
+<div class="band" style="padding:0 0 30px 0">
+<span class="no">03</span>
+<span class="line"></span>
+<span class="label">About · 关于本站</span>
+</div>
+<div class="about-grid">
+<div class="about-card">
+<div class="about-no">01 / 免费</div>
+<h3>完全免费</h3>
+<p>本站所有模组与插件均免费分享，禁止任何形式的倒卖、收费打包或冒充原创发布。</p>
+</div>
+<div class="about-card">
+<div class="about-no">02 / 安全</div>
+<h3>安全使用</h3>
+<p>所有资源经过整理与兼容测试，安装前请阅读对应模组说明，注意备份游戏数据。</p>
+</div>
+<div class="about-card">
+<div class="about-no">03 / 反馈</div>
+<h3>反馈与举报</h3>
+<p>发现链接失效或有人倒卖，可通过作者主页反馈，感谢大家监督。</p>
+</div>
+</div>
+</div>
+<footer class="footer">
+<div class="footer-in">
+<div class="footer-col">
+<div class="footer-brand"><span class="mark"></span><b>GTA SA 原创模组站</b></div>
+<p>专注 GTA SA 安卓手机版模组与插件分享，持续更新，全部免费。</p>
+</div>
+<div class="footer-col">
+<h5>导航</h5>
+<a href="javascript:void(0)" onclick="document.getElementById('mods').scrollIntoView({behavior:'smooth'})">模组</a>
+<a href="javascript:void(0)" onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'})">关于</a>
+<a href="javascript:void(0)" onclick="openDisclaimer()">免责声明</a>
+</div>
+<div class="footer-col">
+<h5>制作</h5>
+<a href="https://b23.tv/tECAcfc" rel="noopener" target="_blank">流王星者_Streamer</a>
+</div>
+<div class="footer-col">
+<h5>相关</h5>
+<a href="javascript:void(0)" onclick="openReport()">举报倒卖</a>
+</div>
+</div>
+<div class="footer-bot">
+<span>GTA SA ORIGINAL MODS · FREE SHARING</span>
+<span>© 2026 保留所有权利</span>
+</div>
+</footer>
+</div>
+<div class="modal" id="noticeModal">
+<div class="modal-box">
+<button class="modal-close" onclick="closeModal('noticeModal')">×</button>
+<div class="modal-body notice-box">
+<div class="notice-icon">🛠️</div>
+<h3>网站可能正在更新</h3>
+<p>如果遇到网站点击没反应、下载没反应，或者任何问题，那是我正在更新修复网站。</p>
+<p>请过 2 分钟后再试。</p>
+<button onclick="closeModal('noticeModal')" style="margin-top:18px;width:100%;padding:14px;border:0;background:var(--accent);color:#0a0a0c;font-size:14px;font-weight:800;letter-spacing:1px;text-transform:uppercase;cursor:pointer">我知道了</button>
+</div>
+</div>
+</div>
+<div class="modal" id="disclaimer">
+<div class="modal-box">
+<button class="modal-close" onclick="closeModal('disclaimer')">×</button>
+<div class="modal-body">
+<h3>免责声明</h3>
+<p>本站所有模组与插件仅供个人学习、交流与娱乐使用。除原创内容外，其余资源均来自互联网收集、整合、兼容与调试，相关权利归原作者或权利人所有。</p>
+<p>本站免费分享，不代表对第三方资源拥有版权或商业授权。使用者应自行承担使用相关资源产生的风险。</p>
+</div>
+</div>
+</div>
+<div class="modal" id="report">
+<div class="modal-box">
+<button class="modal-close" onclick="closeModal('report')">×</button>
+<div class="modal-body">
+<h3>举报倒卖</h3>
+<p>如果发现有人收费售卖、冒充原创或二次打包出售本站模组，可以整理相关账号、截图及链接后联系作者反馈。</p>
+<p><b>反馈主页：</b><a href="https://b23.tv/AtXUMm9" rel="noopener" target="_blank">https://b23.tv/AtXUMm9</a></p>
+</div>
+</div>
+</div>
+<div class="modal" id="exitModal">
+<div class="modal-box">
+<button class="modal-close" onclick="closeModal('exitModal')">×</button>
+<div class="modal-body">
+<h3>确定要离开吗？</h3>
+<p>再按一次返回键将退出本网站。</p>
+<p style="color:var(--dim);font-size:12.5px;margin-bottom:0;">按「留下」或点右上角 × 关闭本提示，继续浏览。</p>
+<div style="display:flex;gap:12px;margin-top:20px">
+<button onclick="closeModal('exitModal')" style="flex:1;padding:13px;border:1px solid var(--line2);background:transparent;color:var(--ink);font-size:13px;font-weight:750;letter-spacing:.5px;text-transform:uppercase;transition:.25s">留下</button>
+<button onclick="confirmExit()" style="flex:1;padding:13px;border:0;background:var(--accent);color:#0a0a0c;font-size:13px;font-weight:750;letter-spacing:.5px;text-transform:uppercase;transition:.25s">退出网站</button>
+</div>
+</div>
+</div>
+</div>
+<script>
+(function(){
+  "use strict";
+
+  let allowExit = false;
+
+  function updateEmptyStates() {
+    const railAll = document.querySelectorAll("#railScroll .rail-card");
+    const numAll = document.querySelectorAll("#numList .num-item");
+    const railVisible = Array.from(railAll).filter(el => el.style.display !== "none").length;
+    const numVisible = Array.from(numAll).filter(el => el.style.display !== "none").length;
+    document.getElementById("railEmpty").style.display = railVisible === 0 ? "block" : "none";
+    document.getElementById("numEmpty").style.display = numVisible === 0 ? "block" : "none";
+  }
+
+  window.onSearch = function() {
+    const keywordEl = document.getElementById("searchInput");
+    const keyword = keywordEl ? keywordEl.value.trim().toLowerCase() : "";
+    document.querySelectorAll(".feature-card").forEach(el => {
+      const title = (el.dataset.title || el.querySelector(".feature-title")?.textContent || "").toLowerCase();
+      const desc = (el.querySelector(".feature-desc")?.textContent || "").toLowerCase();
+      el.style.display = (!keyword || title.includes(keyword) || desc.includes(keyword)) ? "" : "none";
+    });
+    document.getElementById("mods").scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+
+  window.openDisclaimer = function() {
+    document.getElementById("disclaimer").classList.add("show");
+  };
+
+  window.openReport = function() {
+    document.getElementById("report").classList.add("show");
+  };
+
+  window.closeModal = function(id) {
+    document.getElementById(id).classList.remove("show");
+  };
+
+  window.confirmExit = function() {
+    allowExit = true;
+    document.getElementById("exitModal").classList.remove("show");
+    let back = 0;
+    while (back < 20) {
+      back++;
+      history.back();
+    }
+    setTimeout(function() {
+      window.location.href = "about:blank";
+    }, 200);
+  };
+
+  document.querySelectorAll(".modal").forEach(function(m) {
+    m.addEventListener("click", function(e) {
+      if (e.target === m) m.classList.remove("show");
+    });
+  });
+
+  history.replaceState({ v: 0 }, "", "");
+  history.pushState({ v: 1 }, "", "");
+
+  window.addEventListener("popstate", function() {
+    if (allowExit) return;
+
+    if (document.querySelector(".modal.show")) {
+      document.querySelectorAll(".modal.show").forEach(el => el.classList.remove("show"));
+      history.pushState({ v: 1 }, "", "");
+      return;
+    }
+
+    history.pushState({ v: 1 }, "", "");
+    document.getElementById("exitModal").classList.add("show");
+  });
+
+  document.addEventListener("keydown", function(e) {
+    if (e.key === "Escape") {
+      document.querySelectorAll(".modal.show").forEach(el => el.classList.remove("show"));
+    }
+  });
+
+  setTimeout(function() {
+    document.getElementById("noticeModal").classList.add("show");
+  }, 400);
+
+  updateEmptyStates();
+})();
+</script>
+</body>
+</html>
