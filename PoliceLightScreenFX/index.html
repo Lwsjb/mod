@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#0a0a0c">
+<meta name="description" content="PoliceLightScreenFX：为 GTA SA 手机版添加动态警灯屏幕特效。">
+<title>PoliceLightScreenFX - GTA SA 原创模组站</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0a0a0c;--card:#141418;--line:#26262e;--line2:#33333d;--ink:#f4f4f6;--ink2:#a0a0ac;--dim:#5f5f6b;--accent:#ff3d68;--max:1120px}
+body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--ink);line-height:1.7;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+body:before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(900px 500px at 15% -5%,rgba(255,61,104,.12),transparent 60%),radial-gradient(800px 500px at 90% 5%,rgba(255,138,61,.08),transparent 60%)}
+a{color:inherit}
+.navbar{position:sticky;top:0;z-index:10;background:rgba(10,10,12,.9);backdrop-filter:blur(20px);border-bottom:1px solid var(--line)}
+.nav-in{max-width:var(--max);height:72px;margin:auto;padding:0 28px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.nav-logo{display:flex;align-items:center;gap:11px;font-size:19px;font-weight:900;color:#fff;text-decoration:none;white-space:nowrap}.mark{width:8px;height:22px;background:var(--accent);display:inline-block}.nav-logo b{color:var(--accent)}
+.nav-menu{display:flex;gap:30px}.nav-menu a{color:var(--ink2);font-size:13px;text-decoration:none}.nav-menu a:hover{color:#fff}
+.nav-cta{padding:10px 18px;background:var(--accent);color:#0a0a0c;text-decoration:none;font-size:12px;font-weight:800}
+.detail{max-width:var(--max);margin:auto;padding:34px 28px 70px}.back{display:inline-block;color:var(--ink2);font-size:13px;text-decoration:none;margin-bottom:24px}.back:hover{color:var(--accent)}
+.grid{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(260px,.75fr);gap:30px;align-items:start}
+h1{font-size:clamp(26px,4vw,38px);line-height:1.2;letter-spacing:-1px;margin-bottom:20px;color:#fff;overflow-wrap:anywhere}
+.preview{background:#111116;border:1px solid var(--line);overflow:hidden}.preview img{display:block;width:100%;height:auto;max-height:560px;object-fit:contain}
+.desc{margin-top:22px;padding:26px;background:var(--card);border:1px solid var(--line);color:var(--ink2);font-size:14px;white-space:pre-line}
+.side{position:sticky;top:96px;background:var(--card);border:1px solid var(--line);padding:24px}.tag{display:inline-block;background:var(--accent);color:#0a0a0c;padding:3px 9px;font-size:10px;font-weight:900;margin-bottom:16px}.side h2{font-size:18px;margin-bottom:18px}.meta{display:grid;grid-template-columns:1fr 1fr;gap:16px;padding:16px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}.meta b{display:block;color:#fff;font-size:15px}.meta span{font-size:11px;color:var(--dim)}
+.download{display:block;margin-top:20px;padding:14px;text-align:center;background:var(--accent);color:#0a0a0c;text-decoration:none;font-weight:900;font-size:14px;transition:.25s}.download:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(255,61,104,.25)}.password{text-align:center;margin-top:12px;color:var(--ink2);font-size:13px}.password b{color:#fff;letter-spacing:1px}.hint{font-size:11px;color:var(--dim);margin-top:14px;text-align:center}
+.footer{border-top:1px solid var(--line);padding:26px;text-align:center;color:var(--dim);font-size:11px;letter-spacing:1px}
+@media(max-width:760px){.nav-in{height:auto;min-height:64px;padding:12px 16px;flex-wrap:wrap}.nav-menu{display:none}.detail{padding:24px 16px 50px}.grid{grid-template-columns:1fr;gap:18px}.side{position:static}.desc{padding:20px;font-size:13px}}
+</style>
+</head>
+<body>
+<nav class="navbar"><div class="nav-in">
+<a class="nav-logo" href="../index.html"><span class="mark"></span>GTA SA <b>模组站</b></a>
+<div class="nav-menu"><a href="../index.html">首页</a><a href="../page2/">第二页</a></div>
+<a class="nav-cta" href="../page2/">返回第二页</a>
+</div></nav>
+<main class="detail">
+<a class="back" href="../page2/">← 返回第二页</a>
+<div class="grid">
+<section>
+<h1>PoliceLightScreenFX</h1>
+<div class="preview"><img src="../Sloane.png" alt="PoliceLightScreenFX 动态警灯屏幕特效封面"></div>
+<div class="desc">PoliceLightScreenFX 是一款为 GTA SA 手机版打造的警灯屏幕特效插件。
+
+当玩家进入通缉状态时，屏幕将呈现动态红蓝警灯闪烁效果，并加入环境色彩反射、柔和光雾、径向光晕和暗角效果，模拟警车警灯对周围环境及玩家视野的光线影响。
+
+随着通缉等级变化，警灯闪烁节奏也会随之增强，让警方追捕过程更具紧张感和沉浸感。</div>
+</section>
+<aside class="side">
+<span class="tag">AML 插件</span>
+<h2>模组信息</h2>
+<div class="meta">
+<div><b>1.0</b><span>版本</span></div><div><b>870.88k</b><span>大小</span></div>
+<div><b>2026.11.11</b><span>发布时间</span></div><div><b>暂无</b><span>更新日期</span></div>
+</div>
+<a class="download" href="https://wwbgu.lanzoum.com/idFBm4fjjpoh" target="_blank" rel="noopener noreferrer">前往下载 →</a>
+<div class="password">蓝奏云提取码：<b>1axf</b></div>
+<div class="hint">点击下载按钮后将跳转至蓝奏云页面</div>
+</aside>
+</div>
+</main>
+<footer class="footer">GTA SA ORIGINAL MODS · FREE SHARING · © 2026</footer>
+</body>
+</html>
