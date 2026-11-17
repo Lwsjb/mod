@@ -57,6 +57,37 @@ body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;bac
 .detail-download:active{transform:translateY(-1px) scale(.98)}
 .detail-password{text-align:center;font-size:13px;color:var(--dim);margin-top:-4px;letter-spacing:.5px}.detail-password b{color:var(--accent);font-weight:850}
 @keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+
+.modal{display:none;position:fixed;inset:0;z-index:2000;padding:24px;background:rgba(0,0,0,.85);backdrop-filter:blur(12px);align-items:center;justify-content:center;animation:fadeIn .28s ease}
+.modal.show{display:flex}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+.modal-box{position:relative;width:min(560px,100%);max-height:85vh;overflow:auto;background:var(--card);border:1px solid var(--line2);animation:popIn .4s cubic-bezier(.34,1.56,.64,1);box-shadow:0 30px 80px rgba(0,0,0,.8)}
+@keyframes popIn{from{opacity:0;transform:scale(.94) translateY(12px)}to{opacity:1;transform:none}}
+.modal-close{position:absolute;right:16px;top:14px;width:36px;height:36px;border:1px solid var(--line2);background:transparent;color:var(--ink2);font-size:20px;z-index:5;transition:all .3s;display:flex;align-items:center;justify-content:center}
+.modal-close:hover{background:var(--accent);color:#0a0a0c;border-color:var(--accent);transform:rotate(90deg)}
+.modal-body{padding:32px}
+.modal-body h3{font-size:18px;color:#fff;margin-bottom:18px;padding-left:14px;border-left:3px solid var(--accent);font-weight:850}
+.ver-item{border:1px solid var(--line);margin-bottom:14px;background:var(--card2);transition:border-color .3s,background .3s}
+.ver-item:hover{border-color:var(--line2)}
+.ver-item.latest{border-color:rgba(255,61,104,.5);background:linear-gradient(135deg,rgba(255,61,104,.06),transparent)}
+.ver-head{display:flex;align-items:center;gap:14px;padding:16px 18px;flex-wrap:wrap}
+.ver-name{font-size:15.5px;font-weight:850;color:#fff;letter-spacing:-.3px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.ver-badge{padding:3px 9px;font-size:10px;font-weight:900;letter-spacing:1.5px;text-transform:uppercase;color:#0a0a0c;background:var(--accent)}
+.ver-date{font-size:12px;color:var(--dim);letter-spacing:.5px}
+.ver-actions{margin-left:auto;display:flex;align-items:center;gap:10px}
+.ver-download{display:flex;align-items:center;justify-content:center;min-width:88px;height:38px;padding:0 20px;font-size:12.5px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;color:#0a0a0c!important;background:var(--accent);text-decoration:none;transition:transform .25s,box-shadow .3s;white-space:nowrap;border:0;line-height:1}
+.ver-download:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(255,61,104,.5)}
+.ver-toggle{width:38px;height:38px;border:1px solid var(--line2);background:transparent;color:var(--ink2);font-size:14px;display:flex;align-items:center;justify-content:center;transition:all .3s;flex-shrink:0}
+.ver-toggle:hover{color:var(--accent);border-color:var(--accent)}
+.ver-toggle.open{transform:rotate(180deg);color:var(--accent);border-color:var(--accent)}
+.ver-body{max-height:0;overflow:hidden;transition:max-height .4s cubic-bezier(.22,1,.36,1),padding .4s cubic-bezier(.22,1,.36,1);padding:0 18px}
+.ver-body.open{max-height:800px;padding:0 18px 18px}
+.ver-body p{font-size:13px;color:var(--ink2);line-height:1.85;margin:0 0 8px;word-break:break-all}
+.ver-body p:last-child{margin-bottom:0}
+.ver-pw{display:inline-block;margin-top:8px;padding:6px 12px;background:#0f1218;border:1px solid var(--line);font-size:12.5px;color:var(--ink2);letter-spacing:.5px}
+.ver-pw b{color:var(--accent);font-weight:850}
+@media(max-width:560px){.modal{padding:16px}.modal-body{padding:24px}.modal-body h3{font-size:16px}.ver-head{padding:14px 16px;gap:10px;flex-direction:column;align-items:flex-start}.ver-actions{width:100%;margin-left:0;justify-content:space-between;display:flex}.ver-download{flex:1}.ver-toggle{flex-shrink:0}}
+
 .footer{border-top:1px solid var(--line);background:#0a0a0c;padding:56px 28px 30px;margin-top:60px}
 .footer-in{max-width:var(--max);margin:auto;display:grid;grid-template-columns:1.8fr 1fr 1fr 1fr;gap:44px;padding-bottom:34px;border-bottom:1px solid var(--line)}
 .footer-col h5{font-size:11.5px;color:var(--dim);letter-spacing:2px;text-transform:uppercase;margin-bottom:16px;font-weight:750}
@@ -143,8 +174,39 @@ body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;bac
         <div class="side-row"><span class="k">类型</span><span class="v accent">AML插件</span></div>
         <div class="side-row"><span class="k">兼容版本</span><span class="v accent">2.0 32位 / 2.10 64位</span></div>
       </div>
-      <a class="detail-download" href="https://wwbgu.lanzoum.com/iKD8y4ga5d2b" rel="noopener" target="_blank">⬇ 下载模组</a>
+      <button class="detail-download" onclick="openVersions()">⬇ 下载模组</button>
       <div class="detail-password">提取码：<b>gbaq</b></div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal" id="versionsModal">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal('versionsModal')">×</button>
+    <div class="modal-body">
+      <h3>选择下载版本</h3>
+      <div id="versionsList">
+        <div class="ver-item latest">
+          <div class="ver-head">
+            <div>
+              <div class="ver-name">v1.0 <span class="ver-badge">最新</span></div>
+              <div class="ver-date">首发于 2026.11.17</div>
+            </div>
+            <div class="ver-actions">
+              <a class="ver-download" href="https://wwbgu.lanzoum.com/iKD8y4ga5d2b" rel="noopener" target="_blank">下载</a>
+              <button class="ver-toggle" onclick="toggleVer(this)">▾</button>
+            </div>
+          </div>
+          <div class="ver-body">
+            <p>· 为普通轿车与货车分别配置独立的制动尖啸音效。</p>
+            <p>· 根据车辆速度和刹车输入判断触发条件，持续刹车 0.5 秒后播放。</p>
+            <p>· 支持音量渐变与动态音高变化；松开刹车或车速低于触发阈值后，音效逐渐停止。</p>
+            <p>· 使用 GTA 原生 OpenAL 音频系统。</p>
+            <span class="ver-pw">提取码：<b>gbaq</b></span>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -174,5 +236,36 @@ body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;bac
     <span>© 2026 保留所有权利</span>
   </div>
 </footer>
+
+<script>
+window.openVersions = function() {
+  document.getElementById("versionsModal").classList.add("show");
+};
+window.closeModal = function(id) {
+  document.getElementById(id).classList.remove("show");
+};
+window.toggleVer = function(btn) {
+  const body = btn.closest(".ver-item").querySelector(".ver-body");
+  const isOpen = body.classList.contains("open");
+  if (isOpen) {
+    body.classList.remove("open");
+    btn.classList.remove("open");
+  } else {
+    body.classList.add("open");
+    btn.classList.add("open");
+  }
+};
+document.querySelectorAll(".modal").forEach(function(m) {
+  m.addEventListener("click", function(e) {
+    if (e.target === m) m.classList.remove("show");
+  });
+});
+document.addEventListener("keydown", function(e) {
+  if (e.key === "Escape") {
+    document.querySelectorAll(".modal.show").forEach(el => el.classList.remove("show"));
+  }
+});
+</script>
+
 </body>
 </html>
