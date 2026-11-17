@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<meta content="#0a0a0c" name="theme-color"/>
+<meta content="为 GTA SA 添加真实感更强的车辆制动尖啸音效，根据车辆类型自动播放轿车与货车的独立刹车声音，并支持延迟触发、音量渐变和动态音高效果。" name="description"/>
+<title>BrakeSqueal制动尖啸 - GTA SA 原创模组站</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0a0a0c;--card:#141418;--card2:#1a1a20;--line:#26262e;--line2:#33333d;--ink:#f4f4f6;--ink2:#a0a0ac;--dim:#5f5f6b;--accent:#ff3d68;--accent2:#ff8a3d;--max:1240px}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--ink);line-height:1.7;overflow-x:hidden;-webkit-font-smoothing:antialiased;position:relative}
+button,a{font:inherit}button{cursor:pointer}img{max-width:100%}a{color:inherit}
+body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;background:radial-gradient(900px 500px at 15% -5%,rgba(255,61,104,.12),transparent 60%),radial-gradient(800px 500px at 90% 5%,rgba(255,138,61,.08),transparent 60%),radial-gradient(700px 500px at 50% 100%,rgba(255,61,104,.06),transparent 60%);animation:bgPulse 10s ease-in-out infinite}
+@keyframes bgPulse{0%,100%{opacity:.7}50%{opacity:1}}
+.navbar,.detail,.footer{position:relative;z-index:1}
+.topbar{background:rgba(10,10,12,.7);border-bottom:1px solid var(--line);font-size:11.5px;color:var(--dim);letter-spacing:.5px;backdrop-filter:blur(12px)}
+.topbar-in{max-width:var(--max);margin:auto;padding:10px 28px;display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap}
+.topbar a{color:var(--ink2);text-decoration:none;margin-left:16px;transition:color .25s,transform .25s;display:inline-block}
+.topbar a:hover{color:var(--accent);transform:translateY(-1px)}
+.navbar{position:sticky;top:0;z-index:1000;background:rgba(10,10,12,.88);backdrop-filter:blur(20px);border-bottom:1px solid var(--line);animation:navDrop .6s cubic-bezier(.22,1,.36,1)}
+@keyframes navDrop{from{transform:translateY(-100%);opacity:0}to{transform:translateY(0);opacity:1}}
+.nav-in{max-width:var(--max);height:72px;margin:auto;padding:0 28px;display:flex;align-items:center;gap:22px}
+.nav-logo{display:flex;align-items:center;gap:11px;font-size:19px;font-weight:900;color:#fff;text-decoration:none;letter-spacing:-.5px;white-space:nowrap}
+.nav-logo .mark{width:8px;height:22px;background:var(--accent);flex-shrink:0;transition:transform .3s}
+.nav-logo:hover .mark{transform:scaleY(1.2)}.nav-logo b{color:var(--accent)}
+.nav-menu{flex:1;display:flex;justify-content:center;gap:32px}
+.nav-menu a{position:relative;color:var(--ink2);text-decoration:none;font-size:13.5px;font-weight:650;letter-spacing:.5px;padding:6px 0;transition:color .25s;text-transform:uppercase}
+.nav-menu a::after{content:"";position:absolute;left:0;bottom:0;width:0;height:1px;background:var(--accent);transition:width .35s cubic-bezier(.22,1,.36,1);box-shadow:0 0 8px rgba(255,61,104,.6)}
+.nav-menu a:hover{color:#fff}.nav-menu a:hover::after{width:100%}
+.nav-cta{padding:11px 22px;border:0;border-radius:0;font-size:12.5px;font-weight:750;color:#0a0a0c;background:var(--accent);letter-spacing:.5px;transition:transform .25s,box-shadow .3s;white-space:nowrap;text-transform:uppercase;text-decoration:none}
+.nav-cta:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(255,61,104,.55)}
+.detail{display:block;max-width:var(--max);margin:auto;padding:40px 28px 70px;animation:detailIn .55s cubic-bezier(.22,1,.36,1)}
+@keyframes detailIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+.detail-back{display:inline-flex;align-items:center;gap:8px;padding:11px 20px;border:1px solid var(--line2);background:transparent;color:var(--ink2);font-size:12.5px;font-weight:700;letter-spacing:1px;text-transform:uppercase;text-decoration:none;margin-bottom:32px;transition:all .3s}
+.detail-back:hover{color:var(--accent);border-color:var(--accent);transform:translateX(-4px)}
+.detail-grid{display:grid;grid-template-columns:1.35fr .65fr;gap:40px;align-items:start}
+.detail-main h1{font-size:38px;font-weight:900;color:#fff;margin-bottom:22px;letter-spacing:-1.2px;line-height:1.15;animation:fadeUp .6s ease both;word-break:break-all}
+.detail-imgs{display:flex;overflow-x:auto;gap:16px;padding-bottom:16px;-webkit-overflow-scrolling:touch;animation:fadeUp .6s ease .1s both}
+.detail-imgs::-webkit-scrollbar{height:5px}.detail-imgs::-webkit-scrollbar-thumb{background:var(--line2)}
+.preview-item{flex:0 0 72%;position:relative;overflow:hidden;background:#0a0a0c;border:1px solid var(--line)}
+.preview-item::before{content:"";display:block;padding-top:56.25%}
+.preview-item img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;transition:transform .5s;display:block}
+.preview-item img:hover{transform:scale(1.02)}
+.detail-desc{font-size:14px;color:var(--ink2);line-height:2;background:var(--card);border:1px solid var(--line);padding:30px;white-space:pre-wrap;margin-top:26px;animation:fadeUp .6s ease .18s both;word-break:break-word}
+.detail-desc code{background:#0a0a0c;border:1px solid var(--line2);padding:2px 8px;font-size:12.5px;color:#fff;font-family:ui-monospace,Menlo,monospace;word-break:break-all}
+.detail-side{position:sticky;top:96px;display:flex;flex-direction:column;gap:18px;animation:fadeUp .6s ease .12s both}
+.side-card{background:var(--card);border:1px solid var(--line);padding:26px}
+.side-card h3{font-size:11.5px;color:var(--dim);letter-spacing:2.5px;text-transform:uppercase;margin-bottom:16px;font-weight:750}
+.side-row{display:flex;justify-content:space-between;gap:14px;padding:13px 0;border-bottom:1px solid var(--line);font-size:13.5px;transition:padding-left .25s;word-break:break-word}
+.side-row:hover{padding-left:5px}.side-row:last-child{border-bottom:0;padding-bottom:0}
+.side-row .k{color:var(--ink2)}.side-row .v{color:#fff;font-weight:750;text-align:right}.side-row .v.accent{color:var(--accent)}
+.detail-download{display:block;width:100%;text-align:center;padding:18px;font-size:14px;font-weight:800;color:#0a0a0c!important;background:var(--accent);letter-spacing:1px;text-transform:uppercase;border:0;text-decoration:none;cursor:pointer;transition:transform .25s,box-shadow .3s;position:relative;overflow:hidden}
+.detail-download::after{content:"";position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.35),transparent);transition:left .7s}
+.detail-download:hover{transform:translateY(-4px);box-shadow:0 18px 46px rgba(255,61,104,.5)}.detail-download:hover::after{left:100%}
+.detail-download:active{transform:translateY(-1px) scale(.98)}
+.detail-password{text-align:center;font-size:13px;color:var(--dim);margin-top:-4px;letter-spacing:.5px}.detail-password b{color:var(--accent);font-weight:850}
+@keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+.footer{border-top:1px solid var(--line);background:#0a0a0c;padding:56px 28px 30px;margin-top:60px}
+.footer-in{max-width:var(--max);margin:auto;display:grid;grid-template-columns:1.8fr 1fr 1fr 1fr;gap:44px;padding-bottom:34px;border-bottom:1px solid var(--line)}
+.footer-col h5{font-size:11.5px;color:var(--dim);letter-spacing:2px;text-transform:uppercase;margin-bottom:16px;font-weight:750}
+.footer-col p{font-size:13px;color:var(--ink2);line-height:1.8;max-width:340px}
+.footer-col a{display:block;font-size:13px;color:var(--ink2);text-decoration:none;margin-bottom:10px;transition:color .25s,transform .25s}
+.footer-col a:hover{color:var(--accent);transform:translateX(4px)}
+.footer-brand{display:flex;align-items:center;gap:11px;margin-bottom:14px}.footer-brand .mark{width:8px;height:22px;background:var(--accent)}
+.footer-brand b{color:#fff;font-size:16px;font-weight:850}
+.footer-bot{max-width:var(--max);margin:24px auto 0;display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;font-size:11.5px;color:var(--dim);letter-spacing:1px}
+@media(max-width:960px){.nav-menu{display:none}.footer-in{grid-template-columns:1fr 1fr;gap:32px}.detail-grid{grid-template-columns:1fr;gap:28px}.detail-side{position:static}}
+@media(max-width:560px){.topbar{display:none}.nav-in{flex-wrap:wrap;height:auto;padding:12px 16px;gap:10px}.nav-logo{font-size:16px}.nav-cta{padding:9px 14px;font-size:11px}.detail{padding:24px 16px 54px}.detail-main h1{font-size:26px;letter-spacing:-.8px}.preview-item{flex:0 0 88%}.detail-desc{padding:22px;font-size:13px}.footer{padding:40px 16px 24px}.footer-in{grid-template-columns:1fr;gap:26px}.footer-bot{flex-direction:column;text-align:center}}
+@media(prefers-reduced-motion:reduce){*,*:before,:after{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="topbar">
+  <div class="topbar-in">
+    <span>GTA SA 安卓手机版模组与插件分享 · 全部免费</span>
+    <span><a href="https://b23.tv/AtXUMm9" rel="noopener" target="_blank">举报倒卖</a></span>
+  </div>
+</div>
+<nav class="navbar">
+  <div class="nav-in">
+    <a class="nav-logo" href="../index.html"><span class="mark"></span>GTA SA <b>模组站</b></a>
+    <div class="nav-menu">
+      <a href="../index.html">首页</a>
+      <a href="../page2/">第二页</a>
+    </div>
+    <a class="nav-cta" href="../index.html">返回首页</a>
+  </div>
+</nav>
+
+<div class="detail">
+  <a class="detail-back" href="../page2/">← 返回第二页</a>
+  <div class="detail-grid">
+    <div class="detail-main">
+      <h1>BrakeSqueal制动尖啸</h1>
+      <div class="detail-imgs">
+        <div class="preview-item"><img alt="BrakeSqueal 制动尖啸预览图" src="../rusty-brake-rotor-scaled.jpg" onerror="this.parentElement.style.background='#0a0a0c'"/></div>
+        <div class="preview-item"><img alt="BrakeSqueal 音效模组预览图" src="../xperiaicon.png" onerror="this.parentElement.style.background='#0a0a0c'"/></div>
+      </div>
+      <div class="detail-desc">制动尖啸（BrakeSqueal）
+
+为 GTASA 添加车辆刹车时的尖啸音效，也就是刹车片摩擦声。
+
+模组根据车辆类型播放不同的制动音效。目前支持普通轿车与货车，每种车辆均使用独立的音效资源。
+
+【功能特点】
+
+- 普通轿车与货车拥有独立的刹车尖啸音效。
+- 根据车辆速度和刹车输入自动触发。
+- 车辆持续刹车 0.5 秒后触发音效。
+- 支持音量渐变与音高动态变化。
+- 松开刹车或车速低于触发阈值后，音效逐渐停止。
+- 采用 GTA 原生 OpenAL 音频系统。
+
+【触发条件】
+
+- 普通轿车：速度超过 14 km/h，持续刹车 0.5 秒。
+- 货车：速度超过 14.4 km/h，持续刹车 0.5 秒。
+
+【兼容性】
+
+- 兼容 GTA SA Android 2.0（32位）。
+- 兼容 GTA SA Android 2.10（64位）。
+
+【版本信息】
+
+版本：v1.0
+
+【作者信息】
+
+作者：流王
+哔哩哔哩：流王星者_Streamer</div>
+    </div>
+
+    <div class="detail-side">
+      <div class="side-card">
+        <h3>模组信息</h3>
+        <div class="side-row"><span class="k">版本</span><span class="v">v1.0</span></div>
+        <div class="side-row"><span class="k">压缩包大小</span><span class="v">1.65M</span></div>
+        <div class="side-row"><span class="k">发布时间</span><span class="v">2026.11.17</span></div>
+        <div class="side-row"><span class="k">更新日期</span><span class="v">暂无</span></div>
+        <div class="side-row"><span class="k">类型</span><span class="v accent">AML插件</span></div>
+        <div class="side-row"><span class="k">兼容版本</span><span class="v accent">2.0 32位 / 2.10 64位</span></div>
+      </div>
+      <a class="detail-download" href="https://wwbgu.lanzoum.com/iKD8y4ga5d2b" rel="noopener" target="_blank">⬇ 下载模组</a>
+      <div class="detail-password">提取码：<b>gbaq</b></div>
+    </div>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="footer-in">
+    <div class="footer-col">
+      <div class="footer-brand"><span class="mark"></span><b>GTA SA 原创模组站</b></div>
+      <p>专注 GTA SA 安卓手机版模组与插件分享，持续更新，全部免费。</p>
+    </div>
+    <div class="footer-col">
+      <h5>导航</h5>
+      <a href="../index.html">首页</a>
+      <a href="../page2/">第二页</a>
+    </div>
+    <div class="footer-col">
+      <h5>制作</h5>
+      <a href="https://b23.tv/tECAcfc" rel="noopener" target="_blank">流王星者_Streamer</a>
+    </div>
+    <div class="footer-col">
+      <h5>相关</h5>
+      <a href="https://b23.tv/AtXUMm9" rel="noopener" target="_blank">举报倒卖</a>
+    </div>
+  </div>
+  <div class="footer-bot">
+    <span>GTA SA ORIGINAL MODS · FREE SHARING</span>
+    <span>© 2026 保留所有权利</span>
+  </div>
+</footer>
+</body>
+</html>
