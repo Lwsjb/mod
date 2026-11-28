@@ -133,7 +133,7 @@ body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;bac
         <div class="preview-item"><img alt="UI Redo 界面重置预览图 5" src="../UI Redo6.jpg" onerror="this.parentElement.style.background='#0a0a0c'"/></div>
         <div class="preview-item"><img alt="UI Redo 界面重置预览图 6" src="../UI Redo7.jpg" onerror="this.parentElement.style.background='#0a0a0c'"/></div>
       </div>
-      <div class="detail-desc">UI Redo 1.0
+      <div class="detail-desc">UI Redo 1.1.0
 
 作者：流王
 
@@ -185,6 +185,18 @@ body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;bac
 - 优化加载动画图片读取，减少卡顿。
 - 菜单右下角增加版本和作者信息。
 
+【1.1.0 更新内容】
+
+- 修复进入「设置」界面后点击右下角位置会执行退回操作的问题。
+- 重做按钮和动效，使整体视觉更符合大众审美。
+- 地图界面左上角按钮新增背景效果，右下角新增版本号、作者信息等内容。
+- 修复在「设置」界面点击内部按钮跳转时闪过原版地图的问题。
+- 修复点击「继续游戏」后卡住、无法跳转的问题。
+- 移除按钮第二次点击时的动画效果，减少跳转延迟。
+- 优化按钮跟手逻辑。
+- 修复在「设置」界面点击内部按钮会执行退回操作的问题。
+- 移除点击屏幕时出现的波纹动画效果。
+
 【兼容性】
 
 - GTA SA Android 2.10：64 位。
@@ -203,15 +215,15 @@ body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;bac
     <div class="detail-side">
       <div class="side-card">
         <h3>模组信息</h3>
-        <div class="side-row"><span class="k">版本</span><span class="v">v1.0</span></div>
-        <div class="side-row"><span class="k">压缩包大小</span><span class="v">64.86M</span></div>
+        <div class="side-row"><span class="k">版本</span><span class="v">v1.1.0</span></div>
+        <div class="side-row"><span class="k">压缩包大小</span><span class="v">64.91M</span></div>
         <div class="side-row"><span class="k">发布时间</span><span class="v">2026.11.22</span></div>
-        <div class="side-row"><span class="k">更新日期</span><span class="v">暂无</span></div>
+        <div class="side-row"><span class="k">更新日期</span><span class="v">2026.11.28</span></div>
         <div class="side-row"><span class="k">类型</span><span class="v accent">AML插件</span></div>
         <div class="side-row"><span class="k">兼容版本</span><span class="v accent">2.10 64位 / 2.00 32位（实验性）</span></div>
       </div>
       <button class="detail-download" onclick="openVersions()">⬇ 下载模组</button>
-      <div class="detail-password">提取码：<b>7bs3</b></div>
+      <div class="detail-password">提取码：<b>5amv</b></div>
     </div>
   </div>
 </div>
@@ -226,7 +238,27 @@ body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;bac
         <div class="ver-item latest">
           <div class="ver-head">
             <div>
-              <div class="ver-name">v1.0 <span class="ver-badge">最新</span></div>
+              <div class="ver-name">v1.1.0 <span class="ver-badge">最新</span></div>
+              <div class="ver-date">更新于 2026.11.28</div>
+            </div>
+            <div class="ver-actions">
+              <a class="ver-download" href="https://wwbgu.lanzoum.com/iByWh4hlzp7a" rel="noopener" target="_blank">下载</a>
+              <button class="ver-toggle" onclick="toggleVer(this)">▾</button>
+            </div>
+          </div>
+          <div class="ver-body">
+            <p>· 修复设置界面点击右下角或内部按钮时误触发退回的问题，并修复按钮跳转时闪过原版地图。</p>
+            <p>· 重做按钮和动效，优化按钮跟手逻辑；移除第二次点击动画，减少跳转延迟。</p>
+            <p>· 修复点击「继续游戏」后卡住不跳转的问题。</p>
+            <p>· 地图界面左上角按钮新增背景效果，右下角新增版本号和作者信息。</p>
+            <p>· 移除点击屏幕出现的波纹动画效果。</p>
+            <span class="ver-pw">提取码：<b>5amv</b></span>
+          </div>
+        </div>
+        <div class="ver-item">
+          <div class="ver-head">
+            <div>
+              <div class="ver-name">v1.0</div>
               <div class="ver-date">首发于 2026.11.22</div>
             </div>
             <div class="ver-actions">
